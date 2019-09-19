@@ -1,5 +1,6 @@
 Use silver_lining_db;
 # Users
+
 insert into Users (username, password, email, address, photo, role)
 values ('Bev Ivan', 'EWqlqmgPB0', 'bivan0@last.fm', '16 Granby Way', 'https://robohash.org/sintbeataeid.png?size=50x50&set=set1', 2),
 ('Sebastien Devereux', 'JKwYFR', 'sdevereux1@blogger.com', '8 Laurel Hill', 'https://robohash.org/dolorumrepellendusut.jpg?size=50x50&set=set1', 2),
