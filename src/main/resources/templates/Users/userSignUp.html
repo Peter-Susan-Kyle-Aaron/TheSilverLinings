@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html  lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="partials/header :: header"/>
+    <title>Sign up</title>
+</head>
+<body>
+
+
+<div class="container">
+    <div class="col s12">
+        <div class="row ">
+
+            <h1>Create an Account</h1>
+            <form th:action="@{/}" method="post" th:object="${}">
+                <div class="input-field">
+                    <i class="material-icons prefix">person</i>
+                    <label for="username">Username</label>
+                    <input id="username" th:field="*{}" type="text" />
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">email</i>
+                    <label for="email">Email</label>
+                    <input id="email" th:field="*{}" type="email" />
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">lock</i>
+                    <label for="password">Password</label>
+                    <input id="password" th:field="*{}" type="password" />
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">pin_drop</i>
+                    <label for="address">Address</label>
+                    <input id="address" th:field="*{}" type="address" />
+                </div>
+
+                <input type="submit" value="Sign Me Up !" class="btn btn-large"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
