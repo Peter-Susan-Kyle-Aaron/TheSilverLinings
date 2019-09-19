@@ -2,6 +2,7 @@ package com.codeup.silverlining.Model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Posts")
@@ -27,6 +28,9 @@ public class Post {
     @OneToOne
     private User user;
 
+    @OneToMany
+    private List<User> worker;
+
     public Post (){};
 
     public Post (Post copy){
@@ -34,24 +38,27 @@ public class Post {
         title = copy.title;
         body = copy.body;
         user = copy.user;
+        worker = copy.worker;
         category = copy.category;
         location = copy.location;
         date = copy.date;
     }
 
-    public Post (long id, String title, String body, User user, String category, String location ,String date){
+    public Post (long id, String title, String body, List<User> worker, User user, String category, String location ,String date){
         this.id = id;
         this.title = title;
         this.body = body;
         this.user = user;
+        this.worker = worker;
         this.category = category;
         this.location = location;
         this.date = date;
     }
-    public Post (String title, String body, User user, String category, String location, String date){
+    public Post (String title, String body, User user, List<User> worker, String category, String location, String date){
         this.title = title;
         this.body = body;
         this.user = user;
+        this.worker = worker;
         this.category = category;
         this.location = location;
         this.date = date;
@@ -97,19 +104,27 @@ public class Post {
         this.category = category;
     }
 
-    public String getEvent_Location() {
+    public String getLocation() {
         return location;
     }
 
-    public void setEvent_Location(String location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 
-    public String getEven_Date() {
+    public String getDate() {
         return date;
     }
 
-    public void setEvent_Date(String date) {
+    public void setDate(String date) {
         this.date = date;
+    }
+
+    public List<User> getWorker() {
+        return worker;
+    }
+
+    public void setWorker(List<User> worker) {
+        this.worker = worker;
     }
 }

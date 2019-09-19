@@ -1,4 +1,9 @@
 Use silver_lining_db;
+
+Drop TABLE if exists reviews;
+Drop TABLE if exists posts;
+Drop TABLE if exists users;
+
 # Users
 
 insert into Users (username, password, email, address, photo, role)
