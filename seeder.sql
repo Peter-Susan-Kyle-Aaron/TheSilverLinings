@@ -1,5 +1,3 @@
-
-
 Use silver_lining_db;
 # Users
 
