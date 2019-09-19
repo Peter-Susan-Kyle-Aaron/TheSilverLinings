@@ -1,6 +1,3 @@
-DROP DATABASE IF EXISTS silver_lining_db;
-CREATE DATABASE silver_lining_db;
-
 Use silver_lining_db;
 # Users
 insert into Users (username, password, email, address, photo, role)
@@ -17,7 +14,7 @@ values ('Bev Ivan', 'EWqlqmgPB0', 'bivan0@last.fm', '16 Granby Way', 'https://ro
 
 
 #Posts
-insert into Posts (Title, Description, User, Category, Event_Location, Event_Date)
+insert into Posts (Title, Description, user_id, Category, Event_Location, Event_Date)
 values ('sit', 'Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.', 5, 'Drama', '69 Lakewood Gardens Junction', '5/27/2019 17:46'),
 ('sed magna at nunc commodo', 'Nulla tempus.', 1, 'Animation|Sci-Fi', '3417 Nova Road', ' 11/13/2018 22:54'),
 ('tincidunt eu', 'Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue.', 10, 'Comedy|Musical|Romance', '776 Lillian Point', '9/24/2019 20:15'),
