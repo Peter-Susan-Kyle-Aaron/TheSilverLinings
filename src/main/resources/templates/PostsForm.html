@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/header :: header('Post')" />
+</head>
+<body>
+<th:block th:replace="fragments/navbar :: navbar" />
+
+<main class="container">
+    <h1>What do you need help with?</h1>
+    <button th:class="delivery">I need something delivered</button>
+    <button th:class="accomplished">I need something done at my house</button>
+    <form th:action="@{/posts/create}" th:method="post" th:object="${}">
+        On what day do you need delivered?:<input th:field="*{event_date}"/><br/>
+        Where is the delivery from?<input th:field="*{event_location}"/><br/>
+        What time do you need this delivery?<input th:field="*{}"/><br/>
+        Is this a recurring delivery?
+        Yes<input type="checkbox"/><br/>
+        What time is this delivery?<input th:field="*{}"/><br/>
+        <button class="btn">Submit</button>
+    </form>
+
+    <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+        What task do you need accomplished?<input th:field="*{}"/><br/>
+        How long will this task take to accomplish? <input th:field="*{}"/><br/>
+        How many people are needed to complete this task? <input th:field="*{}"/><br/>
+        Is this task at your place of residence? <input type="checkbox"/><br/>
+        If not, where do you need help?<input th:field="*{}"/><br/>
+        What time do you need this help? <input th:field="*{}"/><br/>
+        Are there any outside resources needed to accomplish this task? (tools, ladder, etc) <input th:field="*{}"/><br/>
+
+    </form>
+</main>
+
+
+</body>
+</html>
