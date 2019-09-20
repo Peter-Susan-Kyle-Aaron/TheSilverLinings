@@ -7,7 +7,8 @@ Drop TABLE if exists users;
 # Users
 
 insert into Users (username, password, email, address, photo, role)
-values ('Bev Ivan', 'EWqlqmgPB0', 'bivan0@last.fm', '16 Granby Way', 'https://robohash.org/sintbeataeid.png?size=50x50&set=set1', 2),
+values ('kyle','$2a$10$Np9uN3PKPI10iYO1Yv.de.vHgWaJ/VunlS.uAV9eD0d7A044Uj8V2','kyle@mail.com','1234 Nowhereville','',1),
+('Bev Ivan', 'EWqlqmgPB0', 'bivan0@last.fm', '16 Granby Way', 'https://robohash.org/sintbeataeid.png?size=50x50&set=set1', 2),
 ('Sebastien Devereux', 'JKwYFR', 'sdevereux1@blogger.com', '8 Laurel Hill', 'https://robohash.org/dolorumrepellendusut.jpg?size=50x50&set=set1', 2),
 ('Kristen Dyett', '1k8pa5Y5UWDp', 'kdyett2@slideshare.net', '71039 Cody Street', 'https://robohash.org/natusquiesse.bmp?size=50x50&set=set1', 1),
 ('Mace Bucke', 'J8B0JYH4zaB8', 'mbucke3@ning.com', '3 Portage Pass', 'https://robohash.org/nullaquiavel.bmp?size=50x50&set=set1', 2),

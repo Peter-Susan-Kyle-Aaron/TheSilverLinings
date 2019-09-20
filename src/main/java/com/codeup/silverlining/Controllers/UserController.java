@@ -26,33 +26,53 @@ public class UserController {
         this.userDao = useDao;
     }
 
-    @GetMapping("/login")
-    public String viewAll(Model model){
-
-        return "Users/login";
-    }
-
-    @GetMapping("/sign-up")
-    public String viewSignupForm(Model model){
-        model.addAttribute("user", new User());
+    @GetMapping("/signup")
+    public String viewSignupForm(){
         return "Users/SignUp";
     }
 
-    @PostMapping("/sign-up")
+    @GetMapping("/signup/volunteer")
+    public String viewVolForm(Model model){
+        model.addAttribute("user", new User());
+        return "Users/volunteerSignUp";
+    }
+
+    @PostMapping("/signup/volunteer")
     public String submitCreateForm(@ModelAttribute User user,PasswordEncoder passwordEncoder, Model model){
         if(user.getUsername().equals("") ||
            user.getPassword().equals("") ||
            user.getEmail().equals("")||
-           (user.getRole() == 1 && user.getPhoto().equals("")) ||
-           (user.getRole() == 2 && user.getAddress().equals(""))) {
+           (user.getRole() == 1 && user.getPhoto().equals(""))){
             model.addAttribute("usercache",user);
-            return "users/sign-up";
+            return "users/volunteerSignUp";
         }
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);
         return "redirect:/profile";
     }
+
+    @GetMapping("/signup/senior")
+    public String viewSeniorForm(Model model){
+        model.addAttribute("user", new User());
+        return "Users/seniorSignUp";
+    }
+
+    @PostMapping("/signup/senior")
+    public String submitCreateFormSenior(@ModelAttribute User user,PasswordEncoder passwordEncoder, Model model){
+        if(user.getUsername().equals("") ||
+           user.getPassword().equals("") ||
+           user.getEmail().equals("")||
+           (user.getRole() == 2 && user.getAddress().equals(""))) {
+            model.addAttribute("usercache",user);
+            return "users/seniorSignUp";
+        }
+        String hash = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hash);
+        userDao.save(user);
+        return "redirect:/profile";
+    }
+
 
     @GetMapping("/profile")
     public String viewProfile(Model model){

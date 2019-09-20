@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <th:block th:replace="partials/header :: header"/>
+<!--    <th:block th:replace="partials/header :: header"/>-->
     <title>Log In</title>
 </head>
 <body >
@@ -13,7 +13,7 @@
         <div class="row ">
 
             <h1>Log In</h1>
-            <form th:action="@{/}" method="post">
+            <form th:action="@{/login}" method="post">
                 <div th:if="${param.logout}" class="red-text text-darken-4">
                     You have been logged out.
                 </div>
