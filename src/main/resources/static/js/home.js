@@ -1,3 +1,4 @@
 $('.carousel.carousel-slider').carousel({
-    fullWidth: true
+    fullWidth: true,
+    indicators: true
 });
