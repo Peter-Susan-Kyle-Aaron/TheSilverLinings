@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html  lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="fragments/header :: header('seniorSignUp')"/>
-    <title>Sign up</title>
+
+    <th:block th:replace="fragments/header :: header('userSignUp')"/>
 </head>
 <body>
 
@@ -12,15 +12,30 @@
     <div class="col s12">
         <div class="row ">
 
-            <h1>What are you</h1>
+            <h1>Create an Account</h1>
             <form th:action="@{/}" method="post" th:object="${}">
+                <div class="input-field">
+                    <i class="material-icons prefix">person</i>
+                    <label for="username">Username</label>
+                    <input id="username" th:field="*{}" type="text" />
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">email</i>
+                    <label for="email">Email</label>
+                    <input id="email" th:field="*{}" type="email" />
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">lock</i>
+                    <label for="password">Password</label>
+                    <input id="password" th:field="*{}" type="password" />
+                </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">pin_drop</i>
+                    <label for="address">Address</label>
+                    <input id="address" th:field="*{}" type="address" />
+                </div>
 
-                <input type="submit" value="I am a senior!" class="btn btn-large"/>
-
-            </form>
-            <form th:action="@{/}" method="post" th:object="${}">
-
-                <input type="submit" value="I am a volunteer!" class="btn btn-large"/>
+                <input type="submit" value="Sign Me Up " class="btn btn-large"/>
             </form>
         </div>
     </div>
@@ -33,5 +48,6 @@
 
 <footer th:replace="fragments/footer"></footer>
 <th:block th:replace="fragments/scripts"/>
+
 </body>
 </html>
