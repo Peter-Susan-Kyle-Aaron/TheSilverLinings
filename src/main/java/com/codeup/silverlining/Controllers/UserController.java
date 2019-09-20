@@ -5,25 +5,26 @@ import com.codeup.silverlining.Model.User;
 import com.codeup.silverlining.Repo.PostRepo;
 import com.codeup.silverlining.Repo.UserRepo;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @Controller
 public class UserController {
 
-
     private PostRepo postDao;
     private UserRepo userDao;
+    private PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepo useDao, PostRepo postDao){
+    public UserController(UserRepo useDao, PostRepo postDao, PasswordEncoder passwordEncoder){
         this.postDao = postDao;
         this.userDao = useDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/signup")
@@ -38,7 +39,7 @@ public class UserController {
     }
 
     @PostMapping("/signup/volunteer")
-    public String submitCreateForm(@ModelAttribute User user,PasswordEncoder passwordEncoder, Model model){
+    public String submitCreateForm(@ModelAttribute User user, Model model){
         if(user.getUsername().equals("") ||
            user.getPassword().equals("") ||
            user.getEmail().equals("")||
@@ -59,7 +60,7 @@ public class UserController {
     }
 
     @PostMapping("/signup/senior")
-    public String submitCreateFormSenior(@ModelAttribute User user,PasswordEncoder passwordEncoder, Model model){
+    public String submitCreateFormSenior(@ModelAttribute User user, Model model){
         if(user.getUsername().equals("") ||
            user.getPassword().equals("") ||
            user.getEmail().equals("")||
@@ -87,13 +88,13 @@ public class UserController {
         User user = userDao.findById(id);
 
 //        Iterable<Post> posts = postDao.findAll();
-        try{
-            User userSesh = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            User currentUser = userDao.findById(userSesh.getId());
-            model.addAttribute("userSesh",currentUser);
-        }catch(Exception e){
-
-        }
+//        try{
+//            User userSesh = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//            User currentUser = userDao.findById(userSesh.getId());
+//            model.addAttribute("userSesh",currentUser);
+//        }catch(Exception e){
+//
+//        }
 //        ArrayList<Post> formatedPosts = new ArrayList<>();
 //        for(Post post : posts) {
 //            if(post.getUser().getId() == user.getId()) {
