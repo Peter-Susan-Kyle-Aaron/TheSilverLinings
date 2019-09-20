@@ -2,15 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:replace="fragments/header :: header('Post')" />
+    <link rel="stylesheet" href="static/css/main.css">
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: navbar" />
 
-<main class="container">
+<main>
     <h1>What do you need help with?</h1>
-    <button th:class="delivery">I need something delivered</button>
-    <button th:class="accomplished">I need something done at my house</button>
-    <form th:action="@{/posts/create}" th:method="post" th:object="${}">
+    <button type="button" name="delivery" id="delivery">I need something delivered</button>
+    <button name="task" id="task" th:class="accomplished">I need something done at my house</button>
+    <div class="deliveryForm hiddenForm">
+
+    <form  th:action="@{/posts/create}" th:method="post" th:object="${}">
         On what day do you need delivered?:<input th:field="*{event_date}"/><br/>
         Where is the delivery from?<input th:field="*{event_location}"/><br/>
         What time do you need this delivery?<input th:field="*{}"/><br/>
@@ -19,6 +22,8 @@
         What time is this delivery?<input th:field="*{}"/><br/>
         <button class="btn">Submit</button>
     </form>
+    </div>
+    <div class="taskForm hiddenForm">
 
     <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
         What task do you need accomplished?<input th:field="*{}"/><br/>
@@ -30,8 +35,20 @@
         Are there any outside resources needed to accomplish this task? (tools, ladder, etc) <input th:field="*{}"/><br/>
 
     </form>
+    </div>
 </main>
-
-
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        $("#delivery").on("click", function() {
+            $(".deliveryForm").toggleClass("hiddenform");
+        });
+    });
+    $(document).ready(function() {
+        $("#task").on("click", function() {
+            $(".taskForm").toggleClass("hiddenform");
+        });
+    });
+</script>
 </body>
 </html>
