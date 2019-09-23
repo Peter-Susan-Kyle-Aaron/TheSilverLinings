@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/header :: header('Post')" />
+    <link rel="stylesheet" href="../../static/css/main.css"/>
+</head>
+<body>
+<th:block th:replace="fragments/navbar :: navbar" />
+
+<main>
+    <h1>Residence Assistance Form</h1>
+
+    <div class="taskForm">
+
+        <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+            What task do you need accomplished?<input th:field="*{title}"/><br/>
+            How long will this task take to accomplish? <input th:field="*{description}"/><br/>
+            How many people are needed to complete this task? <input th:field="*{description}"/><br/>
+            Is this task at your place of residence? If no, check <input name="locationCheck" id="locationCheck" type="checkbox"/><br/>
+            <div id="notAtLocation" class="hiddenForm">
+                If not, where do you need help?<input th:field="*{event_location}"/> <br/>
+            </div>
+            What time do you need this help? <input th:field="*{event_date}"/> <br/>
+            Are there any outside resources needed to accomplish this task? (tools, ladder, etc) <input th:field="*{description}"/><br/>
+            <button class="btn">Submit</button>
+        </form>
+    </div>
+</main>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+
+    $(document).ready(function(){
+        $("#locationCheck").on("click", function(){
+            $("#notAtLocation").toggleClass("hiddenForm");
+        });
+    });
+</script>
+</body>
+</html>

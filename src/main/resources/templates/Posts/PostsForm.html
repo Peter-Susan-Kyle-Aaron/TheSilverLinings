@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/header :: header('Post')" />
+    <link rel="stylesheet" href="../../static/css/main.css"/>
+</head>
+<body>
+<th:block th:replace="fragments/navbar :: navbar" />
+
+<main>
+    <h1>What do you need help with?</h1>
+    <button onclick="th:href = 'Posts/DeliveryPosts.html';" type="button" name="delivery" id="delivery">I need something delivered</button>
+    <button onclick="window.location.href = 'Posts/ResidenceAssistance.html';" name="task" id="task" th:class="accomplished">I need something done at my house</button>
+
+</main>
+<!--<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>-->
+<!--<script>-->
+<!--    $(document).ready(function() {-->
+<!--        $("#delivery").on("click", function() {-->
+<!--            console.log("test");-->
+<!--            $(".deliveryForm").toggleClass("hiddenForm");-->
+<!--        });-->
+<!--    });-->
+<!--    $(document).ready(function() {-->
+<!--        $("#task").on("click", function() {-->
+<!--            $(".taskForm").toggleClass("hiddenForm");-->
+<!--        });-->
+<!--    });-->
+<!--    $(document).ready(function(){-->
+<!--        $("#locationCheck").on("click", function(){-->
+<!--            $("#notAtLocation").toggleClass("hiddenForm");-->
+<!--        });-->
+<!--    });-->
+<!--    $(document).ready(function(){-->
+<!--        $("#recurringDelivery").on("click", function(){-->
+<!--            $("#isRecurring").toggleClass("hiddenForm");-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+</body>
+</html>
