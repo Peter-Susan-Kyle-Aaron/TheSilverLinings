@@ -18,10 +18,10 @@ public class Post {
     @Column(nullable = false, name = "Category")
     private  String category;
 
-    @Column(nullable = false, name = "Event_Location")
+    @Column(nullable = false, name = "Location")
     private String location;
 
-    @Column(nullable = false, name = "Event_Date")
+    @Column(nullable = false, name = "Date")
     private long date;
 
     @OneToOne
