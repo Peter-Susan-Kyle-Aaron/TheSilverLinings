@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/header :: header('Post')" />
+    <link rel="stylesheet" href="../../static/css/main.css"/>
+</head>
+<body>
+<th:block th:replace="fragments/navbar :: navbar" />
+
+<main>
+    <h1>Delivery Assistance Form</h1>
+    <div class="deliveryForm">
+
+        <form  th:action="@{/posts/create}" th:method="post" th:object="${post}">
+            On what day do you need something delivered?:<input th:field="*{event_date}"/><br/>
+            Where is the delivery from?<input th:field="*{event_location}"/><br/>
+            What time do you need this delivery?<input th:field="*{event_date}"/><br/>
+            Is this a recurring delivery?
+            Yes<input  name="recurringDelivery" id="recurringDelivery" type="checkbox"/><br/>
+            <!--        Add stuff for recurring once we have styling done-->
+
+            <!--        <div id="isRecurring" class="hiddenForm">-->
+            <!--            How often is this delivery needed?-->
+            <!--        </div>-->
+            <button class="btn">Submit</button>
+        </form>
+    </div>
+</main>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){
+        $("#locationCheck").on("click", function(){
+            $("#notAtLocation").toggleClass("hiddenForm");
+        });
+    });
+    // $(document).ready(function(){
+    //     $("#recurringDelivery").on("click", function(){
+    //         $("#isRecurring").toggleClass("hiddenForm");
+    //     });
+    // });
+</script>
+</body>
+</html>
