@@ -11,7 +11,6 @@
 <div class="container">
     <div class="col s12">
         <div class="row ">
-
             <h1>Create an Account</h1>
             <form th:action="@{/signup/volunteer}" method="post" th:object="${user}">
                 <div class="input-field">
@@ -34,17 +33,11 @@
                     <label for="photo">Photo</label>
                     <input id="photo" th:field="*{photo}" type="photo" />
                 </div>
-
                 <input type="submit" value="Sign Me Up " class="btn btn-large"/>
             </form>
         </div>
     </div>
 </div>
-
-
-
-
-
 <footer th:replace="fragments/footer"></footer>
 <th:block th:replace="fragments/scripts"/>
 </body>

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:replace="fragments/header :: header('Post')" />
-    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/css/main.css"/>
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: navbar" />
@@ -13,7 +13,7 @@
     <button name="task" id="task" th:class="accomplished">I need something done at my house</button>
     <div class="deliveryForm hiddenForm">
 
-    <form  th:action="@{/posts/create}" th:method="post" th:object="${}">
+    <form  th:action="@{/posts/create}" th:method="post" th:object="${Post}">
         On what day do you need delivered?:<input th:field="*{event_date}"/><br/>
         Where is the delivery from?<input th:field="*{event_location}"/><br/>
         What time do you need this delivery?<input th:field="*{}"/><br/>
@@ -33,7 +33,7 @@
         How long will this task take to accomplish? <input th:field="*{}"/><br/>
         How many people are needed to complete this task? <input th:field="*{}"/><br/>
         Is this task at your place of residence? If no, check <input name="locationCheck" id="locationCheck" type="checkbox"/><br/>
-        <div id="notAtLocation"class="hiddenForm">
+        <div id="notAtLocation" class="hiddenForm">
         If not, where do you need help?<input th:field="*{}"/><br/>
         </div>
         What time do you need this help? <input th:field="*{}"/><br/>
