@@ -1,7 +1,6 @@
 package com.codeup.silverlining.Model;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,7 +22,7 @@ public class Post {
     private String location;
 
     @Column(nullable = false, name = "Event_Date")
-    private String date;
+    private long date;
 
     @OneToOne
     private User user;
@@ -44,7 +43,7 @@ public class Post {
         date = copy.date;
     }
 
-    public Post (long id, String title, String body, List<User> worker, User user, String category, String location ,String date){
+    public Post (long id, String title, String body, List<User> worker, User user, String category, String location ,long date){
         this.id = id;
         this.title = title;
         this.body = body;
@@ -54,7 +53,7 @@ public class Post {
         this.location = location;
         this.date = date;
     }
-    public Post (String title, String body, User user, List<User> worker, String category, String location, String date){
+    public Post (String title, String body, User user, List<User> worker, String category, String location, long date){
         this.title = title;
         this.body = body;
         this.user = user;
@@ -112,11 +111,11 @@ public class Post {
         this.location = location;
     }
 
-    public String getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(long date) {
         this.date = date;
     }
 
