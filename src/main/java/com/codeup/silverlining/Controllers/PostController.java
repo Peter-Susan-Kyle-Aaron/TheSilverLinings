@@ -33,7 +33,7 @@ public class PostController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
         SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm");
-        String myDateString = Long.toString(date)+" "+Long.toString(time);
+        String myDateString = date + " " + time;
         System.out.println(myDateString);
         try {
             Date newDate = dateFormat.parse(myDateString);

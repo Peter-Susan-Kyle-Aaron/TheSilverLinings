@@ -16,7 +16,11 @@
             Where is the delivery from?<input type="text" th:field="*{location}"/><br/>
             What time do you need this delivery?<input type="time" id="time" name="time"/><br/>
             Is this a recurring delivery?
-            Yes<input  name="recurringDelivery" id="recurringDelivery" type="checkbox"/><br/>
+            <label>
+                <input type="checkbox" />
+                <span>Yes</span>
+            </label>
+        <br/>
             <!--        Add stuff for recurring once we have styling done-->
 
             <!--        <div id="isRecurring" class="hiddenForm">-->
@@ -33,11 +37,7 @@
             $("#notAtLocation").toggleClass("hiddenForm");
         });
     });
-    // $(document).ready(function(){
-    //     $("#recurringDelivery").on("click", function(){
-    //         $("#isRecurring").toggleClass("hiddenForm");
-    //     });
-    // });
+
 </script>
 </body>
 </html>
