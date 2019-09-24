@@ -21,9 +21,9 @@ values ('kyle','$2a$10$Np9uN3PKPI10iYO1Yv.de.vHgWaJ/VunlS.uAV9eD0d7A044Uj8V2','k
 
 
 #Posts
-insert into Posts (Title, Description, user_id, Category, Event_Location)
-values ('sit', 'Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.', 5, 'Drama', '69 Lakewood Gardens Junction'),
-('sed magna at nunc commodo', 'Nulla tempus.', 1, 'Animation|Sci-Fi', '3417 Nova Road'),
+insert into Posts (Title, Description, user_id, Category, event_location, event_date)
+values ('sit', 'Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.', 1, 'Drama', '69 Lakewood Gardens Junction', 23458),
+('sed magna at nunc commodo', 'Nulla tempus.', 1, 'Animation|Sci-Fi', '3417 Nova Road', 09234823);
 ('tincidunt eu', 'Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue.', 10, 'Comedy|Musical|Romance', '776 Lillian Point'),
 ('diam id ornare imperdiet', 'Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.', 10, 'Drama|Romance', '45 Springs Avenue'),
 ('platea dictumst', 'Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.', 8, 'Horror|Sci-Fi', '888 Golf View Way');
