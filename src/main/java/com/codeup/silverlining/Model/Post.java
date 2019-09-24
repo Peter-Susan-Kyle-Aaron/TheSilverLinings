@@ -8,20 +8,20 @@ import java.util.List;
 public class Post {
     @Id @GeneratedValue
     private long id;
-
-    @Column(nullable = false, name = "Title")
+//
+    @Column(name = "Title")
     private String title;
 
-    @Column(nullable = false, name = "Description", length = 5000)
+    @Column(name = "Body", length = 5000)
     private String body;
 
-    @Column(nullable = false, name = "Category")
-    private  String category;
+    @Column(name = "Category")
+    private String category;
 
     @Column(nullable = false, name = "Location")
     private String location;
 
-    @Column(nullable = false, name = "Date")
+    @Column(name = "Date")
     private long date;
 
     @OneToOne
@@ -34,7 +34,6 @@ public class Post {
 
     public Post (Post copy){
         id = copy.id;
-        title = copy.title;
         body = copy.body;
         user = copy.user;
         worker = copy.worker;
@@ -53,7 +52,7 @@ public class Post {
         this.location = location;
         this.date = date;
     }
-    public Post (String title, String body, User user, List<User> worker, String category, String location, long date){
+    public Post (String body, String title, User user, List<User> worker, String category, String location, long date){
         this.title = title;
         this.body = body;
         this.user = user;
@@ -63,20 +62,20 @@ public class Post {
         this.date = date;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getBody() {
         return body;
     }
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public long getId() {
