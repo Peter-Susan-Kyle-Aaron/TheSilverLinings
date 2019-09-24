@@ -126,4 +126,18 @@ public class Post {
     public void setWorker(List<User> worker) {
         this.worker = worker;
     }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", body='" + body + '\'' +
+                ", category='" + category + '\'' +
+                ", location='" + location + '\'' +
+                ", date=" + date +
+                ", user=" + user +
+                ", worker=" + worker +
+                '}';
+    }
 }

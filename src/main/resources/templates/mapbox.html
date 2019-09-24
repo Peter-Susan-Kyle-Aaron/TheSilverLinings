@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.springframework.org/schema/mvc">
 <head>
@@ -17,9 +16,21 @@
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css' type='text/css' />
 <div id='map'></div>
+<!--<script src="../js/mapbox-geocoder-utils.js"></script>-->
 
-<script>
-    var mapboxToken = 'pk.eyJ1IjoiZmFpeXRlZCIsImEiOiJjanhhdmhwbnkxMWM5M25ucnFka21xOXRzIn0.c_ImXwEydAQDNZH9nhk20A'
+<script th:inline="javascript">
+    var mapboxToken="pk.eyJ1IjoiZmFpeXRlZCIsImEiOiJjanhhdmhwbnkxMWM5M25ucnFka21xOXRzIn0.c_ImXwEydAQDNZH9nhk20A";
+    function geocode(search, mapboxToken) {
+        var baseUrl = 'https://api.mapbox.com';
+        var endPoint = '/geocoding/v5/mapbox.places/';
+        return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + mapboxToken)
+            .then(function(res) {
+                return res.json();
+                // to get all the data from the request, comment out the following three lines...
+            }).then(function(data) {
+                return data.features[0].center;
+            });
+    }
     mapboxgl.accessToken = mapboxToken;
     var map = new mapboxgl.Map({
         container: 'map',
@@ -27,21 +38,16 @@
         center: [-98.491142, 29.424349],
         zoom: 11
     });
-    var texasDeBrazil= {
-        name:"Texas De Brazil",
-        address: "313 E Houston St, San Antonio, TX 78205",
-        popupHTML: "<p>Best Brazilian Grill Place</p>"
+    var address1= {
+        name:"Your Address",
+        address:[[${user.address}]]
     };
-    var kimura={
-        name:"Kimura",
-        address:"152 E Pecan St, San Antonio, TX 78205",
-        popupHTML:"<p>Great Ramen!</p>"
+    var address2={
+        name:"Pick Up Location",
+
+        address:[[${post.location}]]
     };
-    var zincBistro={
-        name:"Zinc Bistro",
-        address:"207 N Presa St, San Antonio, TX 78205",
-        popupHTML:"<p>Great Place to Hang Out</p>"
-    };
+
     function placeMarkerAndPopup(info, mapboxToken, map) {
         geocode(info.address, mapboxToken).then(function(coordinates) {
 
@@ -55,8 +61,8 @@
             popup.addTo(map);
         });
     }
-    var arrayOfRestaurants = [texasDeBrazil,kimura,zincBistro];
-    arrayOfRestaurants.forEach(function(names){
+    var arrayOfAddress = [address1,address2];
+    arrayOfAddress.forEach(function(names){
         console.log(names);
         placeMarkerAndPopup(names, mapboxToken, map);
     });
@@ -69,7 +75,7 @@
     /*<![CDATA[*/
 
     var address = /*[[${user.address}]]*/ 'default';
-    console.log(address);
+
 
     /*]]>*/
 </script>
