@@ -8,7 +8,7 @@
         <a href="#" class="brand-logo">Silver Lining</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a th:href="@{/}">Home</a></li>
-            <li><a th:href="@{/}">Create</a></li>
+            <li><a th:href="@{/create}">Create</a></li>
             <li><a sec:authorize="!isAuthenticated()" th:href="@{/signup}">Sign Up</a></li>
             <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}" >Login</a></li>
             <li>
