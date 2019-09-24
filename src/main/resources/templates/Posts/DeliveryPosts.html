@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="fragments/header :: header('Post')" />
+    <th:block th:replace="fragments/header :: header('DeliveryPosts')" />
     <link rel="stylesheet" href="../../static/css/main.css"/>
 </head>
 <body>
@@ -11,10 +11,10 @@
     <h1>Delivery Assistance Form</h1>
     <div class="deliveryForm">
 
-        <form  th:action="@{/posts/create}" th:method="post" th:object="${post}">
-            On what day do you need something delivered?:<input th:field="*{event_date}"/><br/>
-            Where is the delivery from?<input th:field="*{event_location}"/><br/>
-            What time do you need this delivery?<input th:field="*{event_date}"/><br/>
+        <form  th:action="@{/create}" th:method="post" th:object="${post}">
+            On what day do you need something delivered?:<input type="date" id="date" name="date"/><br/>
+            Where is the delivery from?<input type="text" th:field="*{location}"/><br/>
+            What time do you need this delivery?<input type="time" id="time" name="time"/><br/>
             Is this a recurring delivery?
             Yes<input  name="recurringDelivery" id="recurringDelivery" type="checkbox"/><br/>
             <!--        Add stuff for recurring once we have styling done-->

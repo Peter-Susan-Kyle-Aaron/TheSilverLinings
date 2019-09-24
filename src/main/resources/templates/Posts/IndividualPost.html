@@ -6,18 +6,13 @@
     <title>index</title>
 </head>
 <body>
-<th:block th:replace="fragments/navbar :: navbar"/>
+<th:block th:replace="fragments/navbar"/>
 <br/>
 <div class="container">
     <h1 th:text="${post.Title}"></h1>
     <br/>
-    <p th:text="${post.Description}">
+    <p th:text="${post.body}">
     </p>
-<!--    <th:block th:if="${findUser} == ${post.user}">-->
-<!--        <form th:action="'/posts/'+${post.id}+'/edit'" th:method="get">-->
-<!--            <button type="submit">edit</button>-->
-<!--        </form>-->
-<!--    </th:block>-->
 </div>
 </body>
 </html>
