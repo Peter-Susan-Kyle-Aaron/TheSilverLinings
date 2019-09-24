@@ -35,7 +35,9 @@ public class PostController {
         post.setCategory("Delivery");
         post.setTitle("Delivery at "+post.getLocation());
         SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm");
-        String myDateString = dates+" "+times;
+
+        String myDateString = date + " " + time;
+
         try {
             Date newDate = dateFormat.parse(myDateString);
             long unixDate = newDate.getTime();

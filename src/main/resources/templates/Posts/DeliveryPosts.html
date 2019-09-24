@@ -11,6 +11,7 @@
     <h1>Delivery Assistance Form</h1>
     <div class="deliveryForm">
 
+
         <form  th:action="@{/create/delivery}" th:method="post" th:object="${post}">
 
             <label for="dates">On what day do you need something delivered?:</label>
@@ -20,7 +21,10 @@
             <label for="time">What time do you need this delivery?</label>
                 <input type="time" id="time" name="time"/><br/>
             <label for="recurringDelivery">Is this a recurring delivery?</label>
-            Yes<input  name="recurringDelivery" id="recurringDelivery" type="checkbox"/><br/>
+            <label>
+                <input type="checkbox" />
+                <span>Yes</span>
+            </label>
             <!--        Add stuff for recurring once we have styling done-->
 
             <!--        <div id="isRecurring" class="hiddenForm">-->
@@ -39,11 +43,7 @@
             $("#notAtLocation").toggleClass("hiddenForm");
         });
     });
-    // $(document).ready(function(){
-    //     $("#recurringDelivery").on("click", function(){
-    //         $("#isRecurring").toggleClass("hiddenForm");
-    //     });
-    // });
+
 </script>
 </body>
 </html>
