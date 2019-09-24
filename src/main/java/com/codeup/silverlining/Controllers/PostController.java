@@ -26,26 +26,54 @@ public class PostController {
         this.userDao = userDao;
     }
 
-    @PostMapping("/create")
-    public String submitPost(@ModelAttribute Post post,
-                             @RequestParam(name = "date") long date,
-                             @RequestParam(name = "time") long time){
+    @PostMapping("/create/delivery")
+    public String submitDeliveryPost(@ModelAttribute Post post,
+                             @RequestParam(name = "dates") String dates,
+                             @RequestParam(name = "time") String times){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
+        post.setCategory("Delivery");
+        post.setTitle("Delivery at "+post.getLocation());
         SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm");
-        String myDateString = Long.toString(date)+" "+Long.toString(time);
-        System.out.println(myDateString);
+        String myDateString = dates+" "+times;
         try {
             Date newDate = dateFormat.parse(myDateString);
-            System.out.println(newDate);
             long unixDate = newDate.getTime();
-            System.out.println(unixDate);
             post.setDate(unixDate);
         } catch (ParseException e) {
             e.printStackTrace();
             System.out.println("failed to convert date");
         }
 
+        postDao.save(post);
+        return "redirect:/posts";
+    }
+    @PostMapping("/create/assistance")
+    public String submitPost(@ModelAttribute Post post,
+                             @RequestParam(name = "dates") String dates,
+                             @RequestParam(name = "time") String times,
+                             @RequestParam(name = "extra") String extra,
+                             @RequestParam(name = "timeForTask") String timeForTask,
+                             @RequestParam(name = "numberOfWorkers") String numberOfWorkers){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        post.setUser(user);
+        post.setCategory("Assitance");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm");
+        String myDateString = dates+" "+times;
+        try {
+            Date newDate = dateFormat.parse(myDateString);
+            long unixDate = newDate.getTime();
+            post.setDate(unixDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            System.out.println("failed to convert date");
+        }
+        if(post.getLocation().equals("")){
+            post.setLocation(user.getAddress());
+        }
+        post.setBody("Estimated time of completion: "+timeForTask+
+                    "\nEstimated volunteers needed: "+numberOfWorkers+
+                    "\n"+extra);
         postDao.save(post);
         return "redirect:/posts";
     }
