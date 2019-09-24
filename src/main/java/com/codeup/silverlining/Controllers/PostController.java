@@ -29,25 +29,64 @@ public class PostController {
     @PostMapping("/create/delivery")
     public String submitDeliveryPost(@ModelAttribute Post post,
                              @RequestParam(name = "dates") String dates,
-                             @RequestParam(name = "time") String times){
+                             @RequestParam(name = "time") String times,
+                             @RequestParam(name = "recurrence") String recur,
+                             @RequestParam(name = "endDate") String endDate){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
         post.setCategory("Delivery");
         post.setTitle("Delivery at "+post.getLocation());
         SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm");
-
         String myDateString = dates + " " + times;
-
+        String endDateString = endDate + " 00:00";
+        long unixEndDate = 0;
+        long unixDate = 0;
         try {
             Date newDate = dateFormat.parse(myDateString);
-            long unixDate = newDate.getTime();
+            Date newEndDate = dateFormat.parse(endDateString);
+            unixDate = newDate.getTime();
+            unixEndDate = newEndDate.getTime();
             post.setDate(unixDate);
         } catch (ParseException e) {
             e.printStackTrace();
             System.out.println("failed to convert date");
         }
-
-        postDao.save(post);
+        switch(recur){
+            case "Daily":
+                while(unixEndDate > unixDate){
+                    Post newPost = post;
+                    newPost.setDate(unixDate);
+                    postDao.save(newPost);
+                    unixDate += 86400;
+                }
+                break;
+            case "Weekly":
+                while(unixEndDate > unixDate){
+                    Post newPost = post;
+                    newPost.setDate(unixDate);
+                    postDao.save(newPost);
+                    unixDate += 604800;
+                }
+                break;
+            case "Monthly":
+                while(unixEndDate > unixDate) {
+                    Post newPost = post;
+                    newPost.setDate(unixDate);
+                    postDao.save(newPost);
+                    unixDate += 2629743;
+                    }
+                break;
+            case "Yearly":
+                while(unixEndDate > unixDate) {
+                    Post newPost = post;
+                    newPost.setDate(unixDate);
+                    postDao.save(newPost);
+                    unixDate += 31556926;
+                }
+                break;
+            default:
+                postDao.save(post);
+        }
         return "redirect:/posts";
     }
     @PostMapping("/create/assistance")
