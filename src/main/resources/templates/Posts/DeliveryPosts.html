@@ -11,21 +11,27 @@
     <h1>Delivery Assistance Form</h1>
     <div class="deliveryForm">
 
-        <form  th:action="@{/create}" th:method="post" th:object="${post}">
-            On what day do you need something delivered?:<input type="date" id="date" name="date"/><br/>
-            Where is the delivery from?<input type="text" th:field="*{location}"/><br/>
-            What time do you need this delivery?<input type="time" id="time" name="time"/><br/>
-            Is this a recurring delivery?
+
+        <form  th:action="@{/create/delivery}" th:method="post" th:object="${post}">
+
+            <label for="dates">On what day do you need something delivered?:</label>
+                <input type="date" id="dates" name="dates"/><br/>
+            <label for="loc">Where is the delivery from?</label>
+                <input id="loc" type="text" th:field="*{location}"/><br/>
+            <label for="time">What time do you need this delivery?</label>
+                <input type="time" id="time" name="time"/><br/>
+            <label for="recurringDelivery">Is this a recurring delivery?</label>
             <label>
                 <input type="checkbox" />
                 <span>Yes</span>
             </label>
-        <br/>
             <!--        Add stuff for recurring once we have styling done-->
 
             <!--        <div id="isRecurring" class="hiddenForm">-->
             <!--            How often is this delivery needed?-->
             <!--        </div>-->
+            <label for="body">Is there any extra information that would be needed?</label>
+                <input id="body" type="text" th:field="*{body}" />
             <button class="btn">Submit</button>
         </form>
     </div>
