@@ -19,22 +19,47 @@
 <div id='map'></div>
 
 <script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZmFpeXRlZCIsImEiOiJjanhhdmhwbnkxMWM5M25ucnFka21xOXRzIn0.c_ImXwEydAQDNZH9nhk20A';
+    var mapboxToken = 'pk.eyJ1IjoiZmFpeXRlZCIsImEiOiJjanhhdmhwbnkxMWM5M25ucnFka21xOXRzIn0.c_ImXwEydAQDNZH9nhk20A'
+    mapboxgl.accessToken = mapboxToken;
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [-98.491142, 29.424349],
         zoom: 11
     });
-    // $.get("https://api.mapbox.com/matching/v5/mapbox/driving/-117.17282,32.71204;-117.17288,32.71225;?access_token=pk.eyJ1Ijoia3lsZW1hdWxzYnkiLCJhIjoiY2p4YXZpYnIyMDFqZzN1bGl3ejVqcmVodCJ9.PQ3odp_vmyva8RDga2Cw7g").done(
-    //     function (data){
-    //
-    //     })
+    var texasDeBrazil= {
+        name:"Texas De Brazil",
+        address: "313 E Houston St, San Antonio, TX 78205",
+        popupHTML: "<p>Best Brazilian Grill Place</p>"
+    };
+    var kimura={
+        name:"Kimura",
+        address:"152 E Pecan St, San Antonio, TX 78205",
+        popupHTML:"<p>Great Ramen!</p>"
+    };
+    var zincBistro={
+        name:"Zinc Bistro",
+        address:"207 N Presa St, San Antonio, TX 78205",
+        popupHTML:"<p>Great Place to Hang Out</p>"
+    };
+    function placeMarkerAndPopup(info, mapboxToken, map) {
+        geocode(info.address, mapboxToken).then(function(coordinates) {
 
-    map.addControl(new MapboxDirections({
-        accessToken: mapboxgl.accessToken
-    }), 'top-left');
-
+            var popup = new mapboxgl.Popup({closeButton: true})
+                .setHTML(info.popupHTML)
+                .setLngLat(coordinates);
+            var marker = new mapboxgl.Marker()
+                .setLngLat(coordinates)
+                .addTo(map)
+                .setPopup(popup);
+            popup.addTo(map);
+        });
+    }
+    var arrayOfRestaurants = [texasDeBrazil,kimura,zincBistro];
+    arrayOfRestaurants.forEach(function(names){
+        console.log(names);
+        placeMarkerAndPopup(names, mapboxToken, map);
+    });
 
 
 
