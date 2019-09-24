@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.springframework.org/schema/mvc">
 <head>
@@ -17,24 +16,56 @@
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css' type='text/css' />
 <div id='map'></div>
+<!--<script src="../js/mapbox-geocoder-utils.js"></script>-->
 
-<script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZmFpeXRlZCIsImEiOiJjanhhdmhwbnkxMWM5M25ucnFka21xOXRzIn0.c_ImXwEydAQDNZH9nhk20A';
+<script th:inline="javascript">
+    var mapboxToken="pk.eyJ1IjoiZmFpeXRlZCIsImEiOiJjanhhdmhwbnkxMWM5M25ucnFka21xOXRzIn0.c_ImXwEydAQDNZH9nhk20A";
+    function geocode(search, mapboxToken) {
+        var baseUrl = 'https://api.mapbox.com';
+        var endPoint = '/geocoding/v5/mapbox.places/';
+        return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + mapboxToken)
+            .then(function(res) {
+                return res.json();
+                // to get all the data from the request, comment out the following three lines...
+            }).then(function(data) {
+                return data.features[0].center;
+            });
+    }
+    mapboxgl.accessToken = mapboxToken;
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [-98.491142, 29.424349],
         zoom: 11
     });
-    // $.get("https://api.mapbox.com/matching/v5/mapbox/driving/-117.17282,32.71204;-117.17288,32.71225;?access_token=pk.eyJ1Ijoia3lsZW1hdWxzYnkiLCJhIjoiY2p4YXZpYnIyMDFqZzN1bGl3ejVqcmVodCJ9.PQ3odp_vmyva8RDga2Cw7g").done(
-    //     function (data){
-    //
-    //     })
+    var address1= {
+        name:"Your Address",
+        address:[[${user.address}]]
+    };
+    var address2={
+        name:"Pick Up Location",
 
-    map.addControl(new MapboxDirections({
-        accessToken: mapboxgl.accessToken
-    }), 'top-left');
+        address:[[${post.location}]]
+    };
 
+    function placeMarkerAndPopup(info, mapboxToken, map) {
+        geocode(info.address, mapboxToken).then(function(coordinates) {
+
+            var popup = new mapboxgl.Popup({closeButton: true})
+                .setHTML(info.popupHTML)
+                .setLngLat(coordinates);
+            var marker = new mapboxgl.Marker()
+                .setLngLat(coordinates)
+                .addTo(map)
+                .setPopup(popup);
+            popup.addTo(map);
+        });
+    }
+    var arrayOfAddress = [address1,address2];
+    arrayOfAddress.forEach(function(names){
+        console.log(names);
+        placeMarkerAndPopup(names, mapboxToken, map);
+    });
 
 
 
@@ -44,7 +75,7 @@
     /*<![CDATA[*/
 
     var address = /*[[${user.address}]]*/ 'default';
-    console.log(address);
+
 
     /*]]>*/
 </script>
