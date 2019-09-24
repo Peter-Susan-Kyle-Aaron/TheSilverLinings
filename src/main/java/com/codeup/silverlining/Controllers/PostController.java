@@ -6,6 +6,7 @@ import com.codeup.silverlining.Repo.PostRepo;
 import com.codeup.silverlining.Repo.UserRepo;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,16 +28,18 @@ public class PostController {
 
     @PostMapping("/create")
     public String submitPost(@ModelAttribute Post post,
-                             @RequestParam(name = "date") String date,
-                             @RequestParam(name = "time") String time){
+                             @RequestParam(name = "date") long date,
+                             @RequestParam(name = "time") long time){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
-        String myDateString = date +" "+time;
-        long unixDate;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm");
+        String myDateString = Long.toString(date)+" "+Long.toString(time);
+        System.out.println(myDateString);
         try {
             Date newDate = dateFormat.parse(myDateString);
-            unixDate = newDate.getTime();
+            System.out.println(newDate);
+            long unixDate = newDate.getTime();
+            System.out.println(unixDate);
             post.setDate(unixDate);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -52,11 +55,13 @@ public class PostController {
         return "Posts/PostsForm";
     }
     @GetMapping("/create/delivery")
-    public String createDeliveryPost(){
+    public String createDeliveryPost(Model model){
+        model.addAttribute("post", new Post());
         return "Posts/DeliveryPosts";
     }
     @GetMapping("create/residence")
-    public String createResidencePost(){
+    public String createResidencePost(Model model){
+        model.addAttribute("post", new Post());
         return "Posts/ResidenceAssistance";
     }
 

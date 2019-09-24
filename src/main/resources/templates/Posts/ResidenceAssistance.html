@@ -14,14 +14,14 @@
 
         <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
             What task do you need accomplished?<input th:field="*{title}"/><br/>
-            How long will this task take to accomplish? <input th:field="*{description}"/><br/>
-            How many people are needed to complete this task? <input th:field="*{description}"/><br/>
+            How long will this task take to accomplish? <input th:field="*{body}"/><br/>
+            How many people are needed to complete this task? <input th:field="*{body}"/><br/>
             Is this task at your place of residence? If no, check <input name="locationCheck" id="locationCheck" type="checkbox"/><br/>
             <div id="notAtLocation" class="hiddenForm">
-                If not, where do you need help?<input th:field="*{event_location}"/> <br/>
+                If not, where do you need help?<input th:field="*{location}"/> <br/>
             </div>
-            What time do you need this help? <input th:field="*{event_date}"/> <br/>
-            Are there any outside resources needed to accomplish this task? (tools, ladder, etc) <input th:field="*{description}"/><br/>
+            What time do you need this help? <input id="time"/> <br/>
+            Are there any outside resources needed to accomplish this task? (tools, ladder, etc) <input th:field="*{body}"/><br/>
             <button class="btn">Submit</button>
         </form>
     </div>
