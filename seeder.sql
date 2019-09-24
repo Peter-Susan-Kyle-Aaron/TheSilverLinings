@@ -1,5 +1,6 @@
 Use silver_lining_db;
 
+Drop TABLE if exists posts_worker;
 Drop TABLE if exists reviews;
 Drop TABLE if exists posts;
 Drop TABLE if exists users;
