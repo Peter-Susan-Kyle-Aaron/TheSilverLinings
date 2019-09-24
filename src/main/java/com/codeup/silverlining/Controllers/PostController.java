@@ -62,6 +62,11 @@ public class PostController {
         return "Posts/ResidenceAssistance";
     }
 
+    @GetMapping("/posts")
+    public String index(Model vModel) {
+        vModel.addAttribute("posts", postDao.findAll());
+        return "posts/index";
+    }
 
     @GetMapping("/posts/{id}")
     public String individual(@PathVariable long id, Model vModel) {
