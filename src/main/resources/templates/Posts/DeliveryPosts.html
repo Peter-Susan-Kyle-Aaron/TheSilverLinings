@@ -4,7 +4,8 @@
     <th:block th:replace="fragments/header :: header('DeliveryPosts')" />
 </head>
 <body>
-<th:block th:replace="fragments/navbar" />
+
+<th:block th:replace="fragments/navbar :: navbar" />
 
 <main>
     <h1>Delivery Assistance Form</h1>
@@ -44,6 +45,7 @@
 </main>
 <footer th:replace="fragments/footer"></footer>
 <th:block th:replace="fragments/scripts"/>
+
 <script>
     $(document).ready(function(){
         // $("#locationCheck").on("click", function(){
