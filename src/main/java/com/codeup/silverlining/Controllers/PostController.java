@@ -146,4 +146,10 @@ public class PostController {
         }
         return "posts/IndividualPost";
     }
+    @PostMapping("/posts/{id}/delete")
+    public String delete(@PathVariable long id){
+        postDao.delete(id);
+        return "redirect:/profile";
+    }
+
 }
