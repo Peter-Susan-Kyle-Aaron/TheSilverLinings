@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <th:block th:replace="fragments/header :: header('home')"/>
 </head>
 <body>
-<th:block th:replace="fragments/navbar :: navbar "/>
+<th:block th:replace="fragments/navbar :: navbar"/>
 
 <div class="carousel carousel-slider center">
     <div class="carousel-item red white-text" href="#one!">

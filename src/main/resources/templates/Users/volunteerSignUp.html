@@ -1,19 +1,20 @@
 
 <!DOCTYPE html>
-<html  lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html  lang="en"  xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <th:block th:replace="fragments/header :: header ('volunteerSignUp')"/>
 
 </head>
 <body>
 
-<nav th:replace="fragments/navbar"></nav>
+<th:block th:replace="fragments/navbar :: navbar"/>
 <div class="container">
     <div class="col s12">
         <div class="row ">
 
             <h1>Create an Account</h1>
-            <form th:action="@{/signup/volunteer}" method="post" th:object="${user}">
+            <form id="signupform" th:action="@{/signup/volunteer}" method="post" th:object="${user}">
                 <div class="input-field">
                     <i class="material-icons prefix">person</i>
                     <label for="username">Username</label>
@@ -30,11 +31,13 @@
                     <input id="password" th:field="*{password}" type="password" />
                 </div>
                 <div class="input-field">
-                    <i class="material-icons prefix">photo_camera</i>
-                    <label for="photo">Photo</label>
-                    <input id="photo" th:field="*{photo}" type="photo" />
+                    <div>
+                        <i class="material-icons prefix">photo_camera</i>
+                        <button type="button" id="picker">Upload Profile Photo</button>
+                        <input type="hidden" id="fileupload" name="file" th:field="*{photo}" />
+                    </div>
+                    <div id="nameBox"></div>
                 </div>
-
                 <input type="submit" value="Sign Me Up " class="btn btn-large"/>
             </form>
         </div>
@@ -46,6 +49,7 @@
 
 
 <footer th:replace="fragments/footer"></footer>
+<th:block th:replace="fragments/filestack" />
 <th:block th:replace="fragments/scripts"/>
 </body>
 </html>

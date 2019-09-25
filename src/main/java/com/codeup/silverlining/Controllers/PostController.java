@@ -10,8 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjuster;
 
 @Controller
 public class PostController {
@@ -26,25 +29,60 @@ public class PostController {
     @PostMapping("/create/delivery")
     public String submitDeliveryPost(@ModelAttribute Post post,
                              @RequestParam(name = "dates") String dates,
-                             @RequestParam(name = "time") String times){
+                             @RequestParam(name = "time") String times,
+                             @RequestParam(name = "recurrence") String recur,
+                             @RequestParam(name = "endDate") String endDate){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
         post.setCategory("Delivery");
         post.setTitle("Delivery at "+post.getLocation());
-        SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm");
 
-        String myDateString = dates + " " + times;
 
-        try {
-            Date newDate = dateFormat.parse(myDateString);
-            long unixDate = newDate.getTime();
-            post.setDate(unixDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            System.out.println("failed to convert date");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime startDate = LocalDateTime.parse(dates+" "+times, formatter);
+
+        int i = 0;
+        if(!recur.equals("")) {
+            LocalDateTime endate = LocalDateTime.parse(endDate+" "+times, formatter);
+            do{
+                Post newPost = new Post();
+                newPost.setLocation(post.getLocation());
+                newPost.setTitle(post.getTitle());
+                newPost.setBody(post.getBody());
+                newPost.setCategory(post.getCategory());
+                newPost.setUser(post.getUser());
+
+                postDao.save(newPost);
+
+                TemporalAdjuster temporalAdjuster;
+                switch(recur) {
+                    case "Daily":
+                        if(i < 21) {
+                            temporalAdjuster = t -> t.plus(Period.ofDays(1));
+                            startDate = startDate.with(temporalAdjuster);
+                        }
+                        break;
+
+                    case "Weekly":
+                        if(i < 4) {
+                            temporalAdjuster = t -> t.plus(Period.ofWeeks(1));
+                            startDate = startDate.with(temporalAdjuster);
+                        }
+                        break;
+                    case "Monthly":
+                        if(i < 12) {
+                            temporalAdjuster = t -> t.plus(Period.ofMonths(1));
+                            startDate = startDate.with(temporalAdjuster);
+                        }
+                        break;
+                }
+                newPost.setDate(startDate.toEpochSecond(ZoneOffset.UTC));
+                i++;
+            }while(startDate.compareTo(endate) < 0);
+        }else{
+            post.setDate(startDate.toEpochSecond(ZoneOffset.UTC));
+            postDao.save(post);
         }
-
-        postDao.save(post);
         return "redirect:/posts";
     }
     @PostMapping("/create/assistance")
@@ -57,16 +95,12 @@ public class PostController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
         post.setCategory("Assitance");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm");
-        String myDateString = dates+" "+times;
-        try {
-            Date newDate = dateFormat.parse(myDateString);
-            long unixDate = newDate.getTime();
-            post.setDate(unixDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            System.out.println("failed to convert date");
-        }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime startDate = LocalDateTime.parse(dates+" "+times, formatter);
+
+        post.setDate(startDate.toEpochSecond(ZoneOffset.UTC));
+
         if(post.getLocation().equals("")){
             post.setLocation(user.getAddress());
         }

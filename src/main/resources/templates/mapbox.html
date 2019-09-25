@@ -40,12 +40,13 @@
     });
     var address1= {
         name:"Your Address",
-        address:[[${user.address}]]
+        address:[[${user.address}]],
+        popupHTML:"<p>Delivery Location: [[${user.address}]]</p>"
     };
     var address2={
         name:"Pick Up Location",
-
-        address:[[${post.location}]]
+        address:[[${post.location}]],
+        popupHTML:"<p>Pickup Location: [[${post.location}]]</p>"
     };
 
     function placeMarkerAndPopup(info, mapboxToken, map) {

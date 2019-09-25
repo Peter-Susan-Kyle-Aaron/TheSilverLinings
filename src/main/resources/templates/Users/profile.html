@@ -1,38 +1,50 @@
 
 <!DOCTYPE html>
-<html  lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html  lang="en"  xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <th:block th:replace="fragments/header :: header ('volunteerSignUp')"/>
 
 </head>
 <body>
 
-<nav th:replace="fragments/navbar"></nav>
-<h1>Welcome, </h1>
+<th:block th:replace="fragments/navbar :: navbar"/>
 
 <div class="container">
-    <div class="row">
-        <div class="col s8 push-s4"><span class="flow-text"></span>
-        </div>
-        <div class="col s4 pull-s8"><span class="flow-text">5-columns wide pulled to the left by 7-columns.</span>
-        </div>
-    </div>
+
+            <div class="card">
+                <div class="card-content">
+                    <img id="person" src="/img/person.png"/>
+                    <h2>Welcome <span th:text="${user.username}"></span> !</h2>
+                </div>
+                <div class="card-tabs">
+                    <ul class="tabs tabs-fixed-width">
+                        <li class="tab"><a href="#info">Personal Info</a></li>
+                        <li class="tab"><a href="#recent">Recent Delivery</a></li>
+                        <li class="tab"><a href="#history">History</a></li>
+                    </ul>
+                </div>
+                <div class="card-content grey lighten-4">
+                    <div class="active" id="info">
+                        Username: <div th:text="${user.username}"></div>
+                        Email: <div th:text="${user.email}"></div>
+                        Address: <div th:text="${user.address}"></div>
+                    </div>
+                    <div class="active" id="recent">Test 2</div>
+                    <div class="active" id="history">Test 3</div>
+                </div>
+            </div>
 
 
 </div>
 
-
-
-
-
-
-
-
+        <button>Leave a Review</button>
 
 
 
 
 <footer th:replace="fragments/footer"></footer>
 <th:block th:replace="fragments/scripts"/>
+
 </body>
 </html>

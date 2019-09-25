@@ -1,12 +1,13 @@
 
 <!DOCTYPE html>
-<html  lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html  lang="en"  xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <th:block th:replace="fragments/header :: header('userSignUp')"/>
 </head>
 <body>
 
-<nav th:replace="fragments/navbar"></nav>
+<th:block th:replace="fragments/navbar :: navbar"/>
 <div class="container">
     <div class="col s12">
         <div class="row ">
@@ -30,8 +31,16 @@
                 </div>
                 <div class="input-field">
                     <i class="material-icons prefix">pin_drop</i>
-                    <label for="address">Address</label>
+                    <label for= "address">Address</label>
                     <input id="address" th:field="*{address}" type="text" />
+                </div>
+                <div class="input-field">
+                    <div>
+                        <i class="material-icons prefix">photo_camera</i>
+                        <button type="button" id="picker">Upload Profile Photo</button>
+                        <input type="hidden" id="fileupload" name="file" th:field="*{photo}" />
+                    </div>
+                    <div id="nameBox"></div>
                 </div>
 
                 <input type="submit" value="Sign Me Up " class="btn btn-large"/>
@@ -46,6 +55,7 @@
 
 
 <footer th:replace="fragments/footer"></footer>
+<th:block th:replace="fragments/filestack" />
 <th:block th:replace="fragments/scripts"/>
 
 </body>
