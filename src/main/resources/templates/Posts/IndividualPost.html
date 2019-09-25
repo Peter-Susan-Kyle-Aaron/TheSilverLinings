@@ -13,12 +13,12 @@
     <br/>
     <p th:text="${post.body}">
     </p>
-    <form th:action="@{/posts/{id}/edit}" method="get">
+    <form th:action="@{/posts/{id}/edit}" method="post">
 
         <input type="submit" value="Edit" class="btn btn-large"/>
 
     </form>
-    <form th:action="@{/posts/{id}/delete}" method="get">
+    <form th:action="@{'/posts/' + ${post.id} + '/delete'}" th:method="POST" th:object="${post}">
 
         <input type="submit" value="Delete" class="btn btn-large"/>
     </form>
