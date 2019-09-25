@@ -148,7 +148,8 @@ public class PostController {
     }
     @PostMapping("/posts/{id}/delete")
     public String delete(@PathVariable long id){
-        postDao.delete(id);
+        Post post = postDao.findOne(id);
+        postDao.delete(post);
         return "redirect:/profile";
     }
 
