@@ -1,14 +1,12 @@
-
 <!DOCTYPE html>
-<html  lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html  lang="en"  xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 
     <th:block th:replace="fragments/header :: header('userSignUp')"/>
 </head>
 <body>
-
-
-<nav th:replace="fragments/navbar"></nav>
+<th:block th:replace="fragments/navbar :: navbar"/>
 <div class="container">
     <div class="col s12">
         <div class="row ">
