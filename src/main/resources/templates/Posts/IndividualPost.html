@@ -11,7 +11,7 @@
     <br/>
     <p th:text="${post.body}">
     </p>
-    <form th:action="@{/posts/{id}/edit}" method="post">
+    <form th:action="@{'/posts/' + ${post.id} + '/eidt'}" method="post">
 
         <input type="submit" value="Edit" class="btn btn-large"/>
 
