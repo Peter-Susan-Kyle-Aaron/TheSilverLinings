@@ -29,7 +29,7 @@ public class UserController {
 
     @GetMapping("/signup")
     public String viewSignupForm(){
-        return "Users/SignUp";
+        return "Users/signUp";
     }
 
     @GetMapping("/signup/volunteer")
@@ -45,7 +45,7 @@ public class UserController {
            user.getEmail().equals("")||
            (user.getRole() == 1 && user.getPhoto().equals(""))){
             model.addAttribute("usercache",user);
-            return "users/volunteerSignUp";
+            return "Users/volunteerSignUp";
         }
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
@@ -66,7 +66,7 @@ public class UserController {
            user.getEmail().equals("")||
            (user.getRole() == 2 && user.getAddress().equals(""))) {
             model.addAttribute("usercache",user);
-            return "users/seniorSignUp";
+            return "Users/seniorSignUp";
         }
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);

@@ -1,15 +1,13 @@
 
 <!DOCTYPE html>
-<html  lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html  lang="en"  xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <th:block th:include="fragments/header :: header ('volunteerSignUp')"/>
 
 </head>
 <body>
 
-<nav th:include="fragments/navbar"></nav>
-
-<div class="container" th:action="@{/profile/{id}}">
 
             <div class="card">
                 <div class="card-content">
@@ -36,6 +34,8 @@
 
 
 </div>
+
+        <button>Leave a Review</button>
 
 
 
