@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/header :: header ('Edit Post')"/>
+</head>
+<body>
+ <th:block th:replace="fragments/navbar"/>
+ <div class="taskForm">
+     <form th:action="@{/edit/${id}(id=${post.id})}" th:method="post">
+         What task do you need accomplished?
+         <input name="editTitle" th:value="${post.title}"/><br/>
+         WHERE
+         <input name="locationEdit" type="text" th:value="${post.location}"/><br/>
+         What time do you need this help?
+         <input type="time" id="time" name="time" th:value="${time}"/> <br/>
+         What day do you need this help?
+         <input type="date" id="dates" name="dates" th:value="${date}"/> <br/>
+         Are there any outside resources needed to accomplish this task? (tools, ladder, etc)
+         <input type="text" id="extra" name="extra" th:value="${post.body}"/><br/>
+         <button class="btn">Submit</button>
+     </form>
+ </div>
+</body>
+</html>
