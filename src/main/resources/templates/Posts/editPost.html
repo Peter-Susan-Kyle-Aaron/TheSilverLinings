@@ -6,17 +6,19 @@
 <body>
  <th:block th:replace="fragments/navbar"/>
  <div class="taskForm">
-     <form th:action="@{/edit/${id}(id=${post.id})}" th:method="post">
+     <form th:action="@{/post/edit}" th:method="post">
          What task do you need accomplished?
          <input name="editTitle" th:value="${post.title}"/><br/>
          WHERE
-         <input name="locationEdit" type="text" th:value="${post.location}"/><br/>
+         <input name="editLocation" type="text" th:value="${post.location}"/><br/>
          What time do you need this help?
-         <input type="time" id="time" name="time" th:value="${time}"/> <br/>
+         <input type="time" id="time" name="editTime" th:value="${time}"/> <br/>
          What day do you need this help?
          <input type="date" id="dates" name="dates" th:value="${date}"/> <br/>
          Are there any outside resources needed to accomplish this task? (tools, ladder, etc)
          <input type="text" id="extra" name="extra" th:value="${post.body}"/><br/>
+         <input type="hidden" id="editCat" th:value="${post.category}" />
+         <input type="hidden" id="editId" th:value="${post.id}" />
          <button class="btn">Submit</button>
      </form>
  </div>
