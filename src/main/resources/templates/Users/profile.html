@@ -3,14 +3,11 @@
 <html  lang="en"  xmlns:th="http://www.thymeleaf.org"
        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <th:block th:replace="fragments/header :: header ('volunteerSignUp')"/>
+    <th:block th:include="fragments/header :: header ('volunteerSignUp')"/>
 
 </head>
 <body>
 
-<th:block th:replace="fragments/navbar :: navbar"/>
-
-<div class="container">
 
             <div class="card">
                 <div class="card-content">
@@ -25,12 +22,12 @@
                     </ul>
                 </div>
                 <div class="card-content grey lighten-4">
-                    <div class="active" id="info">
+                    <div id="info">
                         Username: <div th:text="${user.username}"></div>
                         Email: <div th:text="${user.email}"></div>
                         Address: <div th:text="${user.address}"></div>
                     </div>
-                    <div class="active" id="recent">Test 2</div>
+                    <div class="active" id="recent"> 2</div>
                     <div class="active" id="history">Test 3</div>
                 </div>
             </div>
@@ -43,7 +40,9 @@
 
 
 
-<footer th:replace="fragments/footer"></footer>
+<footer th:include="fragments/footer">
+</footer>
+
 <th:block th:replace="fragments/scripts"/>
 
 </body>
