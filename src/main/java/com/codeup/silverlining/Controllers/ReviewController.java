@@ -23,16 +23,16 @@ public class ReviewController {
 
     @GetMapping("/review")
     public String viewProfile(Model model){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User currentUser = userDao.findById(user.getId());
-        model.addAttribute("user", currentUser);
-        return "redirect:/review/"+user.getId();
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User currentUser = userDao.findById(user.getId());
+//        model.addAttribute("user", currentUser);
+        return "reviewUser";
     }
 
     @GetMapping("/review/{id}")
     public String leaveAReview(@PathVariable long id, Model model){
         User user = userDao.findById(id);
         model.addAttribute("user",user);
-        return "review";
+        return "redirect:/review/"+user.getId();
     }
 }
