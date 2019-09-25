@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8"/>
-    <th:block th:replace="fragments/header :: my-header('Show Post')" />
-    <title>index</title>
+    <th:block th:replace="fragments/header :: header('mypost')"/>
 </head>
 <body>
 <th:block th:replace="fragments/navbar"/>
@@ -23,5 +21,8 @@
         <input type="submit" value="Delete" class="btn btn-large"/>
     </form>
 </div>
+
+<footer th:replace="fragments/footer"></footer>
+<th:block th:replace="fragments/scripts"/>
 </body>
 </html>
