@@ -1,29 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <th:block th:replace="fragments/header :: header('home')"/>
+    <th:block th:replace="fragments/header :: header('Posts')"/>
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: navbar "/>
 
-<div class="carousel carousel-slider center">
-    <div class="carousel-item red white-text" href="#one!">
-        <h2>First Panel</h2>
-        <p class="white-text">This is your first panel</p>
+<main class="container">
+    <div>
+        <h1>list of all posts</h1>
     </div>
-    <div class="carousel-item amber white-text" href="#two!">
-        <h2>Second Panel</h2>
-        <p class="white-text">This is your second panel</p>
+    <div th:each="post : ${posts}">
+        <div>
+            <h1 th:text="${post.title}"></h1>
+            <p th:text="${post.body}"></p>
+            <p th:each="map : ${dates}" th:if="${map.key} == ${post.id}" th:text="${map.value}"></p>
+            <p th:text="${post.location}"></p>
+        </div>
     </div>
-    <div class="carousel-item green white-text" href="#three!">
-        <h2>Third Panel</h2>
-        <p class="white-text">This is your third panel</p>
-    </div>
-    <div class="carousel-item blue white-text" href="#four!">
-        <h2>Fourth Panel</h2>
-        <p class="white-text">This is your fourth panel</p>
-    </div>
-</div>
+</main>
 
 
 

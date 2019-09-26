@@ -13,6 +13,8 @@ import java.text.ParseException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjuster;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 @Controller
 public class PostController {
@@ -126,7 +128,21 @@ public class PostController {
 
     @GetMapping("/posts")
     public String index(Model vModel) {
-        vModel.addAttribute("posts", postDao.findAll());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm");
+
+        Iterable<Post> posts = postDao.findAll();
+//        ArrayList<HashMap<Long, String>> dates = new ArrayList<>();
+        HashMap<Long, String> hmap = new HashMap<>();
+        for(Post post : posts){
+            LocalDateTime ldt = LocalDateTime.parse(post.getDate(), formatter);
+            String gregDate = dtf.format(ldt);
+            hmap.put(post.getId(),gregDate);
+//            dates.add(hmap);
+        }
+//        Iterable<HashMap<Long, String>> gcDates = dates;
+        vModel.addAttribute("dates", hmap);
+        vModel.addAttribute("posts", posts);
         return "posts/index";
     }
 
