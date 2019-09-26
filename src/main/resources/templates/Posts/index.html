@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <th:block th:replace="fragments/header :: header('home')"/>
+    <th:block th:replace="fragments/header :: header('Posts')"/>
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: navbar "/>
 
+
 <div class="container">
-    <div class="row">
+    <h1>list of all posts</h1>    
+    <div class="row" th:each="post : ${posts}">
         <div class="col s4">
-    <th:block th:each="post : ${posts}">
-        <a style="font-size:2em" th:href="'posts/'+${post.id}" th:text="${post.title}"></a>
-        <p th:text="${post.location}"></p>
-        <p th:text="${post.body}"></p>
-        <p th:text="${post.user.username}"></p>
-    </th:block>
+            <a style="font-size:2em" th:href="'posts/'+${post.id}" th:text="${post.title}"></a>
+            <p th:text="${post.body}"></p>
+            <p th:each="map : ${dates}" th:if="${map.key} == ${post.id}" th:text="${map.value}"></p>
+            <p th:text="${post.location}"></p>\
+            <p th:text="${post.user.username}"></p>
         </div>
     </div>
 </div>
+
+
+
 
 
 

@@ -1,6 +1,7 @@
 package com.codeup.silverlining.Model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -22,7 +23,7 @@ public class Post {
     private String location;
 
     @Column(name = "Date")
-    private long date;
+    private String date;
 
     @OneToOne
     private User user;
@@ -42,7 +43,7 @@ public class Post {
         date = copy.date;
     }
 
-    public Post (long id, String title, String body, List<User> worker, User user, String category, String location ,long date){
+    public Post (long id, String title, String body, List<User> worker, User user, String category, String location ,String date){
         this.id = id;
         this.title = title;
         this.body = body;
@@ -52,7 +53,7 @@ public class Post {
         this.location = location;
         this.date = date;
     }
-    public Post (String body, String title, User user, List<User> worker, String category, String location, long date){
+    public Post (String body, String title, User user, List<User> worker, String category, String location, String date){
         this.title = title;
         this.body = body;
         this.user = user;
@@ -110,11 +111,11 @@ public class Post {
         this.location = location;
     }
 
-    public long getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
