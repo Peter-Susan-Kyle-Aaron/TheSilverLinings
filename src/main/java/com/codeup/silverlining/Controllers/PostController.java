@@ -10,9 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjuster;
 
@@ -146,6 +144,51 @@ public class PostController {
         }
         return "posts/IndividualPost";
     }
+
+    @RequestMapping(path = "posts/{id}/edit", method = RequestMethod.GET)
+    public String edit(@PathVariable long id, Model vModel) {
+        User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User findUser  = userDao.findById(userSession.getId());
+        Post post = postDao.findOne(id);
+        if (post.getUser() != findUser)  {
+            return "redirect:/posts";
+        }
+        LocalDateTime time = Instant.ofEpochSecond(post.getDate()).atZone(ZoneOffset.UTC).toLocalDateTime();
+        LocalDate newdate = time.toLocalDate();
+        LocalTime newtime = time.toLocalTime();
+
+
+        vModel.addAttribute("time", newtime);
+        vModel.addAttribute("date", newdate);
+        vModel.addAttribute("post", post);
+        return "posts/editPost";
+    }
+
+
+    @RequestMapping(path = "post/edit", method = RequestMethod.POST)
+    public String editForm(
+                           @RequestParam(name="editId")long id,
+                           @RequestParam(name="editTitle")String title,
+                           @RequestParam(name="editBody")String body,
+                           @RequestParam(name="editCat")String category,
+                           @RequestParam(name="editLocation")String location,
+                           @RequestParam(name="editDate")String date,
+                           @RequestParam(name="editTime")String time) {
+        Post updatePost = postDao.findOne(id);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime startDate = LocalDateTime.parse(date+" "+time, formatter);
+
+        updatePost.setBody(body);
+        updatePost.setTitle(title);
+        updatePost.setTitle(category);
+        updatePost.setTitle(location);
+        updatePost.setDate(startDate.toEpochSecond(ZoneOffset.UTC));
+
+        postDao.save(updatePost);
+        return "redirect:";
+    }
+
     @PostMapping("/posts/{id}/delete")
     public String delete(@PathVariable long id){
         Post post = postDao.findOne(id);
