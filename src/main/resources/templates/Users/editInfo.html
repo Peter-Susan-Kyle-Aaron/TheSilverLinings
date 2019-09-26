@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/header :: header('mypost')"/>
+</head>
+<body>
+<th:block th:replace="fragments/navbar"/>
+
+
+<div class="container">
+    <div class="col s12">
+        <div class="row ">
+            <h1>Edit</h1>
+            <form th:action="@{'/profile/' + ${user.id} + '/edit'}" th:method="post" th:object="${user}">
+                <div class="input-field">
+                    <label for="username">Username</label>
+                    <input id="username" th:field="*{username}" type="text" />
+                </div>
+                <div class="input-field">
+                    <label for="email">Email</label>
+                    <input id="email" th:field="*{email}" type="text" />
+                </div>
+                <div class="input-field">
+                    <label for="verify">Verify Password</label>
+                    <input id="verify" th:field="*{password}" type="password" />
+                </div>
+                <div class="input-field">
+                    <label for="password">New Password</label>
+                    <input id="password" th:field="*{password}" type="password" />
+                </div>
+                <div class="input-field">
+                    <label for="address">Address</label>
+                    <input id="address" th:field="*{address}" type="text" />
+                </div>
+                <div class="input-field">
+                    <label for="photo">Photo</label>
+                    <input id="photo" th:field="*{photo}"  />
+<!--                    <input type="hidden" th:field="*{user.id}"/>-->
+                </div>
+                <input type="submit" value="Edit" class="btn btn-large"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<footer th:replace="fragments/footer"></footer>
+<th:block th:replace="fragments/scripts"/>
+</body>
+</html>

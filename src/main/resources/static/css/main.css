@@ -5,7 +5,16 @@
     display: block;
 }
 
-.person{
+#person{
     height: 150px;
     width: 150px;
+}
+#signup{
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+#login{
+    background-color: #125E8A;
 }
