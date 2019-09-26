@@ -38,7 +38,6 @@ public class PostController {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime startDate = LocalDateTime.parse(dates+" "+times, formatter);
-
         int i = 0;
         if(!recur.equals("")) {
             LocalDateTime endate = LocalDateTime.parse(endDate+" "+times, formatter);
@@ -50,6 +49,7 @@ public class PostController {
                 newPost.setCategory(post.getCategory());
                 newPost.setUser(post.getUser());
 
+                newPost.setDate(startDate.toString().replace("T"," "));
                 postDao.save(newPost);
 
                 TemporalAdjuster temporalAdjuster;
@@ -74,11 +74,11 @@ public class PostController {
                         }
                         break;
                 }
-                newPost.setDate(startDate.toEpochSecond(ZoneOffset.UTC));
+                System.out.println(startDate);
                 i++;
-            }while(startDate.compareTo(endate) < 0);
+            }while(startDate.compareTo(endate) <= 0);
         }else{
-            post.setDate(startDate.toEpochSecond(ZoneOffset.UTC));
+            post.setDate(startDate.toString().replace("T"," "));
             postDao.save(post);
         }
         return "redirect:/posts";
@@ -97,7 +97,7 @@ public class PostController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime startDate = LocalDateTime.parse(dates+" "+times, formatter);
 
-        post.setDate(startDate.toEpochSecond(ZoneOffset.UTC));
+        post.setDate(startDate.toString().replace("T"," "));
 
         if(post.getLocation().equals("")){
             post.setLocation(user.getAddress());
@@ -135,14 +135,14 @@ public class PostController {
         try {
             User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             User findUser  = userDao.findById(userSession.getId());
-            vModel.addAttribute("findUser", findUser);
+            vModel.addAttribute("User", findUser);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             Post post = postDao.findOne(id);
             vModel.addAttribute("post", post);
         }
-        return "posts/IndividualPost";
+        return "Posts/IndividualPost";
     }
 
     @RequestMapping(path = "posts/{id}/edit", method = RequestMethod.GET)
@@ -153,9 +153,10 @@ public class PostController {
         if (post.getUser() != findUser)  {
             return "redirect:/posts";
         }
-        LocalDateTime time = Instant.ofEpochSecond(post.getDate()).atZone(ZoneOffset.UTC).toLocalDateTime();
-        LocalDate newdate = time.toLocalDate();
-        LocalTime newtime = time.toLocalTime();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime startDate = LocalDateTime.parse(post.getDate(), formatter);
+        LocalDate newdate = startDate.toLocalDate();
+        LocalTime newtime = startDate.toLocalTime();
 
 
         vModel.addAttribute("time", newtime);
@@ -183,10 +184,10 @@ public class PostController {
         updatePost.setTitle(title);
         updatePost.setTitle(category);
         updatePost.setTitle(location);
-        updatePost.setDate(startDate.toEpochSecond(ZoneOffset.UTC));
+        updatePost.setDate(startDate.toString());
 
         postDao.save(updatePost);
-        return "redirect:";
+        return "redirect:/posts/"+ updatePost.getId();
     }
 
     @PostMapping("/posts/{id}/delete")
