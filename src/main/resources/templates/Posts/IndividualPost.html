@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="fragments/header :: header('mypost')"/>
+    <th:block th:replace="fragments/header :: header('Post')"/>
 </head>
 <body>
 <th:block th:replace="fragments/navbar"/>
 <br/>
 <div class="container">
-    <h1 th:text="${post.Title}"></h1>
+    <h1 th:text="${post.title}"></h1>
     <br/>
     <p th:text="${post.body}">
     </p>
-    <form th:action="@{'/posts/' + ${post.id} + '/eidt'}" method="post">
+    <th:block th:if="${editPerm}">
+    <form th:action="@{'/posts/' + ${post.id} + '/edit'}" method="get">
 
         <input type="submit" value="Edit" class="btn btn-large"/>
 
@@ -20,6 +21,7 @@
 
         <input type="submit" value="Delete" class="btn btn-large"/>
     </form>
+    </th:block>
 </div>
 
 <footer th:replace="fragments/footer"></footer>
