@@ -12,13 +12,13 @@
 
             <div class="card">
                 <div class="card-content">
-                    <img id="person" src="/img/person.png"/>
+                    <img id="person" th:src="${user.photo}"/>
                     <h2>Welcome <span th:text="${user.username}"></span> !</h2>
                 </div>
                 <div class="card-tabs">
                     <ul class="tabs tabs-fixed-width">
                         <li class="tab"><a href="#info">Personal Info</a></li>
-                        <li class="tab"><a href="#recent">Recent Delivery</a></li>
+                        <li class="tab"><a href="#recent">Recent Post</a></li>
                         <li class="tab"><a href="#history">History</a></li>
                     </ul>
                 </div>
@@ -27,6 +27,12 @@
                         Username: <div th:text="${user.username}"></div>
                         Email: <div th:text="${user.email}"></div>
                         Address: <div th:text="${user.address}"></div>
+                        <form th:action="@{'/profile/' + ${user.id} + '/edit'}" th:method="GET" th:object="${user}">
+                            <input type="submit" value="Edit" class="btn btn-medium"/>
+                        </form>
+                        <form th:action="@{'/profile/' + ${user.id} + '/delete'}" th:method="POST" th:object="${user}">
+                            <input type="submit" value="Delete" class="btn btn-medium red darken-3"/>
+                        </form>
                     </div>
                     <div class="active" id="recent"> 2</div>
                     <div class="active" id="history">Test 3</div>
@@ -46,5 +52,6 @@
 
 <th:block th:replace="fragments/scripts"/>
 
+<script src="/js/profile.js"></script>
 </body>
 </html>

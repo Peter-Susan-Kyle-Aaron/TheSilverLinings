@@ -110,5 +110,24 @@ public class UserController {
         model.addAttribute("user",user);
         return "Users/profile";
     }
+    @PostMapping("/profile/{id}/delete")
+    public String delete(@PathVariable long id){
+        userDao.delete(id);
+        return "home";
+    }
+
+    @GetMapping("/profile/{id}/edit")
+    public String getEdit(@PathVariable long id, Model vModel){
+        User user =userDao.findOne(id);
+        vModel.addAttribute("user",user);
+        return "Users/editInfo";
+    }
+
+    @PostMapping("/profile/{id}/edit")
+    public String update(@ModelAttribute User user){
+        userDao.save(user);
+        return "redirect:/profile";
+    }
+
 
 }
