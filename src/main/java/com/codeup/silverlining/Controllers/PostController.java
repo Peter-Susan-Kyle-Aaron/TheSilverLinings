@@ -145,7 +145,7 @@ public class PostController {
         }
         vModel.addAttribute("dates", hmap);
         vModel.addAttribute("posts", posts);
-        return "posts/index";
+        return "Posts/index";
     }
 
     @GetMapping("/posts/{id}")
@@ -180,7 +180,7 @@ public class PostController {
         vModel.addAttribute("time", newtime);
         vModel.addAttribute("date", newdate);
         vModel.addAttribute("post", post);
-        return "posts/editPost";
+        return "Posts/editPost";
     }
 
 
