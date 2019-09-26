@@ -127,17 +127,4 @@ public class Post {
         this.worker = worker;
     }
 
-    @Override
-    public String toString() {
-        return "Post{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", body='" + body + '\'' +
-                ", category='" + category + '\'' +
-                ", location='" + location + '\'' +
-                ", date=" + date +
-                ", user=" + user +
-                ", worker=" + worker +
-                '}';
-    }
 }

@@ -9,7 +9,6 @@
 <body>
 <th:block th:replace="fragments/navbar :: navbar"/>
 <div class="container">
-    <th:block th:replace="fragments/navbar"/>
             <div class="card">
                 <div class="card-content">
                     <img id="person" th:src="${user.photo}"/>
@@ -34,7 +33,13 @@
                             <input type="submit" value="Delete" class="btn btn-medium red darken-3"/>
                         </form>
                     </div>
-                    <div class="active" id="recent"> 2</div>
+                    <div class="active" id="recent">
+                        <div th:each="review : ${reviews}">
+                            <p th:text="${review.rating}"></p>
+                            <p th:text="${review.description}"></p>
+                            <p th:text="${review.reviewer}"></p>
+                        </div>
+                    </div>
                     <div class="active" id="history">Test 3</div>
                 </div>
             </div>
@@ -42,7 +47,7 @@
 
 
 
-        <button>Leave a Review</button>
+<!--        <button><a th:href="@{/review/{id}(id=user.id)}"></a>Leave a Review</button>-->
 
 
 

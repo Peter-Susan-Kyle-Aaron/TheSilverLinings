@@ -9,12 +9,12 @@
 
 <div class="container">
     <h1>list of all posts</h1>    
-    <div class="row" th:each="post : ${posts}">
-        <div class="col s4">
+    <div class="row">
+        <div class="col s4" th:each="post : ${posts}">
             <a style="font-size:2em" th:href="'posts/'+${post.id}" th:text="${post.title}"></a>
             <p th:text="${post.body}"></p>
             <p th:each="map : ${dates}" th:if="${map.key} == ${post.id}" th:text="${map.value}"></p>
-            <p th:text="${post.location}"></p>\
+            <p th:text="${post.location}"></p>
             <p th:text="${post.user.username}"></p>
         </div>
     </div>
