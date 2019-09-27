@@ -104,6 +104,7 @@ public class UserController {
         return "Users/editInfo";
     }
 
+
     @PostMapping("/profile/edit")
     public String update(@ModelAttribute User user, @RequestParam(name="verify")String verify){
         String verifyHash = passwordEncoder.encode(verify);
