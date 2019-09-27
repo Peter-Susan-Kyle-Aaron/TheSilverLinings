@@ -25,42 +25,49 @@ public class Post {
     @Column(name = "Date")
     private String date;
 
-    @OneToOne
+    @Column(name = "isComplete")
+    private boolean isComplete;
+
+    @ManyToOne
     private User user;
 
-    @OneToMany
-    private List<User> worker;
+    @ManyToMany(mappedBy = "tasks")
+    private List<User> workers;
 
     public Post (){};
 
     public Post (Post copy){
         id = copy.id;
+        title = copy.title;
         body = copy.body;
         user = copy.user;
-        worker = copy.worker;
+        workers = copy.workers;
         category = copy.category;
         location = copy.location;
         date = copy.date;
+        isComplete = copy.isComplete;
     }
 
-    public Post (long id, String title, String body, List<User> worker, User user, String category, String location ,String date){
+    public Post (long id, String title, String body, List<User> workers, User user, String category, String location ,String date, boolean isComplete){
         this.id = id;
         this.title = title;
         this.body = body;
         this.user = user;
-        this.worker = worker;
+        this.workers = workers;
         this.category = category;
         this.location = location;
         this.date = date;
+        this.isComplete = isComplete;
     }
-    public Post (String body, String title, User user, List<User> worker, String category, String location, String date){
+    public Post (String body, String title, User user, List<User> workers, String category, String location, String date, boolean isComplete){
         this.title = title;
         this.body = body;
         this.user = user;
-        this.worker = worker;
+        this.workers = workers;
         this.category = category;
         this.location = location;
         this.date = date;
+        this.isComplete = isComplete;
     }
 
     public String getBody() {
@@ -119,12 +126,20 @@ public class Post {
         this.date = date;
     }
 
-    public List<User> getWorker() {
-        return worker;
+    public List<User> getWorkers() {
+        return workers;
     }
 
-    public void setWorker(List<User> worker) {
-        this.worker = worker;
+    public void setWorkers(List<User> workers) {
+        this.workers = workers;
+    }
+
+    public boolean isComplete() {
+        return isComplete;
+    }
+
+    public void setComplete(boolean complete) {
+        isComplete = complete;
     }
 
 }

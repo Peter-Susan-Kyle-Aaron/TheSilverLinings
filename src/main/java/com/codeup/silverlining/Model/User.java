@@ -36,6 +36,14 @@ public class User {
     )
     private List<Post> tasks;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="posts_workers",
+            joinColumns = @JoinColumn(name="worker_id"),
+            inverseJoinColumns= @JoinColumn(name="post_id")
+    )
+    private List<Post> tasks;
+
     public User(){};
 
     public User(String username, String password, String email, String photo, String address, long role) {
@@ -121,6 +129,14 @@ public class User {
         this.role = role;
     }
 
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
     public List<Post> getTasks() {
         return tasks;
     }

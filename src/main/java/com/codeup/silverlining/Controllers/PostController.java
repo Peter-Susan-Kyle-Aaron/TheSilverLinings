@@ -217,10 +217,12 @@ public class PostController {
     public String acceptTask(@PathVariable long id){
         User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user  = userDao.findById(userSession.getId());
+
         List<Post> tasks = user.getTasks();
         tasks.add(postDao.findOne(id));
         user.setTasks(tasks);
         userDao.save(user);
         return "redirect:/posts/"+id;
     }
+
 }
