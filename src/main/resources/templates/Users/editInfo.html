@@ -45,23 +45,17 @@
 
                 <input type="hidden" th:field="*{id}" th:value="${user.id}" />
                 <input type="hidden" th:field="*{role}" th:value="${user.role}" />
+
                  <input type="submit" value="Save" class="btn btn-large"/>
                  <input type="submit" value="Delete" class="btn btn-large delete"/>
+
+          
+
+
             </form>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
 
 <footer th:replace="fragments/footer"></footer>
 <th:block th:replace="fragments/scripts"/>
