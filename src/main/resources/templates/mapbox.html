@@ -1,21 +1,66 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.springframework.org/schema/mvc">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset='utf-8' />
-    <title>Display driving directions</title>
+    <th:block th:include="fragments/header :: header ('map')"/>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
     <style>
         body { margin:0; padding:0; }
-        #map { position:absolute; top:0; bottom:0; width:60%; margin:auto }
     </style>
 </head>
 <body>
-
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css' type='text/css' />
-<div id='map'></div>
+
+
+<th:block th:replace="fragments/navbar :: navbar"/>
+<div class="row ">
+    <div class="col s3">
+        <div class="row ">
+            <div class="col s12">
+                <div class="divider"></div>
+                <div class="section">
+                    <h5>Status</h5>
+                    <p>Stuff</p>
+                </div>
+                <div class="divider"></div>
+                <div class="section">
+                    <h5>Section 2</h5>
+                    <p>Stuff</p>
+                </div>
+                <div class="divider"></div>
+                <div class="section">
+                    <h5>Deliver Address</h5>
+                    <p th:text="${user.address}"></p>
+                </div>
+            </div>
+            <div class="col s9" id='map'></div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<!--<div id='map'></div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiZmFpeXRlZCIsImEiOiJjanhhdmhwbnkxMWM5M25ucnFka21xOXRzIn0.c_ImXwEydAQDNZH9nhk20A';
@@ -23,7 +68,7 @@
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [-98.491142,29.424349],
-        zoom: 13
+        zoom: 11
     });
 
     let directions = new MapboxDirections({

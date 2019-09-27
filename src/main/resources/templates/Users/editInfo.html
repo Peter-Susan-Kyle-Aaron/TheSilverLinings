@@ -22,7 +22,7 @@
                 </div>
                 <div class="input-field">
                     <label for="verify">Verify Password</label>
-                    <input id="verify" th:field="*{password}" type="password" />
+                    <input id="verify" name="passwordVerify" type="password" />
                 </div>
                 <div class="input-field">
                     <label for="password">New Password</label>
@@ -37,7 +37,7 @@
                     <input id="photo" th:field="*{photo}"  />
 <!--                    <input type="hidden" th:field="*{user.id}"/>-->
                 </div>
-                <input type="submit" value="Edit" class="btn btn-large"/>
+                <input type="submit" value="Save" class="btn btn-large"/>
             </form>
         </div>
     </div>

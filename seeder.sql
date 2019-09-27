@@ -7,6 +7,8 @@ Drop TABLE if exists users;
 
 # Users
 
+Select * from Users;
+
 insert into Users (username, password, email, address, photo, role)
 values ('kyle','$2a$10$Np9uN3PKPI10iYO1Yv.de.vHgWaJ/VunlS.uAV9eD0d7A044Uj8V2','kyle@mail.com','1234 Nowhereville','',1);
 ('Bev Ivan', 'EWqlqmgPB0', 'bivan0@last.fm', '16 Granby Way', 'https://robohash.org/sintbeataeid.png?size=50x50&set=set1', 2),

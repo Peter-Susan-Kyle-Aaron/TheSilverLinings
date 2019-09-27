@@ -11,11 +11,11 @@
             <li><a sec:authorize="isAuthenticated()" th:href="@{/profile}" class="teal-text text-darken-1">My Profile</a></li>
             <li><a sec:authorize="isAuthenticated()" th:href="@{/create}" class="teal-text text-darken-1">Create</a></li>
             <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="teal-text text-darken-1" >SignIn</a></li>
-            <li><a sec:authorize="!isAuthenticated()" th:href="@{/signup}" class="waves-effect waves-light btn teal darken-1" id="signup">SignUp</a></li>
+            <li><a sec:authorize="!isAuthenticated()" th:href="@{/signup}" class="waves-effect waves-light btn teal darken-1 signup">SignUp</a></li>
 
             <li>
                 <form  sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
-                    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+                    <button class="waves-effect waves-light btn teal darken-1 signout" >Signout</button>
                 </form>
             </li>
         </ul>

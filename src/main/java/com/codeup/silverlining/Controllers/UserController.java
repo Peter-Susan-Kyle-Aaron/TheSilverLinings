@@ -125,6 +125,8 @@ public class UserController {
 
     @PostMapping("/profile/{id}/edit")
     public String update(@ModelAttribute User user){
+        String hash = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hash);
         userDao.save(user);
         return "redirect:/profile";
     }
