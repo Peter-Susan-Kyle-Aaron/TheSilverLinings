@@ -22,7 +22,9 @@
                 </div>
                 <div class="input-field">
                     <label for="verify">Verify Password</label>
+
                     <input id="verify" name="verify" type="password" />
+
                 </div>
                 <div class="input-field">
                     <label for="password">New Password</label>
@@ -40,9 +42,19 @@
                     </div>
                     <div id="nameBox"></div>
                 </div>
+<<<<<<< HEAD
                 <input type="hidden" th:field="*{id}" th:value="${user.id}" />
                 <input type="hidden" th:field="*{role}" th:value="${user.role}" />
                 <input type="submit" value="Edit" class="btn btn-large" />
+=======
+
+                
+
+                <input type="hidden" th:field="*{id}" th:value="${user.id}">
+                <input type="hidden" th:field="*{role}" th:value="${user.role}">
+                <input type="submit" value="Save" class="btn btn-large"/>
+
+>>>>>>> 66a51f399e986ee10192b996311608aace234480
             </form>
         </div>
     </div>

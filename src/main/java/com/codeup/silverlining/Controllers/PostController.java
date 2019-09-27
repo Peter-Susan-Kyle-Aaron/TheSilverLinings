@@ -4,6 +4,7 @@ import com.codeup.silverlining.Model.Post;
 import com.codeup.silverlining.Model.User;
 import com.codeup.silverlining.Repo.PostRepo;
 import com.codeup.silverlining.Repo.UserRepo;
+import com.codeup.silverlining.Services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +22,14 @@ public class PostController {
 
     private PostRepo postDao;
     private UserRepo userDao;
-    public PostController(PostRepo postDao, UserRepo userDao){
+    private final EmailService emailService;
+
+    public PostController(PostRepo postDao, UserRepo userDao, EmailService emailService){
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
+
 
     @PostMapping("/create/delivery")
     public String submitDeliveryPost(@ModelAttribute Post post,
@@ -140,7 +145,7 @@ public class PostController {
         }
         vModel.addAttribute("dates", hmap);
         vModel.addAttribute("posts", posts);
-        return "posts/index";
+        return "Posts/index";
     }
 
     @GetMapping("/posts/{id}")
@@ -175,7 +180,7 @@ public class PostController {
         vModel.addAttribute("time", newtime);
         vModel.addAttribute("date", newdate);
         vModel.addAttribute("post", post);
-        return "posts/editPost";
+        return "Posts/editPost";
     }
 
 
