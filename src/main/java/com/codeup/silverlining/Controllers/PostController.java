@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjuster;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 public class PostController {
@@ -212,4 +213,14 @@ public class PostController {
         return "redirect:/profile";
     }
 
+    @PostMapping("/accepttask/{id}")
+    public String acceptTask(@PathVariable long id){
+        User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user  = userDao.findById(userSession.getId());
+        List<Post> tasks = user.getTasks();
+        tasks.add(postDao.findOne(id));
+        user.setTasks(tasks);
+        userDao.save(user);
+        return "redirect:/posts/"+id;
+    }
 }
