@@ -31,6 +31,17 @@ public class UserController {
         User currentUser = userDao.findById(user.getId());
         return "redirect:/profile/"+currentUser.getId();
     }
+
+    @GetMapping("/profile/{id}")
+    public String getUserProfile(@PathVariable long id, Model model){
+        User user = userDao.findById(id);
+        if(user.getRole() == 1){
+            Iterable<Review> reviews = reviewDao.findAllByuser_id(id);
+            model.addAttribute("reviews",reviews);
+        }
+        model.addAttribute("user",user);
+        return "Users/profile";
+    }
     @GetMapping("/signup")
     public String viewSignupForm(){
         return "Users/signUp";
@@ -80,24 +91,6 @@ public class UserController {
         return "redirect:/profile/"+user.getId();
     }
 
-//    @GetMapping("/profile")
-////    public String viewProfile(Model model){
-////        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-////        User currentUser = userDao.findById(user.getId());
-////        model.addAttribute("user", currentUser);
-////        return "redirect:/profile/"+user.getId();
-////    }
-
-    @GetMapping("/profile/{id}")
-    public String getUserProfile(@PathVariable long id, Model model){
-        User user = userDao.findById(id);
-        if(user.getRole() == 1){
-            Iterable<Review> reviews = reviewDao.findAllByuser_id(id);
-            model.addAttribute("reviews",reviews);
-        }
-        model.addAttribute("user",user);
-        return "Users/profile";
-    }
     @PostMapping("/profile/{id}/delete")
     public String delete(@PathVariable long id){
         userDao.delete(id);
@@ -126,8 +119,5 @@ public class UserController {
         }
         userDao.save(user);
         return "redirect:/profile";
-
     }
-
-
 }

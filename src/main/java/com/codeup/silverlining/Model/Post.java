@@ -25,6 +25,9 @@ public class Post {
     @Column(name = "Date")
     private String date;
 
+    @Column(name = "isComplete")
+    private boolean isComplete;
+
     @OneToOne
     private User user;
 
@@ -35,15 +38,17 @@ public class Post {
 
     public Post (Post copy){
         id = copy.id;
+        title = copy.title;
         body = copy.body;
         user = copy.user;
         worker = copy.worker;
         category = copy.category;
         location = copy.location;
         date = copy.date;
+        isComplete = copy.isComplete;
     }
 
-    public Post (long id, String title, String body, List<User> worker, User user, String category, String location ,String date){
+    public Post (long id, String title, String body, List<User> worker, User user, String category, String location ,String date, boolean isComplete){
         this.id = id;
         this.title = title;
         this.body = body;
@@ -52,8 +57,9 @@ public class Post {
         this.category = category;
         this.location = location;
         this.date = date;
+        this.isComplete = isComplete;
     }
-    public Post (String body, String title, User user, List<User> worker, String category, String location, String date){
+    public Post (String body, String title, User user, List<User> worker, String category, String location, String date, boolean isComplete){
         this.title = title;
         this.body = body;
         this.user = user;
@@ -61,6 +67,7 @@ public class Post {
         this.category = category;
         this.location = location;
         this.date = date;
+        this.isComplete = isComplete;
     }
 
     public String getBody() {
@@ -125,6 +132,14 @@ public class Post {
 
     public void setWorker(List<User> worker) {
         this.worker = worker;
+    }
+
+    public boolean isComplete() {
+        return isComplete;
+    }
+
+    public void setComplete(boolean complete) {
+        isComplete = complete;
     }
 
 }
