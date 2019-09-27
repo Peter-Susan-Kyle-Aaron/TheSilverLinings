@@ -32,7 +32,13 @@
                             <input type="submit" value="Edit" class="btn btn-medium"/>
                         </form>
                     </div>
-                    <div class="active" id="recent"> 2</div>
+                    <div class="active" id="recent">
+                        <div th:each="review : ${reviews}">
+                            <p th:text="${review.rating}"></p>
+                            <p th:text="${review.description}"></p>
+                            <p th:text="${review.reviewer}"></p>
+                        </div>
+                    </div>
                     <div class="active" id="history">Test 3</div>
                 </div>
             </div>
@@ -40,7 +46,7 @@
 
 
 
-        <button>Leave a Review</button>
+<!--        <button><a th:href="@{/review/{id}(id=user.id)}"></a>Leave a Review</button>-->
 
 
 

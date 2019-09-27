@@ -11,7 +11,7 @@
     <div class="col s12">
         <div class="row ">
             <h1>Edit</h1>
-            <form th:action="@{'/profile/' + ${user.id} + '/edit'}" th:method="post" th:object="${user}">
+            <form th:action="@{'/profile/edit'}" th:method="post" th:object="${user}">
                 <div class="input-field">
                     <label for="username">Username</label>
                     <input id="username" th:field="*{username}" type="text" />
@@ -22,7 +22,9 @@
                 </div>
                 <div class="input-field">
                     <label for="verify">Verify Password</label>
-                    <input id="verify" name="passwordVerify" type="password" />
+
+                    <input id="verify" name="verify" type="password" />
+
                 </div>
                 <div class="input-field">
                     <label for="password">New Password</label>
@@ -33,11 +35,20 @@
                     <input id="address" th:field="*{address}" type="text" />
                 </div>
                 <div class="input-field">
-                    <label for="photo">Photo</label>
-                    <input id="photo" th:field="*{photo}"  />
-<!--                    <input type="hidden" th:field="*{user.id}"/>-->
+                    <div>
+                        <i class="material-icons prefix">photo_camera</i>
+                        <button type="button" id="picker">Upload Profile Photo</button>
+                        <input type="hidden" id="fileupload" name="file" th:field="*{photo}" />
+                    </div>
+                    <div id="nameBox"></div>
                 </div>
+
+                
+
+                <input type="hidden" th:field="*{id}" th:value="${user.id}">
+                <input type="hidden" th:field="*{role}" th:value="${user.role}">
                 <input type="submit" value="Save" class="btn btn-large"/>
+
             </form>
         </div>
     </div>
@@ -56,5 +67,6 @@
 
 <footer th:replace="fragments/footer"></footer>
 <th:block th:replace="fragments/scripts"/>
+<th:block th:replace="fragments/filestack"/>
 </body>
 </html>

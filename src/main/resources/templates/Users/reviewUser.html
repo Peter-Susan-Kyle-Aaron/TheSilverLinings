@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html  lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
     <th:block th:replace="fragments/header :: header('reviewUser')" />
-    <link rel="stylesheet" href="../../static/css/main.css"/>
 </head>
 <body>
 <nav th:replace="fragments/navbar"></nav>
-
-
-
-    <form th:action="@{/review}" th:method="post" th:object="${}">
-        <label>How would you rate ${user}?</label>
-        <select th:field="*{rating}">
-        <option value="⭐">⭐</option>
-        <option value="⭐⭐">⭐⭐</option>
-        <option value="⭐⭐⭐">⭐⭐⭐</option>
-        <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
-        <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
-        </select><br/>
+<main class="container">
+    <form th:action="@{/review}" th:method="post" th:object="${review}">
+        <div class="input-field">
+            <select id="rate" th:field="*{rating}">
+                <option value="1">&#11088;</option>
+                <option value="2">&#11088;&#11088;</option>
+                <option value="3">&#11088;&#11088;&#11088;</option>
+                <option value="4">&#11088;&#11088;&#11088;&#11088;</option>
+                <option value="5">&#11088;&#11088;&#11088;&#11088;&#11088;</option>
+            </select>
+        <label for="rate">How would you rate <span th:text="${user.username}"></span>?</label>
+        </div>
         <label for="description">Do you have any comments to add?</label>
         <input id="description" type="text" th:field="*{description}"/><br/>
-
+        <input type="hidden" th:field="${user}" th:value="${user}">
+        <input type="hidden" th:field="${reviewer}" th:value="${reviewer}">
+        <button>Submit</button>
     </form>
+</main>
+<footer th:replace="fragments/footer"></footer>
+<th:block th:replace="fragments/scripts"/>
+<script>
+    $(document).ready(function() {
+        $('select').formSelect();
+    });
+</script>
 </body>
 </html>
