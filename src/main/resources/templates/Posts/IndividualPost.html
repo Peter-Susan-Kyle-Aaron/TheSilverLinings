@@ -22,6 +22,9 @@
         <input type="submit" value="Delete" class="btn btn-large"/>
     </form>
     </th:block>
+    <form th:action="@{'/accepttask/'+${post.id}}" method="post">
+        <button>Accept Task</button>
+    </form>
 </div>
 
 <footer th:replace="fragments/footer"></footer>

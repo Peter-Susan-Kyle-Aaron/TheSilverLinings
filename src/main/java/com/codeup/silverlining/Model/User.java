@@ -31,6 +31,14 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> posts;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="posts_workers",
+            joinColumns = @JoinColumn(name="worker_id"),
+            inverseJoinColumns= @JoinColumn(name="post_id")
+    )
+    private List<Post> tasks;
+
     public User(){};
 
     public User(String username, String password, String email, String photo, String address, long role) {
@@ -114,6 +122,22 @@ public class User {
 
     public void setRole(long role) {
         this.role = role;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public List<Post> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Post> tasks) {
+        this.tasks = tasks;
     }
 
     @Override

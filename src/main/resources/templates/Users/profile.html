@@ -28,7 +28,7 @@
                         Username: <div th:text="${user.username}"></div>
                         Email: <div th:text="${user.email}"></div>
                         Address: <div th:text="${user.address}"></div>
-                        <form th:action="@{'/profile/' + ${user.id} + '/edit'}" th:method="GET" th:object="${user}">
+                        <form th:action="@{'/profile/' + ${user.id} + '/edit'}" th:method="GET" th:object="${creator}">
                             <input type="submit" value="Edit" class="btn btn-medium"/>
                         </form>
                     </div>
