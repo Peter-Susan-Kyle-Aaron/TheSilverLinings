@@ -7,7 +7,7 @@
     <div class="nav-wrapper white">
         <a th:href="@{/}" class="brand-logo center teal-text text-darken-1">Silver Lining</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-<!--            <li><a th:href="@{/}">Home</a></li>-->
+            <li><a sec:authorize="isAuthenticated()" th:href="@{/posts}" class="teal-text text-darken-1">posts</a></li>
             <li><a sec:authorize="isAuthenticated()" th:href="@{/profile}" class="teal-text text-darken-1">My Profile</a></li>
             <li><a sec:authorize="isAuthenticated()" th:href="@{/create}" class="teal-text text-darken-1">Create</a></li>
             <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="teal-text text-darken-1" >SignIn</a></li>
