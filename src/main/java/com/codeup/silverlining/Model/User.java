@@ -116,5 +116,18 @@ public class User {
         this.role = role;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", photo='" + photo + '\'' +
+                ", address='" + address + '\'' +
+                ", role=" + role +
+                ", posts=" + posts +
+                '}';
+    }
 }
 

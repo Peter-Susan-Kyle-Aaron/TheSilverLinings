@@ -37,7 +37,7 @@
                         <div th:each="review : ${reviews}">
                             <p th:text="${review.rating}"></p>
                             <p th:text="${review.description}"></p>
-                            <p th:text="${review.reviewer}"></p>
+                            <p th:text="${review.reviewer.username}"></p>
                         </div>
                     </div>
                     <div class="active" id="history">Test 3</div>

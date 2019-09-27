@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html  lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:replace="fragments/header :: header('reviewUser')" />
 </head>
 <body>
-<nav th:replace="fragments/navbar"></nav>
-<main class="container">
-    <form th:action="@{/review}" th:method="post" th:object="${review}">
+<th:block th:replace="fragments/navbar" />
+
+<div class="container">
+    <form th:action="@{'/review'}" method="post" th:object="${review}">
+
         <div class="input-field">
+            <label for="description">Do you have any comments to add?</label>
+            <input id="description" name="description" type="text" />
+        </div>
+<!--        <div class="input-field">-->
+
             <select id="rate" th:field="*{rating}">
                 <option value="1">&#11088;</option>
                 <option value="2">&#11088;&#11088;</option>
@@ -15,15 +22,19 @@
                 <option value="4">&#11088;&#11088;&#11088;&#11088;</option>
                 <option value="5">&#11088;&#11088;&#11088;&#11088;&#11088;</option>
             </select>
-        <label for="rate">How would you rate <span th:text="${user.username}"></span>?</label>
-        </div>
-        <label for="description">Do you have any comments to add?</label>
-        <input id="description" type="text" th:field="*{description}"/><br/>
-        <input type="hidden" th:field="${user}" th:value="${user}">
-        <input type="hidden" th:field="${reviewer}" th:value="${reviewer}">
+            <label for="rate">How would you rate <span th:text="${vol.username}"></span>?</label>
+<!--        </div>-->
+
+
+        <input type="hidden" name="volunteer" id="volunteer" th:value="${vol.id}" />
+        <input type="hidden" name="senior" id="senior" th:value="${senior.id}"/>
+
         <button>Submit</button>
+        <p th:text="${vol.username}"></p>
+        <p th:text="${senior.username}" id="a"></p>
     </form>
-</main>
+</div>
+
 <footer th:replace="fragments/footer"></footer>
 <th:block th:replace="fragments/scripts"/>
 <script>
