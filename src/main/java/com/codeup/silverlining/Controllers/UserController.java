@@ -25,7 +25,12 @@ public class UserController {
         this.userDao = useDao;
         this.passwordEncoder = passwordEncoder;
     }
-
+    @GetMapping("/profile")
+    public String loginRedirect(){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userDao.findById(user.getId());
+        return "redirect:/profile/"+currentUser.getId();
+    }
     @GetMapping("/signup")
     public String viewSignupForm(){
         return "Users/signUp";
@@ -39,6 +44,7 @@ public class UserController {
 
     @PostMapping("/signup/volunteer")
     public String submitCreateForm(@ModelAttribute User user, Model model){
+        user.setRole(1);
         if(user.getUsername().equals("") ||
            user.getPassword().equals("") ||
            user.getEmail().equals("")||
@@ -49,7 +55,7 @@ public class UserController {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);
-        return "redirect:/profile";
+        return "redirect:/profile/"+user.getId();
     }
 
     @GetMapping("/signup/senior")
@@ -60,6 +66,7 @@ public class UserController {
 
     @PostMapping("/signup/senior")
     public String submitCreateFormSenior(@ModelAttribute User user, Model model){
+        user.setRole(2);
         if(user.getUsername().equals("") ||
            user.getPassword().equals("") ||
            user.getEmail().equals("")||
@@ -70,7 +77,7 @@ public class UserController {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         userDao.save(user);
-        return "redirect:/profile";
+        return "redirect:/profile/"+user.getId();
     }
 
 //    @GetMapping("/profile")
@@ -109,15 +116,16 @@ public class UserController {
     public String update(@ModelAttribute User user, @RequestParam(name="verify")String verify){
         String verifyHash = passwordEncoder.encode(verify);
         String oldpw = userDao.findOne(user.getId()).getPassword();
-        if(verifyHash.equals(oldpw)){
+        if(verifyHash.equals(oldpw) && (user.getPassword() != null)){
             String hash = passwordEncoder.encode(user.getPassword());
             user.setPassword(hash);
-            userDao.save(user);
-            return "redirect:/profile";
-
         }else{
-            return "redirect:/profile/"+user.getId()+"/edit";
+            user.setPassword(userDao.findOne(user.getId()).getPassword());
+            System.out.println(user);
+
         }
+        userDao.save(user);
+        return "redirect:/profile";
 
     }
 

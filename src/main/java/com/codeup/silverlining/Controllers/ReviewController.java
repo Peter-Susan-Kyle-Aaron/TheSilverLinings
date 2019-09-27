@@ -9,10 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ReviewController {
@@ -38,18 +35,28 @@ public class ReviewController {
 
     @GetMapping("/review/{id}")
     public String leaveAReview(@PathVariable long id, Model model){
-        User user = userDao.findById(id);
-        User reviewerUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User reviewer = userDao.findById(user.getId());
-        model.addAttribute("user",user);
-        model.addAttribute("reviewer",reviewer);
+        User volUser = userDao.findOne(id);
+        User SeniorUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User senior = userDao.findOne(SeniorUser.getId());
+
+        System.out.println(senior);
+        System.out.println(volUser);
+
+        model.addAttribute("vol",volUser);
+        model.addAttribute("senior",senior);
         model.addAttribute("review", new Review());
         return "Users/reviewUser";
     }
 
     @PostMapping("/review")
-    public String submitReview(@ModelAttribute Review review){
+    public String submitReview(@ModelAttribute Review review,
+                               @RequestParam(name="senior") User senior,
+                               @RequestParam(name="volunteer") User volunteer,
+                               @RequestParam(name="description") String description){
+        review.setReviewer(senior);
+        review.setUser(volunteer);
+        review.setDescription(description);
         reviewDao.save(review);
-        return "redirect: /profile/"+review.getUser().getId();
+        return "redirect:/profile/"+review.getUser().getId();
     }
 }
