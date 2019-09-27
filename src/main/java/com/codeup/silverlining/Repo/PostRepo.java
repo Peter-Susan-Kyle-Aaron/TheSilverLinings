@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PostRepo extends CrudRepository<Post, Long> {
+    Iterable<Post> findAllByuser_id(long id);
+
 }

@@ -18,11 +18,13 @@ public class UserController {
 
     private ReviewRepo reviewDao;
     private UserRepo userDao;
+    private PostRepo postDao;
     private PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepo useDao, ReviewRepo reviewDao, PasswordEncoder passwordEncoder){
+    public UserController(UserRepo useDao, PostRepo postDao, ReviewRepo reviewDao, PasswordEncoder passwordEncoder){
         this.reviewDao = reviewDao;
         this.userDao = useDao;
+        this.postDao = postDao;
         this.passwordEncoder = passwordEncoder;
     }
     @GetMapping("/profile")
@@ -94,9 +96,15 @@ public class UserController {
         if(user.getRole() == 1){
             Iterable<Review> reviews = reviewDao.findAllByuser_id(id);
             model.addAttribute("reviews",reviews);
+            model.addAttribute("user", user);
+            return "Users/profileForVolunteer";
+
+        }else {
+            Iterable<Post> posts = postDao.findAllByuser_id(id);
+            model.addAttribute("posts", posts );
+            model.addAttribute("user", user);
+            return "Users/profileForSenior";
         }
-        model.addAttribute("user",user);
-        return "Users/profile";
     }
     @PostMapping("/profile/{id}/delete")
     public String delete(@PathVariable long id){

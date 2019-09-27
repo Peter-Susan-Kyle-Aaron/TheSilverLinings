@@ -99,7 +99,7 @@ public class PostController {
                              @RequestParam(name = "numberOfWorkers") String numberOfWorkers){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
-        post.setCategory("Assitance");
+        post.setCategory("Assistance");
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime startDate = LocalDateTime.parse(dates+" "+times, formatter);
@@ -150,16 +150,13 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String individual(@PathVariable long id, Model vModel) {
-        try {
-            User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            User findUser  = userDao.findById(userSession.getId());
-            vModel.addAttribute("User", findUser);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            Post post = postDao.findOne(id);
-            vModel.addAttribute("post", post);
-        }
+
+
+        Post post = postDao.findOne(id);
+        User user = userDao.findOne(post.getUser().getId());
+        vModel.addAttribute("user", user);
+        vModel.addAttribute("post", post);
+
         return "Posts/IndividualPost";
     }
 
