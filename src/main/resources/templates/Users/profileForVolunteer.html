@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html  lang="en"  xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <th:block th:include="fragments/header :: header ('volunteerSignUp')"/>
+
+</head>
+<body>
+<th:block th:replace="fragments/navbar :: navbar"/>
+<div class="container">
+    <div class="card">
+        <div class="card-content">
+            <img id="person" th:src="${user.photo}"/>
+            <div class="center-align">
+                <h2>Welcome <span th:text="${user.username}"></span> !</h2>
+            </div>
+        </div>
+        <div class="card-tabs">
+            <ul class="tabs tabs-fixed-width">
+                <li class="tab"><a href="#info">Personal Info</a></li>
+                <li class="tab"><a href="#recent">Recent Review</a></li>
+                <li class="tab"><a href="#history">History</a></li>
+            </ul>
+        </div>
+        <div class="card-content grey lighten-4">
+            <div id="info">
+                Username: <div th:text="${user.username}"></div>
+                Email: <div th:text="${user.email}"></div>
+                Address: <div th:text="${user.address}"></div>
+                <form th:action="@{'/profile/' + ${user.id} + '/edit'}" th:method="GET" th:object="${user}">
+                    <input type="submit" value="Edit" class="btn btn-medium"/>
+                </form>
+            </div>
+            <div class="active" id="recent">
+                <div th:each="review : ${reviews}">
+                    <p th:text="${review.rating}"></p>
+                    <p th:text="${review.description}"></p>
+                    <p th:text="${review.reviewer.username}"></p>
+                </div>
+            </div>
+            <div class="active" id="history">Test 3</div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--        <button><a th:href="@{/review/{id}(id=user.id)}"></a>Leave a Review</button>-->
+
+
+
+
+<footer th:include="fragments/footer">
+</footer>
+
+<th:block th:replace="fragments/scripts"/>
+
+<script src="/js/profile.js"></script>
+</body>
+</html>

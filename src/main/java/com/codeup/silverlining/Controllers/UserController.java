@@ -18,11 +18,13 @@ public class UserController {
 
     private ReviewRepo reviewDao;
     private UserRepo userDao;
+    private PostRepo postDao;
     private PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepo useDao, ReviewRepo reviewDao, PasswordEncoder passwordEncoder){
+    public UserController(UserRepo useDao, PostRepo postDao, ReviewRepo reviewDao, PasswordEncoder passwordEncoder){
         this.reviewDao = reviewDao;
         this.userDao = useDao;
+        this.postDao = postDao;
         this.passwordEncoder = passwordEncoder;
     }
     @GetMapping("/profile")

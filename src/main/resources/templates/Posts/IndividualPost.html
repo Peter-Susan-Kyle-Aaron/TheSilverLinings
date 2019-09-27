@@ -1,33 +1,103 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="fragments/header :: header('Post')"/>
+    <th:block th:include="fragments/header :: header ('map')"/>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+    </style>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css' type='text/css' />
 </head>
 <body>
-<th:block th:replace="fragments/navbar"/>
-<br/>
-<div class="container">
-    <h1 th:text="${post.title}"></h1>
-    <br/>
-    <p th:text="${post.body}">
-    </p>
-    <th:block th:if="${editPerm}">
-    <form th:action="@{'/posts/' + ${post.id} + '/edit'}" method="get">
 
-        <input type="submit" value="Edit" class="btn btn-large"/>
 
-    </form>
-    <form th:action="@{'/posts/' + ${post.id} + '/delete'}" th:method="POST" th:object="${post}">
 
-        <input type="submit" value="Delete" class="btn btn-large"/>
-    </form>
-    </th:block>
-    <form th:action="@{'/accepttask/'+${post.id}}" method="post">
-        <button>Accept Task</button>
-    </form>
+<!--<body>-->
+<!--<th:block th:replace="fragments/navbar"/>-->
+<!--<br/>-->
+<!--<div class="container">-->
+<!--    <h1 th:text="${post.title}" ></h1>-->
+<!--    <br/>-->
+<!--    <p th:text="${post.body}"></p>-->
+
+<!--</div>-->
+
+<!--<footer th:replace="fragments/footer"></footer>-->
+<!--<th:block th:replace="fragments/scripts"/>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<th:block th:replace="fragments/navbar :: navbar"/>
+<form th:action="@{'/accepttask/'+${post.id}}" method="post">
+    <button>Accept Task</button>
+</form>
+<div class="row ">
+    <div class="col s3">
+        <div class="row ">
+            <div class="col s12">
+                <div class="divider"></div>
+                <div class="section">
+                    <h5 th:text="${post.title}"></h5>
+                    <p th:text="${post.body}"></p>
+                </div>
+                <th:block th:if="${post.category} == 'Delivery'">
+                    <div class="divider"></div>
+                    <div class="section">
+                        <h5>Pick Up Location</h5>
+                        <p th:text="${post.location}"></p>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="section">
+                        <h5>Deliver Address</h5>
+                        <p th:text="${user.address}"></p>
+                    </div>
+                </th:block>
+                <th:block th:if="${post.category} == 'Assistance'">
+                    <div class="divider"></div>
+                    <div class="section">
+                        <h5>Location of Resident</h5>
+                        <p th:text="${user.address}"></p>
+                    </div>
+                </th:block>
+            </div>
+            <div class="col s9" id='map'></div>
+        </div>
+    </div>
+
 </div>
 
-<footer th:replace="fragments/footer"></footer>
-<th:block th:replace="fragments/scripts"/>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js'></script>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZmFpeXRlZCIsImEiOiJjanhhdmhwbnkxMWM5M25ucnFka21xOXRzIn0.c_ImXwEydAQDNZH9nhk20A';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-98.491142,29.424349],
+        zoom: 14
+    });
+
+    let directions = new MapboxDirections({
+        accessToken: mapboxgl.accessToken
+    })
+
+    map.addControl(directions, 'top-left');
+
+
+</script>
+<script th:inline="javascript">
+
+    // let endPoint=document.querySelector('#mapbox-directions-destination-input input');
+    // endPoint.value= [[${post.location}]]
+    // let startPoint=document.querySelector('#mapbox-directions-origin-input input');
+    // startPoint.value= [[${user.address}]]
+    directions.setOrigin([[${user.address}]]);
+    directions.setDestination([[${post.location}]]);
+
+
+</script>
 </body>
 </html>
