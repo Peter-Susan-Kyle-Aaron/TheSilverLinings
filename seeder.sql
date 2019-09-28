@@ -1,13 +1,13 @@
 Use silver_lining_db;
 
-Drop TABLE if exists post_workers;
+Drop TABLE if exists posts_workers;
 Drop TABLE if exists reviews;
 Drop TABLE if exists posts;
 Drop TABLE if exists users;
 
 # Users
 
-Select * from Users;
+# Select * from Users;
 
 insert into Users (username, password, email, address, photo, role)
 values ('kyle','$2a$10$Np9uN3PKPI10iYO1Yv.de.vHgWaJ/VunlS.uAV9eD0d7A044Uj8V2','kyle@mail.com','1234 Nowhereville','',1);

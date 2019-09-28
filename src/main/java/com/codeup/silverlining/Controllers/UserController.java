@@ -44,8 +44,8 @@ public class UserController {
             return "Users/profileForVolunteer";
         }else{
             Iterable<Post> posts = postDao.findAllByuser_id(id);
-            model.addAttribute("reviews",posts);
-            return "Users/profile";
+            model.addAttribute("posts",posts);
+            return "Users/profileForSenior";
         }
     }
     @GetMapping("/signup")
