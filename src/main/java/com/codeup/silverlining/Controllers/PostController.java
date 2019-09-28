@@ -66,6 +66,9 @@ public class PostController {
                         if(i < 21) {
                             temporalAdjuster = t -> t.plus(Period.ofDays(1));
                             startDate = startDate.with(temporalAdjuster);
+                        }else{
+                            temporalAdjuster = t -> t.minus(Period.ofDays(1));
+                            endate = startDate.with(temporalAdjuster);
                         }
                         break;
 
@@ -73,12 +76,18 @@ public class PostController {
                         if(i < 4) {
                             temporalAdjuster = t -> t.plus(Period.ofWeeks(1));
                             startDate = startDate.with(temporalAdjuster);
+                        }else{
+                            temporalAdjuster = t -> t.minus(Period.ofWeeks(1));
+                            endate = startDate.with(temporalAdjuster);
                         }
                         break;
                     case "Monthly":
                         if(i < 12) {
                             temporalAdjuster = t -> t.plus(Period.ofMonths(1));
                             startDate = startDate.with(temporalAdjuster);
+                        }else{
+                            temporalAdjuster = t -> t.minus(Period.ofMonths(1));
+                            endate = startDate.with(temporalAdjuster);
                         }
                         break;
                 }
