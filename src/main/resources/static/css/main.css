@@ -51,3 +51,12 @@
     margin:auto
 
 }
+
+/*styling home*/
+.slider .slides{
+    height: 600px;
+}
+
+.slider {
+    height: 640px;
+}

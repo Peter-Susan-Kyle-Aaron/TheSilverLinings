@@ -1,7 +1,10 @@
-$('.carousel.carousel-slider').carousel({
-    fullWidth: true,
-    indicators: true
+$(document).ready(function(){
+    $('.slider').slider({
+        height: 600
+    });
 });
+
+
 setInterval(function(){
-    $('.carousel.carousel-slider').carousel('next');
+    $('.slider').slider('next');
 }, 5000);

@@ -147,14 +147,32 @@ public class PostController {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm");
 
         Iterable<Post> posts = postDao.findAll();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         HashMap<Long, String> hmap = new HashMap<>();
-        for(Post post : posts){
-            LocalDateTime ldt = LocalDateTime.parse(post.getDate(), formatter);
-            String gregDate = dtf.format(ldt);
-            hmap.put(post.getId(),gregDate);
+        if(user.getRole() == 1) {
+            for (Post post : posts) {
+                LocalDateTime ldt = LocalDateTime.parse(post.getDate(), formatter);
+                String gregDate = dtf.format(ldt);
+                hmap.put(post.getId(), gregDate);
+            }
+            vModel.addAttribute("posts", posts);
+        }else{
+            ArrayList<Post> listPosts = new ArrayList<>();
+            for (Post post : posts){
+                if(post.getUser().getId() == user.getId()){
+                    LocalDateTime ldt = LocalDateTime.parse(post.getDate(), formatter);
+                    String gregDate = dtf.format(ldt);
+                    hmap.put(post.getId(), gregDate);
+                    listPosts.add(post);
+                }
+            }
+            Iterable<Post> userPosts = listPosts;
+            vModel.addAttribute("posts", userPosts);
+
         }
         vModel.addAttribute("dates", hmap);
-        vModel.addAttribute("posts", posts);
+        vModel.addAttribute("userSesh", user);
         return "Posts/index";
     }
 
