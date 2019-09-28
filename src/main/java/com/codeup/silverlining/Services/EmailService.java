@@ -23,6 +23,7 @@ public class EmailService {
         msg.setTo(post.getUser().getEmail());
         msg.setSubject(subject);
         msg.setText(body);
+        System.out.println(post.getUser().getEmail());
 
         try{
             this.emailSender.send(msg);
