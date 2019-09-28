@@ -38,7 +38,6 @@ public class UserController {
     public String getUserProfile(@PathVariable long id, Model model){
         User user = userDao.findById(id);
         model.addAttribute("user",user);
-
         if(user.getRole() == 1){
             Iterable<Review> reviews = reviewDao.findAllByuser_id(id);
             model.addAttribute("reviews",reviews);
