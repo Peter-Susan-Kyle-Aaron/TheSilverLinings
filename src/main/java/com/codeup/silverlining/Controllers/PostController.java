@@ -42,6 +42,7 @@ public class PostController {
         post.setUser(user);
         post.setCategory("Delivery");
         post.setTitle("Delivery at "+post.getLocation());
+        post.setComplete(false);
 
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -56,6 +57,7 @@ public class PostController {
                 newPost.setBody(post.getBody());
                 newPost.setCategory(post.getCategory());
                 newPost.setUser(post.getUser());
+                newPost.setComplete(false);
 
                 newPost.setDate(startDate.toString().replace("T"," "));
                 postDao.save(newPost);
@@ -110,6 +112,7 @@ public class PostController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
         post.setCategory("Assistance");
+        post.setComplete(false);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime startDate = LocalDateTime.parse(dates+" "+times, formatter);
@@ -191,7 +194,7 @@ public class PostController {
     }
 
 
-    @RequestMapping(path = "post/edit", method = RequestMethod.POST)
+    @RequestMapping(path = "posts/edit", method = RequestMethod.POST)
     public String editForm(
                            @RequestParam(name="editId")long id,
                            @RequestParam(name="editTitle")String title,
