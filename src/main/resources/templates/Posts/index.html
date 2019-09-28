@@ -8,7 +8,12 @@
 
 
 <div class="container">
-    <h1>list of all posts</h1>    
+    <th:block th:if="${userSesh.role} == '1'">
+        <h1>list of all posts</h1>
+    </th:block>
+    <th:block th:if="${userSesh.role} == '2'">
+        <h1>list of your posts</h1>
+    </th:block>
     <div class="row">
         <div class="col s4" th:each="post : ${posts}">
             <a style="font-size:2em" th:href="'posts/'+${post.id}" th:text="${post.title}"></a>

@@ -7,33 +7,52 @@
 <body>
 <th:block th:replace="fragments/navbar :: navbar"/>
 
-<div class="carousel carousel-slider" data-indicators="true">
-    <div>
-        <a class="carousel-item" href="#one!"><img src="img/volunteer.jpg"/></a>
-
-        <div class="carousel-fixed-item center">
-            <h2 class="white-text">Heading for the Carousel</h2>
-        </div>
-    </div>
-
-    <div>
-        <a class="carousel-item white-text" href="#two!"><img src="img/holdinghand.jpg" /></a>
-
-<!--            <h2>Second Panel</h2>-->
-<!--            <p class="white-text">This is your second panel</p>-->
-    </div>
-
-    <div class="carousel-item green white-text" href="#three!">
-        <img src="img/volunteer1.jpg" />
-        <h2>Third Panel</h2>
-        <p class="white-text">This is your third panel</p>
-    </div>
-    <div class="carousel-item blue white-text" href="#four!">
-        <img src="img/holdinghand.jpg" />
-        <h2>Fourth Panel</h2>
-        <p class="white-text">This is your fourth panel</p>
-    </div>
+<div class="slider">
+    <ul class="slides">
+        <li>
+            <img src="img/volunteer.jpg"/> <!-- random image -->
+            <div class="caption left-align">
+                <h3>Delivering goo spirit</h3>
+                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            </div>
+        </li>
+        <li>
+            <img src="img/holdinghand.jpg"/> <!-- random image -->
+            <div class="caption left-align">
+                <h3>Delivering Memories</h3>
+                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            </div>
+        </li>
+        <li>
+            <img src="img/volunteer1.jpg"/> <!-- random image -->
+            <div class="caption left-align">
+                <h3>Delivering Good Story</h3>
+                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            </div>
+        </li>
+        <li>
+            <img src="img/holdinghand.jpg"/> <!-- random image -->
+            <div class="caption left-align">
+                <h3>This is our big Tagline!</h3>
+                <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            </div>
+        </li>
+    </ul>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
