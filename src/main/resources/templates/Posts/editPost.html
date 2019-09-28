@@ -6,7 +6,7 @@
 <body>
  <th:block th:replace="fragments/navbar"/>
  <div class="taskForm">
-     <form th:action="@{/post/edit}" th:method="post">
+     <form th:action="@{/posts/edit}" th:method="post">
          What task do you need accomplished?
          <input name="editTitle" th:value="${post.title}"/><br/>
          WHERE
