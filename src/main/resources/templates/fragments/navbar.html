@@ -9,7 +9,7 @@
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a sec:authorize="isAuthenticated()" th:href="@{/posts}" class="teal-text text-darken-1">posts</a></li>
             <li><a sec:authorize="isAuthenticated()" th:href="@{/profile}" class="teal-text text-darken-1">My Profile</a></li>
-<!--            <th:block th:if="${userSesh.role} == '2'>-->
+<!--            <th:block th:if="${user.role == 1}">-->
                 <li><a sec:authorize="isAuthenticated()" th:href="@{/create}" class="teal-text text-darken-1">Create</a></li>
 <!--            </th:block>-->
             <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="teal-text text-darken-1" >SignIn</a></li>
