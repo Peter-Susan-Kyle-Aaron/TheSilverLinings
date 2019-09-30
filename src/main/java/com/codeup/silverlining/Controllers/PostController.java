@@ -130,10 +130,11 @@ public class PostController {
     }
 
     @GetMapping("/create")
-    public String createPost(){
-        User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user  = userDao.findById(userSession.getId());
-        if(user.getRole() == 1){
+    public String createPost(Model model){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userSesh = userDao.findById(loggedInUser.getId());
+        model.addAttribute("userSesh",userSesh);
+        if(userSesh.getRole() == 1){
             return "redirect:/";
         }else {
             return "Posts/PostsForm";
@@ -141,9 +142,10 @@ public class PostController {
     }
     @GetMapping("/create/delivery")
     public String createDeliveryPost(Model model){
-        User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user  = userDao.findById(userSession.getId());
-        if(user.getRole() == 1){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userSesh = userDao.findById(loggedInUser.getId());
+        model.addAttribute("userSesh",userSesh);
+        if(userSesh.getRole() == 1){
             return "redirect:/";
         }else {
             model.addAttribute("post", new Post());
@@ -152,9 +154,10 @@ public class PostController {
     }
     @GetMapping("create/assistance")
     public String createResidencePost(Model model){
-        User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user  = userDao.findById(userSession.getId());
-        if(user.getRole() == 1){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userSesh = userDao.findById(loggedInUser.getId());
+        model.addAttribute("userSesh",userSesh);
+        if(userSesh.getRole() == 1){
             return "redirect:/";
         }else {
             model.addAttribute("post", new Post());
@@ -168,10 +171,11 @@ public class PostController {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm");
 
         Iterable<Post> posts = postDao.findAll();
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userSesh = userDao.findById(loggedInUser.getId());
+        vModel.addAttribute("userSesh",userSesh);
         HashMap<Long, String> hmap = new HashMap<>();
-        if(user.getRole() == 1) {
+        if(userSesh.getRole() == 1) {
             for (Post post : posts) {
                 LocalDateTime ldt = LocalDateTime.parse(post.getDate(), formatter);
                 String gregDate = dtf.format(ldt);
@@ -181,7 +185,7 @@ public class PostController {
         }else{
             ArrayList<Post> listPosts = new ArrayList<>();
             for (Post post : posts){
-                if(post.getUser().getId() == user.getId()){
+                if(post.getUser().getId() == userSesh.getId()){
                     LocalDateTime ldt = LocalDateTime.parse(post.getDate(), formatter);
                     String gregDate = dtf.format(ldt);
                     hmap.put(post.getId(), gregDate);
@@ -193,13 +197,14 @@ public class PostController {
 
         }
         vModel.addAttribute("dates", hmap);
-        vModel.addAttribute("userSesh", user);
         return "Posts/index";
     }
 
     @GetMapping("/posts/{id}")
     public String individual(@PathVariable long id, Model vModel) {
-
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userSesh = userDao.findById(loggedInUser.getId());
+        vModel.addAttribute("userSesh",userSesh);
 
         Post post = postDao.findOne(id);
         User user = userDao.findOne(post.getUser().getId());
@@ -211,10 +216,11 @@ public class PostController {
 
     @GetMapping(path = "posts/{id}/edit")
     public String edit(@PathVariable long id, Model vModel) {
-        User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User findUser  = userDao.findById(userSession.getId());
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userSesh = userDao.findById(loggedInUser.getId());
+        vModel.addAttribute("userSesh",userSesh);
         Post post = postDao.findOne(id);
-        if (post.getUser() != findUser)  {
+        if (post.getUser() != userSesh)  {
             return "redirect:/posts";
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");

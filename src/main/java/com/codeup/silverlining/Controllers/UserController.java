@@ -36,6 +36,9 @@ public class UserController {
 
     @GetMapping("/profile/{id}")
     public String getUserProfile(@PathVariable long id, Model model){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userSesh = userDao.findById(loggedInUser.getId());
+        model.addAttribute("userSesh",userSesh);
         User user = userDao.findById(id);
         model.addAttribute("user",user);
         if(user.getRole() == 1){
@@ -50,12 +53,14 @@ public class UserController {
         }
     }
     @GetMapping("/signup")
-    public String viewSignupForm(){
+    public String viewSignupForm(Model model){
+
         return "Users/signUp";
     }
 
     @GetMapping("/signup/volunteer")
     public String viewVolForm(Model model){
+
         model.addAttribute("user", new User());
         return "Users/volunteerSignUp";
     }
@@ -106,6 +111,9 @@ public class UserController {
 
     @GetMapping("/profile/{id}/edit")
     public String getEdit(@PathVariable long id, Model vModel){
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userSesh = userDao.findById(loggedInUser.getId());
+        vModel.addAttribute("userSesh",userSesh);
         User user = userDao.findOne(id);
         vModel.addAttribute("user",user);
         return "Users/editInfo";
