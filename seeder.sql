@@ -25,8 +25,8 @@ values ('kyle','$2a$10$Np9uN3PKPI10iYO1Yv.de.vHgWaJ/VunlS.uAV9eD0d7A044Uj8V2','k
 
 #Posts
 
-# insert into Posts (body, user_id, Category, Location)
-# values
+insert into Posts (body, user_id, Category, Location,is_complete,title)
+values('2',3,'Delivery','Codeup',false,'2');
 
 #Reviews
 

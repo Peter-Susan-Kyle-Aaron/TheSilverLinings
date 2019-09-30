@@ -131,17 +131,35 @@ public class PostController {
 
     @GetMapping("/create")
     public String createPost(){
-        return "Posts/PostsForm";
+        User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user  = userDao.findById(userSession.getId());
+        if(user.getRole() == 1){
+            return "redirect:/";
+        }else {
+            return "Posts/PostsForm";
+        }
     }
     @GetMapping("/create/delivery")
     public String createDeliveryPost(Model model){
-        model.addAttribute("post", new Post());
-        return "Posts/DeliveryPosts";
+        User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user  = userDao.findById(userSession.getId());
+        if(user.getRole() == 1){
+            return "redirect:/";
+        }else {
+            model.addAttribute("post", new Post());
+            return "Posts/DeliveryPosts";
+        }
     }
-    @GetMapping("create/residence")
+    @GetMapping("create/assistance")
     public String createResidencePost(Model model){
-        model.addAttribute("post", new Post());
-        return "Posts/ResidenceAssistance";
+        User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user  = userDao.findById(userSession.getId());
+        if(user.getRole() == 1){
+            return "redirect:/";
+        }else {
+            model.addAttribute("post", new Post());
+            return "Posts/ResidenceAssistance";
+        }
     }
 
     @GetMapping("/posts")
@@ -191,7 +209,7 @@ public class PostController {
         return "Posts/IndividualPost";
     }
 
-    @RequestMapping(path = "posts/{id}/edit", method = RequestMethod.GET)
+    @GetMapping(path = "posts/{id}/edit")
     public String edit(@PathVariable long id, Model vModel) {
         User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User findUser  = userDao.findById(userSession.getId());
@@ -212,7 +230,7 @@ public class PostController {
     }
 
 
-    @RequestMapping(path = "posts/edit", method = RequestMethod.POST)
+    @PostMapping(path = "posts/edit")
     public String editForm(
                            @RequestParam(name="editId")long id,
                            @RequestParam(name="editTitle")String title,
@@ -239,8 +257,12 @@ public class PostController {
     @PostMapping("/posts/{id}/delete")
     public String delete(@PathVariable long id){
         Post post = postDao.findOne(id);
+        List<User> workers = post.getWorkers();
+        for(User worker : workers){
+            worker.removeTask(post);
+        }
         postDao.delete(post);
-        return "redirect:/profile";
+        return "redirect:/posts";
     }
 
     @PostMapping("/accepttask/{id}")
@@ -248,10 +270,10 @@ public class PostController {
         User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user  = userDao.findById(userSession.getId());
         Post post = postDao.findOne(id);
-        List<Post> tasks = user.getTasks();
-        tasks.add(post);
+//        List<Post> tasks = user.getTasks();
+//        tasks.add(post);
         emailService.prepareAndSend(post,"Your task has been accepted", "Hi");
-        user.setTasks(tasks);
+        post.addWorker(user);
         userDao.save(user);
         return "redirect:/posts/"+id;
     }
