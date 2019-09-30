@@ -59,14 +59,14 @@ public class UserController {
         return "Users/signUp";
     }
 
-    @GetMapping("/signup/volunteer")
+    @GetMapping("/signup/helper")
     public String viewVolForm(Model model){
 
         model.addAttribute("user", new User());
         return "Users/volunteerSignUp";
     }
 
-    @PostMapping("/signup/volunteer")
+    @PostMapping("/signup/helper")
     public String submitCreateForm(@ModelAttribute User user, Model model){
         user.setRole(1);
         if(user.getUsername().equals("") ||

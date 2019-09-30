@@ -3,7 +3,7 @@
        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 
-    <th:block th:replace="fragments/header :: header('userSignUp')"/>
+    <th:block th:replace="fragments/header :: header('SignUp')"/>
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: navbar"/>
@@ -17,9 +17,9 @@
                 <input type="submit" value="I am a senior!" class="btn btn-large"/>
 
             </form>
-            <form th:action="@{/signup/volunteer}" method="get">
+            <form th:action="@{/signup/helper}" method="get">
 
-                <input type="submit" value="I am a volunteer!" class="btn btn-large"/>
+                <input type="submit" value="I am a Helper!" class="btn btn-large"/>
             </form>
         </div>
     </div>

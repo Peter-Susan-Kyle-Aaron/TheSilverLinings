@@ -100,7 +100,7 @@ public class PostController {
             post.setDate(startDate.toString().replace("T"," "));
             postDao.save(post);
         }
-        return "redirect:/posts";
+        return "redirect:/tasks";
     }
     @PostMapping("/create/assistance")
     public String submitPost(@ModelAttribute Post post,
@@ -126,7 +126,7 @@ public class PostController {
                     "\nEstimated volunteers needed: "+numberOfWorkers+
                     "\n"+extra);
         postDao.save(post);
-        return "redirect:/posts";
+        return "redirect:/tasks";
     }
 
     @GetMapping("/create")
@@ -165,7 +165,7 @@ public class PostController {
         }
     }
 
-    @GetMapping("/posts")
+    @GetMapping("/tasks")
     public String index(Model vModel) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm");
@@ -200,7 +200,7 @@ public class PostController {
         return "Posts/index";
     }
 
-    @GetMapping("/posts/{id}")
+    @GetMapping("/tasks/{id}")
     public String individual(@PathVariable long id, Model vModel) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userSesh = userDao.findById(loggedInUser.getId());
@@ -214,14 +214,14 @@ public class PostController {
         return "Posts/IndividualPost";
     }
 
-    @GetMapping(path = "posts/{id}/edit")
+    @GetMapping(path = "tasks/{id}/edit")
     public String edit(@PathVariable long id, Model vModel) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userSesh = userDao.findById(loggedInUser.getId());
         vModel.addAttribute("userSesh",userSesh);
         Post post = postDao.findOne(id);
         if (post.getUser() != userSesh)  {
-            return "redirect:/posts";
+            return "redirect:/tasks";
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime startDate = LocalDateTime.parse(post.getDate(), formatter);
@@ -236,7 +236,7 @@ public class PostController {
     }
 
 
-    @PostMapping(path = "posts/edit")
+    @PostMapping(path = "tasks/edit")
     public String editForm(
                            @RequestParam(name="editId")long id,
                            @RequestParam(name="editTitle")String title,
@@ -257,10 +257,10 @@ public class PostController {
         updatePost.setDate(startDate.toString());
 
         postDao.save(updatePost);
-        return "redirect:/posts/"+ updatePost.getId();
+        return "redirect:/tasks/"+ updatePost.getId();
     }
 
-    @PostMapping("/posts/{id}/delete")
+    @PostMapping("/tasks/{id}/delete")
     public String delete(@PathVariable long id){
         Post post = postDao.findOne(id);
         List<User> workers = post.getWorkers();
@@ -268,10 +268,10 @@ public class PostController {
             worker.removeTask(post);
         }
         postDao.delete(post);
-        return "redirect:/posts";
+        return "redirect:/tasks";
     }
 
-    @PostMapping("/accepttask/{id}")
+    @PostMapping("/accept/{id}")
     public String acceptTask(@PathVariable long id){
         User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user  = userDao.findById(userSession.getId());
@@ -281,7 +281,7 @@ public class PostController {
         user.setTasks(tasks);
         userDao.save(user);
         emailService.prepareAndSend(post,"Your task has been accepted", "Your task ");
-        return "redirect:/posts/"+id;
+        return "redirect:/tasks/"+id;
     }
 
 }

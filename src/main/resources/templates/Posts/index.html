@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <th:block th:replace="fragments/header :: header('Posts')"/>
+    <th:block th:replace="fragments/header :: header('Tasks')"/>
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: navbar "/>
@@ -9,27 +9,27 @@
 
 <div class="container">
     <th:block th:if="${userSesh.role} == '1'">
-        <h1>list of all posts</h1>
+        <h1>list of all Tasks</h1>
     </th:block>
     <th:block th:if="${userSesh.role} == '2'">
-        <h1>list of your posts</h1>
+        <h1>Your Requests</h1>
     </th:block>
     <div class="row">
         <div class="col s4" th:each="post : ${posts}">
-            <a style="font-size:2em" th:href="'posts/'+${post.id}" th:text="${post.title}"></a>
+            <a style="font-size:2em" th:href="'tasks/'+${post.id}" th:text="${post.title}"></a>
             <p th:text="${post.body}"></p>
             <p th:each="map : ${dates}" th:if="${map.key} == ${post.id}" th:text="${map.value}"></p>
             <p th:text="${post.location}"></p>
             <p th:text="${post.user.username}"></p>
             <th:block th:if="${userSesh.role == 2}">
-                <a th:href="@{'/posts/'+${post.id}+'/edit'}"><button class="btn">Edit</button></a>
+                <a th:href="@{'/tasks/'+${post.id}+'/edit'}"><button class="btn">Edit</button></a>
                 <a class="modal-trigger" th:href="@{'#delete'+${post.id}}"><button class="btn">Delete</button></a>
                 <div th:id="delete+${post.id}" class="modal">
                     <div class="modal-content">
                         <h4>Are you sure you want to delete this request?</h4>
                     </div>
                     <div class="modal-footer">
-                        <form th:action="@{'/posts/'+${post.id}+'/delete'}" method="post">
+                        <form th:action="@{'/tasks/'+${post.id}+'/delete'}" method="post">
                             <button class="btn">Delete</button>
                         </form>
                     </div>
