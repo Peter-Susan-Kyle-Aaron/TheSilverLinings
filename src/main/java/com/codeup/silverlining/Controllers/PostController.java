@@ -229,7 +229,7 @@ public class PostController {
         Post post = postDao.findOne(id);
         List<Post> tasks = user.getTasks();
         tasks.add(post);
-        emailService.prepareAndSend(post,"Your task has been accepted", "Hi");
+        emailService.prepareAndSend(post,"Your task has been accepted", "Your task ");
         user.setTasks(tasks);
         userDao.save(user);
         return "redirect:/posts/"+id;
