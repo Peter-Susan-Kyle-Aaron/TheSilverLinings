@@ -73,5 +73,12 @@
 .float-my-children-2 > * {
     float: left;
 }
-
+.text1{
+    margin-right: 75px;
+    margin-top:250px;
+}
+.text2{
+    margin-left: 75px;
+    margin-top:250px;
+}
 
