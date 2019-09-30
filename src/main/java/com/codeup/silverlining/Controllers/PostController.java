@@ -276,9 +276,11 @@ public class PostController {
         User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user  = userDao.findById(userSession.getId());
         Post post = postDao.findOne(id);
-        post.addWorker(user);
-        emailService.prepareAndSend(post,"Your task has been accepted", "Your task ");
+        List<Post> tasks = user.getTasks();
+        tasks.add(post);
+        user.setTasks(tasks);
         userDao.save(user);
+        emailService.prepareAndSend(post,"Your task has been accepted", "Your task ");
         return "redirect:/posts/"+id;
     }
 
