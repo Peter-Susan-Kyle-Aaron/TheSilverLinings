@@ -23,12 +23,12 @@
 
     var fileInput = document.getElementById('fileupload');
     var btn = document.getElementById('picker');
-    var nameBox = document.getElementById('nameBox');
 
     // Add our event listeners
 
     btn.addEventListener('click', function (e) {
         e.preventDefault();
+        btn.value = " ";
         picker.open();
     });
     // Helper to overwrite the field input value
@@ -37,8 +37,8 @@
         fileInput.value = fileData.url;
 
         // Some ugly DOM code to show some data.
-        var name = document.createTextNode('Selected: ' + fileData.filename);
-        nameBox.appendChild(name);
+        var name = document.createTextNode(fileData.filename);
+        btn.value = name.wholeText;
     }
     </script>
 </th:block>
