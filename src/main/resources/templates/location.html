@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id = "find-me">Show my location</button><br/>
+<p id = "status"></p>
+<a id = "map-link" target="_blank"></a>
+    <h1>My First Map</h1>
+    <button id="button">Search</button>
+        <div id="map"></div>
+        <style>
+        #map {
+        /* the width and height may be set to any size */
+        width: 100%;
+        height: 700px;
+    }
+    </style>
+
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<script>
+    var mapboxToken = "pk.eyJ1IjoiZmFpeXRlZCIsImEiOiJjanhhdmhwbnkxMWM5M25ucnFka21xOXRzIn0.c_ImXwEydAQDNZH9nhk20A";
+    mapboxgl.accessToken = mapboxToken;
+
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        zoom: 15,
+        center: [-98.4916, 29.4252]
+    });
+    var texasDeBrazil= {
+        name:"Texas De Brazil",
+        address: "313 E Houston St, San Antonio, TX 78205",
+        popupHTML: "<p>Best Brazilian Grill Place</p>"
+    };
+
+
+
+    function placeMarkerAndPopup(info, mapboxToken, map) {
+        geocode(info.address, mapboxToken).then(function(coordinates) {
+
+            var popup = new mapboxgl.Popup({closeButton: true})
+                .setHTML(info.popupHTML)
+                .setLngLat(coordinates);
+            var marker = new mapboxgl.Marker()
+                .setLngLat(coordinates)
+                .addTo(map)
+                .setPopup(popup);
+            popup.addTo(map);
+        });
+    }
+
+    var arrayOfRestaurants = [texasDeBrazil];
+    arrayOfRestaurants.forEach(function(names){
+        console.log(names);
+        placeMarkerAndPopup(names, mapboxToken, map);
+    });
+
+    function geoFindMe() {
+
+        const status = document.querySelector('#status');
+        const mapLink = document.querySelector('#map-link');
+
+        mapLink.href = '';
+        mapLink.textContent = '';
+
+        function success(position) {
+            const latitude  = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            status.textContent = '';
+            mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+            mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+        }
+
+        function error() {
+            status.textContent = 'Unable to retrieve your location';
+        }
+
+        if (!navigator.geolocation) {
+            status.textContent = 'Geolocation is not supported by your browser';
+        } else {
+            status.textContent = 'Locating…';
+            navigator.geolocation.getCurrentPosition(success, error);
+        }
+
+    }
+
+    document.querySelector('#find-me').addEventListener('click', geoFindMe);
+</script>
+
+
+</body>
+</html>
