@@ -8,3 +8,6 @@ $(document).ready(function(){
 setInterval(function(){
     $('.slider').slider('next');
 }, 5000);
+
+
+
