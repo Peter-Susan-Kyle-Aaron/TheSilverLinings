@@ -7,6 +7,30 @@
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
     <style>
         body { margin:0; padding:0; }
+        .marker {
+            /*background-image: url('mapbox-icon.png');*/
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+
+            background-color:#125E8A;
+            border:  2em;
+            background-size: cover;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
     </style>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css' type='text/css' />
 </head>
@@ -71,13 +95,32 @@
 
 
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js'></script>
-<script>
+
+
+<script th:inline="javascript">
+
     mapboxgl.accessToken = 'pk.eyJ1IjoiZmFpeXRlZCIsImEiOiJjanhhdmhwbnkxMWM5M25ucnFka21xOXRzIn0.c_ImXwEydAQDNZH9nhk20A';
+
+
+    const handleLocationError  = () => {
+        alert("Error getting location")
+    };
+
+
+
+    const markers = {
+        origin: [[${user.address}]],
+        destination : [[${post.location}]]
+    };
+
+
+
+
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [-98.491142,29.424349],
-        zoom: 14
+        zoom: 11
     });
 
     let directions = new MapboxDirections({
@@ -86,18 +129,44 @@
 
     map.addControl(directions, 'top-left');
 
+    directions.setOrigin(markers.origin);
+    directions.setDestination(markers.destination);
+
+    let driverMaker;
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+
+            let  userLocation = [position.coords.longitude, position.coords.latitude];
+
+            var el = document.createElement('i');
+            el.className = 'marker material-icons';
+            el.innerText = `drive_eta`;
+            el.popupHTML = "<p>Location of Driver</p>";
+
+            driverMaker = new mapboxgl.Marker(el)
+                .setLngLat(userLocation)
+                .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                    .setHTML(el.popupHTML))
+                .addTo(map);
+
+
+            // AJAX REQUEST TO UPDATE LOCATION
+
+            // map.setCenter(pos);
+        }, function() {
+            handleLocationError();
+        });
+    }
+
+
+    setInterval(() => {
+        // DO AJAX REQUEST TO RETURN THE LOCATION OF THE DRIVER
+        // UPDATE THE DRIVER MAKER.
+        driverMaker.setLngLat([-98.491142,29.424349])
+    }, 10000)
 
 </script>
-<script th:inline="javascript">
 
-    // let endPoint=document.querySelector('#mapbox-directions-destination-input input');
-    // endPoint.value= [[${post.location}]]
-    // let startPoint=document.querySelector('#mapbox-directions-origin-input input');
-    // startPoint.value= [[${user.address}]]
-    directions.setOrigin([[${user.address}]]);
-    directions.setDestination([[${post.location}]]);
-
-
-</script>
 </body>
 </html>
