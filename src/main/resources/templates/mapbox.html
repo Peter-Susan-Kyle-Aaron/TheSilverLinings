@@ -62,8 +62,16 @@
 
 
 
-<script>
+<script th:inline="javascript">
+
     mapboxgl.accessToken = 'pk.eyJ1IjoiZmFpeXRlZCIsImEiOiJjanhhdmhwbnkxMWM5M25ucnFka21xOXRzIn0.c_ImXwEydAQDNZH9nhk20A';
+
+    const markers = {
+        origin: [[${user.address}]],
+        destination : [[${post.location}]],
+        driverLocation:  [-98.491142,29.424349],
+    };
+
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
@@ -78,31 +86,22 @@
     map.addControl(directions, 'top-left');
 
 
+    var el = document.createElement('div');
+    el.className = 'marker';
+
+    new mapboxgl.Marker(el)
+        .setLngLat(driverLocation)
+        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+            .setHTML(`<h3>Location</h3><p>Last updated</p>`))
+        .addTo(map);
+
+
+
+    directions.setOrigin(markers.origin);
+    directions.setDestination(markers.destination);
+
 </script>
 
-<script th:inline="javascript">
-
-    // let endPoint=document.querySelector('#mapbox-directions-destination-input input');
-    // endPoint.value= [[${post.location}]]
-    // let startPoint=document.querySelector('#mapbox-directions-origin-input input');
-    // startPoint.value= [[${user.address}]]
-    directions.setOrigin([[${user.address}]]);
-    directions.setDestination([[${post.location}]]);
-
-
-</script>
-
-
-
-<!--</script>-->
-<script th:inline="javascript">
-    /*<![CDATA[*/
-
-    var address = /*[[${user.address}]]*/ 'default';
-
-
-    /*]]>*/
-</script>
 
 </body>
 </html>
