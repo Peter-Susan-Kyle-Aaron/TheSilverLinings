@@ -45,6 +45,7 @@ public class UserController {
             Iterable<Review> reviews = reviewDao.findAllByuser_id(id);
             Iterable<Post> posts = user.getTasks();
             model.addAttribute("reviews",reviews);
+            model.addAttribute("posts",posts);
             return "Users/profileForVolunteer";
         }else{
             Iterable<Post> posts = postDao.findAllByuser_id(id);
