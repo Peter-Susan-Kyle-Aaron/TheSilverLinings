@@ -53,10 +53,25 @@
 }
 
 /*styling home*/
-.slider .slides{
+.clearfix {
+    *zoom:1; /* for IE */
     height: 600px;
 }
 
-.slider {
-    height: 640px;
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
 }
+
+.clearfix:after {
+    clear: both;
+}
+.float-my-children > * {
+    float:right;
+}
+.float-my-children-2 > * {
+    float: left;
+}
+
+
