@@ -134,6 +134,14 @@ public class Post {
         this.workers = workers;
     }
 
+    public void addWorker(User worker) {
+        this.workers.add(worker);
+    }
+
+    public void removeWorker(User worker) {
+        this.workers.remove(worker);
+    }
+
     public boolean isComplete() {
         return isComplete;
     }

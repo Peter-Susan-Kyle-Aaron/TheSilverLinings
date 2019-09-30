@@ -40,6 +40,7 @@ public class UserController {
         model.addAttribute("user",user);
         if(user.getRole() == 1){
             Iterable<Review> reviews = reviewDao.findAllByuser_id(id);
+            Iterable<Post> posts = user.getTasks();
             model.addAttribute("reviews",reviews);
             return "Users/profileForVolunteer";
         }else{

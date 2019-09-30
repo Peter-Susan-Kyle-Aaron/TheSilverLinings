@@ -31,6 +31,7 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> posts;
 
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name="posts_workers",
@@ -138,6 +139,14 @@ public class User {
 
     public void setTasks(List<Post> tasks) {
         this.tasks = tasks;
+    }
+
+    public void addTask(Post task) {
+        this.tasks.add(task);
+    }
+
+    public void removeTask(Post task) {
+        this.tasks.remove(task);
     }
 
     @Override
