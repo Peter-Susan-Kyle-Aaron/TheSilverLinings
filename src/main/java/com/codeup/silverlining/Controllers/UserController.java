@@ -43,9 +43,10 @@ public class UserController {
         model.addAttribute("user",user);
         if(user.getRole() == 1){
             Iterable<Review> reviews = reviewDao.findAllByuser_id(id);
-            Iterable<Post> posts = user.getTasks();
+            Iterable<Post> tasks = user.getTasks();
+            System.out.println(tasks);
             model.addAttribute("reviews",reviews);
-            model.addAttribute("posts",posts);
+            model.addAttribute("tasks",tasks);
             return "Users/profileForVolunteer";
         }else{
             Iterable<Post> posts = postDao.findAllByuser_id(id);
