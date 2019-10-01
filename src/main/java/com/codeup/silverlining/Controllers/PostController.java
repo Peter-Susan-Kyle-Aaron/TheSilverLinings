@@ -210,7 +210,11 @@ public class PostController {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userSesh = userDao.findById(loggedInUser.getId());
         vModel.addAttribute("userSesh",userSesh);
-
+        boolean accept = false;
+        if(post.getWorkers().size() > 0){
+            accept = true;
+        }
+        vModel.addAttribute("Accepted", accept);
 
         vModel.addAttribute("date", date);
         vModel.addAttribute("user", user);
