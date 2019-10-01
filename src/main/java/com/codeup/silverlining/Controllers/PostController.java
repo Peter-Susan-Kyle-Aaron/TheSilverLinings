@@ -280,7 +280,7 @@ public class PostController {
         tasks.add(post);
         user.setTasks(tasks);
         userDao.save(user);
-        emailService.prepareAndSend(post,"Your task has been accepted", "Your task ");
+        emailService.prepareAndSend(post,"Your task has been accepted", "Your task has been accepted by one or more helpers!");
         return "redirect:/tasks/"+id;
     }
 
