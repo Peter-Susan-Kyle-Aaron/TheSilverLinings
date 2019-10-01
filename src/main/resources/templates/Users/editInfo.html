@@ -37,7 +37,8 @@
                 <div class="input-field">
                     <div>
                         <i class="material-icons prefix">photo_camera</i>
-                        <button type="button" id="picker">Upload Profile Photo</button>
+                        <label for="picker">Upload Profile Photo</label>
+                        <input type="text" id="picker" />
                         <input type="hidden" id="fileupload" name="file" th:field="*{photo}" />
                     </div>
                     <div id="nameBox"></div>

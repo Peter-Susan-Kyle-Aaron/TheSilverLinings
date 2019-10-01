@@ -44,7 +44,7 @@
             <div class="active" id="tasks">
                 <div th:each="task : ${tasks}">
                     <p th:text="${task.title}"></p>
-<!--                    <p th:text="${task.date}"></p>-->
+                    <p th:each="map : ${hmap}" th:if="${map.key} == ${task.id}" th:text="${map.value}"></p>
                     <p th:text="${task.location}"></p>
                 </div>
             </div>

@@ -12,6 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+
 
 @Controller
 public class UserController {
@@ -36,21 +40,35 @@ public class UserController {
 
     @GetMapping("/profile/{id}")
     public String getUserProfile(@PathVariable long id, Model model){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM uuuu hh:mm a");
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userSesh = userDao.findById(loggedInUser.getId());
         model.addAttribute("userSesh",userSesh);
         User user = userDao.findById(id);
         model.addAttribute("user",user);
+        HashMap<Long, String> hmap = new HashMap<>();
         if(user.getRole() == 1){
             Iterable<Review> reviews = reviewDao.findAllByuser_id(id);
             Iterable<Post> tasks = user.getTasks();
-            System.out.println(tasks);
+            for (Post task : tasks) {
+                LocalDateTime ldt = LocalDateTime.parse(task.getDate(), formatter);
+                String gregDate = dtf.format(ldt);
+                hmap.put(task.getId(), gregDate);
+            }
+            model.addAttribute("hmap", hmap);
             model.addAttribute("reviews",reviews);
             model.addAttribute("tasks",tasks);
             return "Users/profileForVolunteer";
         }else{
             Iterable<Post> posts = postDao.findAllByuser_id(id);
-            model.addAttribute("posts",posts);
+                for (Post post : posts) {
+                    LocalDateTime ldt = LocalDateTime.parse(post.getDate(), formatter);
+                    String gregDate = dtf.format(ldt);
+                    hmap.put(post.getId(), gregDate);
+                }
+                model.addAttribute("posts", posts);
+                model.addAttribute("hmap", hmap);
             return "Users/profileForSenior";
         }
     }
@@ -73,7 +91,7 @@ public class UserController {
         if(user.getUsername().equals("") ||
            user.getPassword().equals("") ||
            user.getEmail().equals("")||
-           (user.getRole() == 1 && user.getPhoto().equals(""))){
+           user.getPhoto().equals("")){
             model.addAttribute("usercache",user);
             return "Users/volunteerSignUp";
         }
@@ -95,7 +113,7 @@ public class UserController {
         if(user.getUsername().equals("") ||
            user.getPassword().equals("") ||
            user.getEmail().equals("")||
-           (user.getRole() == 2 && user.getAddress().equals(""))) {
+           user.getAddress().equals("")) {
             model.addAttribute("usercache",user);
             return "Users/seniorSignUp";
         }
@@ -131,7 +149,6 @@ public class UserController {
             user.setPassword(hash);
         }else{
             user.setPassword(userDao.findOne(user.getId()).getPassword());
-            System.out.println(user);
 
         }
         userDao.save(user);

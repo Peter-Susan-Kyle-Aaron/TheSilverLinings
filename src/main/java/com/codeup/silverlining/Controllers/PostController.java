@@ -41,7 +41,7 @@ public class PostController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
         post.setCategory("Delivery");
-        post.setTitle("Delivery at "+post.getLocation());
+        post.setTitle("Delivery from "+post.getLocation());
         post.setComplete(false);
 
 
@@ -93,7 +93,6 @@ public class PostController {
                         }
                         break;
                 }
-                System.out.println(startDate);
                 i++;
             }while(startDate.compareTo(endate) <= 0);
         }else{
@@ -122,9 +121,7 @@ public class PostController {
         if(post.getLocation().equals("")){
             post.setLocation(user.getAddress());
         }
-        post.setBody("Estimated time of completion: "+timeForTask+
-                    "\nEstimated volunteers needed: "+numberOfWorkers+
-                    "\n"+extra);
+        post.setBody(timeForTask+","+numberOfWorkers+ ","+extra);
         postDao.save(post);
         return "redirect:/tasks";
     }
@@ -168,7 +165,7 @@ public class PostController {
     @GetMapping("/tasks")
     public String index(Model vModel) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM uuuu hh:mm a");
 
         Iterable<Post> posts = postDao.findAll();
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -202,12 +199,20 @@ public class PostController {
 
     @GetMapping("/tasks/{id}")
     public String individual(@PathVariable long id, Model vModel) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM uuuu hh:mm a");
+        Post post = postDao.findOne(id);
+        User user = userDao.findOne(post.getUser().getId());
+
+        LocalDateTime ldt = LocalDateTime.parse(post.getDate(), formatter);
+        String date = dtf.format(ldt);
+
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userSesh = userDao.findById(loggedInUser.getId());
         vModel.addAttribute("userSesh",userSesh);
 
-        Post post = postDao.findOne(id);
-        User user = userDao.findOne(post.getUser().getId());
+
+        vModel.addAttribute("date", date);
         vModel.addAttribute("user", user);
         vModel.addAttribute("post", post);
 
