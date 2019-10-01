@@ -8,15 +8,16 @@
 <body>
 <th:block th:replace="fragments/navbar :: navbar"/>
 <div class="container">
-    <div class="col s12">
-        <div class="row ">
-
-            <h1>Is you who?</h1>
+    <h2 class="center-align">SINGING UP FOR</h2>
+    <div class="row ">
+        <div class="col m6 12 center-align">
             <form th:action="@{/signup/senior}" method="get">
 
                 <input type="submit" value="I am a senior!" class="btn btn-large"/>
 
             </form>
+         </div>
+         <div class="col m6 s12 center-align">
             <form th:action="@{/signup/helper}" method="get">
 
                 <input type="submit" value="I am a Helper!" class="btn btn-large"/>

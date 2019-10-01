@@ -8,14 +8,14 @@
 <th:block th:replace="fragments/navbar :: navbar" />
 
 <main class="container">
-    <h1 class="center-align">What do you need help with?</h1>
+    <h2 class="center-align">What do you need help with?</h2>
     <div class="row">
-    <form class="col s6 center-align" th:action="@{/create/delivery}" method="get">
+    <form class="col m6 s12 center-align" th:action="@{/create/delivery}" method="get">
 
         <input type="submit" value="I need something delivered" class="btn btn-large"/>
 
     </form>
-    <form class="col s6 center-align" th:action="@{/create/assistance}" method="get">
+    <form class="col m6 s12 center-align" th:action="@{/create/assistance}" method="get">
 
         <input type="submit" value="I need help around my house" class="btn btn-large"/>
     </form>

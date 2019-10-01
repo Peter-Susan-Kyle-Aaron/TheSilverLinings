@@ -22,6 +22,9 @@
 #login{
     background-color: #125E8A;
 }
+#post{
+    background-color: #F0F0F0;
+}
 .signout{
     border-top-right-radius: 25px;
     border-top-left-radius: 25px;
@@ -83,18 +86,6 @@
 }
 
 
-/*footer*/
-/*body {*/
-/*    display: flex;*/
-/*    min-height: 80vh;*/
-/*    flex-direction: column;*/
-/*}*/
-
-main {
-    flex: 1 0 auto;
-}
-
-/*homepage*/
 .indicators{
     visibility: hidden;
 }
@@ -122,4 +113,40 @@ main {
     -ms-transform: translateY(-40px);
     -o-transform: translateY(-40px);
     transform: translateY(-40px);
+}
+
+/*styling profile*/
+.tabs .tab a {
+    color: white;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+    color: white;
+}
+
+/*styling footer*/
+
+main {
+    flex: 1 0 auto;
+}
+/*body {*/
+/*    display: flex;*/
+/*    min-height: 100vh;*/
+/*    flex-direction: column;*/
+/*}*/
+.page-footer{
+    height: 120px;
+    margin-top: -20px;
+}
+.footer-copyright{
+    height: 30px;
+}
+.footer{
+    margin-top: -30px;
+}
+
+
+/*tasks*/
+.tasks{
+    height: 200px;
 }
