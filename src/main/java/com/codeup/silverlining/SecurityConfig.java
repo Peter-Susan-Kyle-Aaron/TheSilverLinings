@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/create", "/create/*", "/posts/*", "/posts", "/profile/*","/profile*"
+                        "/create", "/create/*", "/tasks/*", "/tasks", "/profile/*","/profile*"
                 )
                 .authenticated()
         ;

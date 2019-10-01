@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="fragments/header :: header ('map')"/>
+    <th:block th:include="fragments/header :: header (${post.title})"/>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
@@ -9,7 +9,7 @@
         body { margin:0; padding:0; }
         .marker {
             /*background-image: url('mapbox-icon.png');*/
-            font-family: 'Material Icons';
+            font-family: 'Material Icons', 'sans-serif';
             font-weight: normal;
             font-style: normal;
             font-size: 24px;
@@ -116,7 +116,7 @@
 
     let directions = new MapboxDirections({
         accessToken: mapboxgl.accessToken
-    })
+    });
 
     map.addControl(directions, 'top-left');
 
