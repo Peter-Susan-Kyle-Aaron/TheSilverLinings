@@ -82,3 +82,44 @@
     margin-top:250px;
 }
 
+
+/*footer*/
+/*body {*/
+/*    display: flex;*/
+/*    min-height: 80vh;*/
+/*    flex-direction: column;*/
+/*}*/
+
+main {
+    flex: 1 0 auto;
+}
+
+/*homepage*/
+.indicators{
+    visibility: hidden;
+}
+.space{
+    background-color: #006064;
+}
+
+.eachpic{
+    width: 750px;
+    min-height:auto;
+}
+
+.clearfix {
+   /*// transform: translateY(-5px);*/
+    line-height: 0;
+}
+
+.float-my-children-2{
+    background-color: #93B7BE;
+}
+
+.content-main {
+    -webkit-transform: translateY(-40px);
+    -moz-transform: translateY(-40px);
+    -ms-transform: translateY(-40px);
+    -o-transform: translateY(-40px);
+    transform: translateY(-40px);
+}
