@@ -72,9 +72,14 @@
                 </th:block>
                 <div class="divider"></div>
                     <div class="section">
-                        <form th:action="@{'/accepttask/'+${post.id}}" method="post">
-                            <a class="waves-effect waves-light btn-large">Accept Task</a>
-                        </form>
+                        <th:block th:if="${post.workers != null}">
+                            <a class="waves-effect waves-light btn-large disabled">Task Accepted</a>
+                        </th:block>
+                        <th:block th:if="${post.workers == null}">
+                            <form th:action="@{'/accepttask/'+${post.id}}" method="post">
+                                <a class="waves-effect waves-light btn-large">Accept Task</a>
+                            </form>
+                        </th:block>
                     </div>
 
             </div>

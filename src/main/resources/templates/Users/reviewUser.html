@@ -13,7 +13,6 @@
             <label for="description">Do you have any comments to add?</label>
             <input id="description" name="description" type="text" />
         </div>
-<!--        <div class="input-field">-->
 
             <select id="rate" th:field="*{rating}">
                 <option value="1">&#11088;</option>
@@ -23,7 +22,6 @@
                 <option value="5">&#11088;&#11088;&#11088;&#11088;&#11088;</option>
             </select>
             <label for="rate">How would you rate <span th:text="${vol.username}"></span>?</label>
-<!--        </div>-->
 
 
         <input type="hidden" name="volunteer" id="volunteer" th:value="${vol.id}" />

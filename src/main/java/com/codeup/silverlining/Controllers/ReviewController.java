@@ -24,15 +24,6 @@ public class ReviewController {
         this.passwordEncoder = passwordEncoder;
     }
 
-//    @GetMapping("/review")
-//    public String viewProfile(Model model){
-////        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-////        User currentUser = userDao.findById(user.getId());
-////        model.addAttribute("user", currentUser);
-//
-//        model.addAttribute("review", new Review());
-//    }
-
     @GetMapping("/review/{id}")
     public String leaveAReview(@PathVariable long id, Model model){
         User volUser = userDao.findOne(id);

@@ -28,9 +28,11 @@
                         Username: <div th:text="${user.username}"></div>
                         Email: <div th:text="${user.email}"></div>
                         Address: <div th:text="${user.address}"></div>
-                        <form th:action="@{'/profile/' + ${user.id} + '/edit'}" th:method="GET" th:object="${user}">
-                            <input type="submit" value="Edit" class="btn btn-medium"/>
-                        </form>
+                        <th:block th:if="${userSesh.id == user.id}">
+                            <form th:action="@{'/profile/' + ${user.id} + '/edit'}" th:method="GET" th:object="${user}">
+                                <input type="submit" value="Edit" class="btn btn-medium"/>
+                            </form>
+                        </th:block>
                     </div>
                     <div class="active" id="request">
                         <div th:each="post : ${posts}" th:if="${post.isComplete()} == false">
