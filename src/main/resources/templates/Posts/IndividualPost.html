@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="fragments/header :: header (${post.title})"/>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
+    <th:block th:include="fragments/header :: header (${post.title})"/>
     <style>
         body { margin:0; padding:0; }
         .marker {
@@ -23,14 +23,15 @@
             -webkit-font-feature-settings: 'liga';
             -webkit-font-smoothing: antialiased;
 
-            background-color:darkgrey;
-            border:  2em;
+            background-color: darkgrey;
+            border: 2em;
             background-size: cover;
             width: 30px;
             height: 30px;
             border-radius: 50%;
             cursor: pointer;
         }
+
     </style>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css' type='text/css' />
 </head>
