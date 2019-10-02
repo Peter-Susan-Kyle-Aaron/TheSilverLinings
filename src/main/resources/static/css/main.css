@@ -141,7 +141,7 @@
 
 /*styling for map*/
 .mapboxgl-ctrl-geocoder > input{
-    padding: 0px 40px 0px 10px;
+    padding: 0 40px 0 10px;
 }
 
 
