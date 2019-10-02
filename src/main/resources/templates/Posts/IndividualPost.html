@@ -49,12 +49,18 @@
             <div class="col s12">
                 <div class="divider"></div>
                 <div class="section">
+                    <div class="line">
+                        <i class="material-icons">assignment</i>
+                    </div>
                     <h5 th:text="${post.title}"></h5>
                     <p th:text="${post.body}"></p>
                 </div>
                 <th:block th:if="${post.category} == 'Delivery'">
                     <div class="divider"></div>
                     <div class="section">
+                        <div class="line">
+
+                        </div>
                         <h5>Pick Up Location</h5>
                         <p th:text="${post.location}"></p>
                     </div>

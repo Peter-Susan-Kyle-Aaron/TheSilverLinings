@@ -55,6 +55,11 @@
 
 }
 
+.line{
+    background-color: cadetblue;
+    height: 20px;
+}
+
 /*styling home*/
 .clearfix {
     *zoom:1; /* for IE */
@@ -153,3 +158,5 @@
 .brand-logo{
     margin-left: 20px;
 }
+
+
