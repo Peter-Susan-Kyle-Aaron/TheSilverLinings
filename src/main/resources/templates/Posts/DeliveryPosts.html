@@ -18,7 +18,7 @@
                     <label for="dates">
                         <span  class="grey-text text-darken-2">On what day do you need something delivered?</span>
                     </label>
-                    <input type="text" class="datepicker" id="dates"/>
+                    <input type="text" class="datepicker" id="dates" name="dates"/>
                 </p>
                 <p>
                     <label for="loc">
@@ -28,7 +28,7 @@
                 </p>
 
                 <label>What time do you need this delivery?</label>
-                    <input type="text" class="timepicker" id="time"/>
+                    <input type="text" class="timepicker" id="time" name="time"/>
                 <label for="body">Name for the order and/or any extra information that would be needed?</label>
                 <input id="body" type="text" th:field="*{body}" />
                 <label for="recurringDelivery">Is this a recurring delivery?
