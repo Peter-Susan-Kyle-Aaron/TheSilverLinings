@@ -9,14 +9,15 @@
 
 <div class="container">
     <th:block th:if="${userSesh.role} == '1'">
-        <h1>list of all Tasks</h1>
+        <h1>List of all Available Tasks</h1>
     </th:block>
     <th:block th:if="${userSesh.role} == '2'">
         <h1>Your Requests</h1>
     </th:block>
     <div class="row">
-        <div th:each="post : ${posts}">
-            <div class="col s12 m4">
+        <div th:each="post : ${posts}" >
+        <th:block th:each="accept : ${taskmap}" th:if="${accept.key == post.id} and ${accept.value == false} or ${userSesh.role} == 2">
+                <div class="col s12 m4">
                 <div class="card ">
                     <div class="card-content black-text tasks">
                         <span class="card-title"><i class="small material-icons">room</i></span>
@@ -24,9 +25,16 @@
                         <br/>
 <!--                        Username: <p th:text="${post.user.username}"></p>-->
 <!--                        Description: <p th:text="${post.body}"></p>-->
-                        Time: <p th:each="map : ${dates}" th:if="${map.key} == ${post.id}" th:text="${map.value}"></p>
+                        Time: <span th:each="map : ${dates}" th:if="${map.key} == ${post.id}" th:text="${map.value}"></span>
                     </div>
                     <div class="card-action">
+                        <th:block th:if="${userSesh.role == 1}">
+                            <th:block th:each="accept : ${taskmap}" th:if="${accept.key == post.id} and ${accept.value == false}">
+                                <form th:action="@{'/accept/'+${post.id}}" method="post">
+                                    <button class="waves-effect waves-light btn-large">Accept Task</button>
+                                </form>
+                            </th:block>
+                        </th:block>
                         <th:block th:if="${userSesh.role == 2}">
                             <a th:href="@{'/tasks/'+${post.id}+'/edit'}" class="waves-effect waves-light btn">Edit</a>
                             <a class="modal-trigger" th:href="@{'#delete'+${post.id}}"><button class="btn">Delete</button></a>
@@ -45,6 +53,7 @@
 <!--                    <p th:text="${post.location}"></p>-->
                 </div>
             </div>
+            </th:block>
         </div>
     </div>
 </div>
