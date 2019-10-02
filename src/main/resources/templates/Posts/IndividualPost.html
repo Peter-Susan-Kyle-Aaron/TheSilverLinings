@@ -73,14 +73,17 @@
                 </th:block>
                 <div class="divider"></div>
                     <div class="section">
-                        <th:block th:if="${Accepted == true}">
-                            <a class="waves-effect waves-light btn-large disabled">Task Accepted</a>
-                        </th:block>
-                        <th:block th:if="${Accepted == false}">
-                            <form th:action="@{'/accept/'+${post.id}}" method="post">
-                                <button class="waves-effect waves-light btn-large">Accept Task</button>
+                        <th:block th:if="${Accepted == true and userSesh.id == user.id}">
+                            <p><span th:each="worker : ${post.workers}" th:text="${worker.username}"></span> has accepted your task.</p>
+                            <form th:each="worker : ${post.workers}" th:action="@{'/profile/'+${worker.id}}" method="get">
+                                <button class="waves-effect waves-light btn-large">View Their Profile</button>
                             </form>
                         </th:block>
+<!--                        <th:block th:if="${Accepted == false and }">-->
+<!--                            <form th:action="@{'/accept/'+${post.id}}" method="post">-->
+<!--                                <button class="waves-effect waves-light btn-large">Accept Task</button>-->
+<!--                            </form>-->
+<!--                        </th:block>-->
                     </div>
 
             </div>
