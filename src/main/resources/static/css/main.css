@@ -126,17 +126,16 @@
 
 /*styling footer*/
 
-main {
-    flex: 1 0 auto;
-}
+/*main {*/
+/*    flex: 1 0 auto;*/
+/*}*/
 /*body {*/
 /*    display: flex;*/
 /*    min-height: 100vh;*/
-/*    flex-direction: column;*/
+/*    flex-direction: row;*/
 /*}*/
 .page-footer{
-    height: 120px;
-    margin-top: -20px;
+    position:fixed;bottom:0;left:0;width:100%;
 }
 .footer-copyright{
     height: 30px;
@@ -146,7 +145,12 @@ main {
 }
 
 
-/*tasks*/
+/*styling for tasks*/
 .tasks{
     height: 200px;
+}
+
+/*styling for map*/
+.mapboxgl-ctrl-geocoder > input{
+    padding: 0px 40px 0px 10px;
 }
