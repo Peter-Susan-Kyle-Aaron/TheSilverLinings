@@ -12,12 +12,12 @@
             <th:block sec:authorize="isAuthenticated()" th:if="${userSesh.role != 1}">
                 <li><a  th:href="@{/create}" class="teal-text text-darken-1">CREATE</a></li>
             </th:block>
-            <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="teal-text text-darken-1" >SIGN IN</a></li>
+            <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="teal-text text-darken-1" >LOGIN</a></li>
             <li><a sec:authorize="!isAuthenticated()" th:href="@{/signup}" class="waves-effect waves-light btn teal darken-1 signup">SIGN Up</a></li>
 
             <li>
                 <form  sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
-                    <button class="waves-effect waves-light btn teal darken-1 signout" >SIGN OUT</button>
+                    <button class="waves-effect waves-light btn teal darken-1 signout" >LOGOUT</button>
                 </form>
             </li>
             <li></li>
