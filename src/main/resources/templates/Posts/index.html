@@ -9,10 +9,14 @@
 
 <div class="container">
     <th:block th:if="${userSesh.role} == '1'">
-        <h1>list of all Tasks</h1>
+        <div class="center-align">
+            <h3>ALL TASKS</h3>
+        </div>
     </th:block>
     <th:block th:if="${userSesh.role} == '2'">
-        <h1>Your Requests</h1>
+        <div class="center-align">
+            <h3>YOUR TASKS</h3>
+        </div>
     </th:block>
     <div class="row">
         <div th:each="post : ${posts}">
