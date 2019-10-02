@@ -74,7 +74,8 @@
                 <div class="divider"></div>
                     <div class="section">
                         <th:block th:if="${Accepted == true}">
-                            <a class="waves-effect waves-light btn-large disabled">Task Accepted</a>
+                            <p><span th:text="${post.getUser().getUsername()}"></span> has accepted your task.</p>
+                            <a class="waves-effect waves-light btn-large disabled">View Their Profile</a>
                         </th:block>
                         <th:block th:if="${Accepted == false}">
                             <form th:action="@{'/accept/'+${post.id}}" method="post">

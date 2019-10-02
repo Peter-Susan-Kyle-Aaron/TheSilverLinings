@@ -24,7 +24,12 @@ values ('Kyle','$2a$10$Np9uN3PKPI10iYO1Yv.de.vHgWaJ/VunlS.uAV9eD0d7A044Uj8V2','k
 #Posts
 
 insert into Posts (body, user_id, Category, Location,is_complete,title, date)
-values('Make sure not to forget my cat food, the last person didn''t bring any',3,'Delivery','600 Navaro Street',false,'Delivery from HEB','2019-12-24 14:00');
+values
+       ('Make sure not to forget my cat food, the last person didn''t bring any',3,'Delivery','600 Navaro Street',false,'Delivery from HEB','2019-12-24 14:00'),
+       ('Make sure not to forget my cat food, the last person didn''t bring any',3,'Delivery','600 Navaro Street',false,'Delivery from HEB','2019-12-24 14:00'),
+       ('Make sure not to forget my cat food, the last person didn''t bring any',3,'Delivery','600 Navaro Street',false,'Delivery from HEB','2019-12-24 14:00'),
+       ('Make sure not to forget my cat food, the last person didn''t bring any',3,'Delivery','600 Navaro Street',false,'Delivery from HEB','2019-12-24 14:00'),
+       ('Make sure not to forget my cat food, the last person didn''t bring any',3,'Delivery','600 Navaro Street',false,'Delivery from HEB','2019-12-24 14:00');
 
 #Reviews
 insert into Reviews (description, rating, reviewer_id, user_id)
