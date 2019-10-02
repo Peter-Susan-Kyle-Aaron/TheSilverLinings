@@ -117,7 +117,7 @@
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [-98.491142,29.424349],
-        zoom: 10
+        zoom: 17
     });
 
     let directions = new MapboxDirections({
@@ -157,11 +157,12 @@
     }
 
 
-    setInterval(() => {
-        // DO AJAX REQUEST TO RETURN THE LOCATION OF THE DRIVER
-        // UPDATE THE DRIVER MAKER.
-        driverMaker.setLngLat([-98.491142,29.424349])
-    }, 10000)
+    // setInterval(() => {
+    //     // DO AJAX REQUEST TO RETURN THE LOCATION OF THE DRIVER
+    //     // UPDATE THE DRIVER MAKER.
+    //     driverMaker.setLngLat([-98.491142,29.424349])
+    // }, 10000)
+
 
 </script>
 
