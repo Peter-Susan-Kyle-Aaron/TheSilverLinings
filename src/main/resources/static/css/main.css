@@ -143,3 +143,8 @@
 .mapboxgl-ctrl-geocoder > input{
     padding: 0px 40px 0px 10px;
 }
+
+
+.deliveryForm{
+    font-size: 20px;
+}

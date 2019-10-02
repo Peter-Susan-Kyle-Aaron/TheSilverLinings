@@ -35,10 +35,19 @@
                         </th:block>
                     </div>
                     <div class="active" id="request">
-                        <div th:each="post : ${posts}" th:if="${post.isComplete()} == false">
-                            <p th:text="${post.title}"></p>
-                            <p th:text="${post.date}"></p>
-                            <p th:text="${post.location}"></p>
+                        <div th:each="post : ${posts}" th:if="${post.isComplete()} == false" class="row">
+                            <div th:if="${post.category}== 'Assistance'" class="col s6 m6">
+                                <h4>ASSISTANCE</h4>
+                                <p th:text="${post.title}"></p>
+                                <p th:text="${post.date}"></p>
+                                <p th:text="${post.location}"></p>
+                            </div>
+                            <div th:if="${post.category}== 'Delivery'" class="col s6 m6">
+                                <h4>DELIVERY</h4>
+                                <p th:text="${post.title}"></p>
+                                <p th:text="${post.date}"></p>
+                                <p th:text="${post.location}"></p>
+                            </div>
                         </div>
 
                     </div>

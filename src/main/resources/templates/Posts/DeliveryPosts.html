@@ -16,25 +16,39 @@
 
                 <p>
                     <label for="dates">
-                        <span  class="grey-text text-darken-2">On what day do you need something delivered?</span>
+                        <span  class="grey-text text-darken-2 deliveryForm">On what day do you need something delivered?</span>
                     </label>
                     <input type="text" class="datepicker" id="dates" name="dates"/>
                 </p>
                 <p>
                     <label for="loc">
-                    <span  class="grey-text text-darken-2">Where is the delivery from?</span>
-                    <input id="loc" type="text" th:field="*{location}"/><br/>
+                    <span  class="grey-text text-darken-2 deliveryForm">Where is the delivery from?</span>
+                    <input id="loc" type="text" th:field="*{location}"/>
                     </label>
                 </p>
 
-                <label>What time do you need this delivery?</label>
-                    <input type="text" class="timepicker" id="time" name="time"/>
-                <label for="body">Name for the order and/or any extra information that would be needed?</label>
-                <input id="body" type="text" th:field="*{body}" />
-                <label for="recurringDelivery">Is this a recurring delivery?
-                    <input id="recurringDelivery" type="checkbox" />
-                    <span>Yes</span>
-                </label><br/>
+                <p>
+                    <label for="time">
+                        <span  class="grey-text text-darken-2 deliveryForm">What time do you need this delivery?</span>
+                        <input type="text" class="timepicker" name="time" id="time"/>
+                    </label>
+                </p>
+
+                <p>
+                    <label for="body">
+                        <span class="grey-text text-darken-2 deliveryForm">Name for the order and/or any extra information that would be needed?</span>
+                        <input id="body" type="text" th:field="*{body}" />
+                    </label>
+                </p>
+
+                <p>
+                    <label for="recurringDelivery">
+                        <span class="grey-text text-darken-2 deliveryForm">Is this a recurring delivery?</span>
+                        <input id="recurringDelivery" type="checkbox" />
+                        <span class="grey-text text-darken-2 deliveryForm">Yes</span>
+                    </label>
+                </p>
+
                 <div id="isRecurring" class="hiddenForm input-field">
                     <select id="recurrence" name="recurrence">
                         <option th:value="${null}">Select</option>
@@ -43,11 +57,15 @@
                         <option value="Monthly">Monthly</option>
 <!--                        <option value="Yearly">Yearly</option>-->
                     </select>
-                    <label for="recurrence">How often?</label>
+                    <label for="recurrence">
+                        <span class="grey-text text-darken-2 deliveryForm">How often?</span>
+                    </label>
                 </div>
                 <div id="end" class="hiddenForm">
-                    <label for="endDate">What is the last day for this to recur?</label>
-                    <input type="date" id="endDate" name="endDate" />
+                    <label for="endDate">
+                        <span class="grey-text text-darken-2 deliveryForm">What is the last day for this to recur?</span>
+                    <input type="text" class="datepicker" id="endDate"/>
+                    </label>
                 </div>
                 <button class="btn">Submit</button>
             </form>
