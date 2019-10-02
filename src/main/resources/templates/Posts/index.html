@@ -19,7 +19,7 @@
     </th:block>
     <div class="row">
         <div th:each="post : ${posts}" >
-        <th:block th:each="accept : ${taskmap}" th:if="${accept.key == post.id} and ${accept.value == false} or ${userSesh.role} == 2">
+        <th:block th:each="accept : ${taskmap}" th:if="${accept.key == post.id and accept.value == false or userSesh.role == 2 and accept.key == post.id}">
                 <div class="col s12 m4">
                 <div class="card ">
                     <div class="card-content black-text tasks">
