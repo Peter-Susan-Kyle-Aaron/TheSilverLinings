@@ -112,10 +112,13 @@ public class UserController {
         user.setRole(2);
         if(user.getUsername().equals("") ||
            user.getPassword().equals("") ||
-           user.getEmail().equals("")||
+           user.getEmail().equals("") ||
            user.getAddress().equals("")) {
             model.addAttribute("usercache",user);
             return "Users/seniorSignUp";
+        }
+        if(user.getPhoto().equals("")){
+            user.setPhoto("https://cdn.filestackcontent.com/5fSzEWVSAy6r4scwLAuQ");
         }
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
