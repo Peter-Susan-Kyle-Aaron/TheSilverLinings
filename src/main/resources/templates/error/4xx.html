@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Ooops, Not Found</title>
+    <th:block th:replace="fragments/header :: header('4xx')"/>
+
 </head>
 <body>
+<th:block th:replace="fragments/navbar"/>
+
 <h1>Page not found!!</h1>
 </body>
 </html>
