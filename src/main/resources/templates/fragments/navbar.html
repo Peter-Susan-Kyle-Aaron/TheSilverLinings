@@ -5,7 +5,7 @@
 <body>
 <nav class="navbar" th:fragment="navbar">
     <div class="nav-wrapper white">
-        <a th:href="@{/}" class="brand-logo center teal-text text-darken-1">SILVER LINING</a>
+        <a th:href="@{/}" class="brand-logo left teal-text text-darken-1">SILVER LINING</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a sec:authorize="isAuthenticated()" th:href="@{/tasks}" class="teal-text text-darken-1">TASKS</a></li>
             <li><a sec:authorize="isAuthenticated()" th:href="@{/profile}" class="teal-text text-darken-1">MY PROFILE</a></li>
