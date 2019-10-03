@@ -159,4 +159,26 @@
     margin-left: 20px;
 }
 
-
+.redButton{
+    border:none;
+    color:white;
+    background:red;
+    float:right;
+}
+.accept{
+    box-sizing: border-box;
+    width:100%;
+}
+.remove{
+    box-sizing: border-box;
+    width: 100%;
+}
+.remove:hover{
+    background:red;
+}
+#view{
+    width:100%;
+}
+#removeUser{
+    width: 20%;
+}

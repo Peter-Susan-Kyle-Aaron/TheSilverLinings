@@ -59,7 +59,31 @@
                     <input type="text" id="extra" name="extra"/>
                 </label>
             </p>
-
+            <p>
+                <label for="recurringDelivery">
+                    <span class="grey-text text-darken-2 deliveryForm">Is this a recurring delivery?</span>
+                    <input id="recurringDelivery" type="checkbox" />
+                    <span class="grey-text text-darken-2 deliveryForm">Yes</span>
+                </label>
+            </p>
+            <div id="isRecurring" class="hiddenForm input-field">
+                <select id="recurrence" name="recurrence">
+                    <option th:value="${null}">Select</option>
+                    <option value="Daily">Daily</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Monthly">Monthly</option>
+                    <!--                        <option value="Yearly">Yearly</option>-->
+                </select>
+                <label for="recurrence">
+                    <span class="grey-text text-darken-2 deliveryForm">How often?</span>
+                </label>
+            </div>
+            <div id="end" class="hiddenForm">
+                <label for="endDate">
+                    <span class="grey-text text-darken-2 deliveryForm">What is the last day for this to recur?</span>
+                    <input type="text" class="datepicker" name="endDate" id="endDate"/>
+                </label>
+            </div>
             <button class="btn">Submit</button>
         </form>
     </div>
@@ -73,13 +97,15 @@
         $("#locationCheck").on("click", function(){
             $("#notAtLocation").toggleClass("hiddenForm");
         });
-    });
-    $(document).ready(function(){
-        $('.datepicker').datepicker();
-    });
 
-    $(document).ready(function(){
-        $('.timepicker').timepicker();
+        $('select').formSelect();
+        $("#recurringDelivery").on("click", function(){
+            $("#isRecurring").toggleClass("hiddenForm");
+            $("#end").toggleClass("hiddenForm");
+            $('.datepicker').datepicker();
+
+            $('.timepicker').timepicker();
+        })
     });
 </script>
 </body>
