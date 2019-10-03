@@ -171,6 +171,9 @@
     background:red;
     float:right;
 }
+.redButton:hover{
+    background:red;
+}
 .accept{
     box-sizing: border-box;
     width:100%;
@@ -180,12 +183,15 @@
     width: 100%;
 }
 .remove:hover{
-    background:red;
+    background: #dc0000;
 }
 #view{
     width:100%;
 }
 #removeUser{
     width: 20%;
- 
+}
+.modalDelete{
+    margin-right: 0;!important
+    float:right;
 }
