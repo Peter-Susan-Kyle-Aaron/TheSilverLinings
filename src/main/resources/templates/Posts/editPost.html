@@ -8,16 +8,36 @@
  <main class="container">
      <div class="taskForm">
          <form th:action="@{/tasks/edit}" th:method="post">
-             What task do you need accomplished?
-             <input name="editTitle" th:value="${post.title}"/><br/>
-             Where
-             <input name="editLocation" type="text" th:value="${post.location}"/><br/>
-             What time do you need this help?
-             <input type="text" id="time" class="timepicker" name="editTime" th:value="${time}"/> <br/>
-             What day do you need this help?
-             <input type="text" id="dates" name="editDate" class="datepicker" th:value="${date}"/> <br/>
-             Are there any outside resources needed to accomplish this task? (tools, ladder, etc)
-             <input type="text" id="extra" name="editBody" th:value="${post.body}"/><br/>
+             <p>
+                 <label>
+                     <span class="grey-text text-darken-2 deliveryForm">What task do you need accomplished?</span>
+                     <input name="editTitle" th:value="${post.title}"/><br/>
+                 </label>
+             </p>
+             <p>
+                 <label>
+                     <span class="grey-text text-darken-2 deliveryForm">Where</span>
+                     <input name="editLocation" type="text" th:value="${post.location}"/><br/>
+                 </label>
+             </p>
+             <p>
+                 <label>
+                     <span class="grey-text text-darken-2 deliveryForm">What time do you need this help?</span>
+                     <input type="text" id="time" class="timepicker" name="editTime" th:value="${time}"/>
+                 </label>
+             </p>
+             <p>
+                 <label>
+                     <span class="grey-text text-darken-2 deliveryForm">What day do you need this help?</span>
+                     <input type="text" id="dates" name="editDate" class="datepicker" th:value="${date}"/>
+                 </label>
+             </p>
+             <p>
+                 <label>
+                     <span class="grey-text text-darken-2 deliveryForm">Are there any outside resources needed to accomplish this task? (tools, ladder, etc)</span>
+                     <input type="text" id="extra" name="editBody" th:value="${post.body}"/>
+                 </label>
+             </p>
              <input type="hidden" id="editCat" name="editCat" th:value="${post.category}" />
              <input type="hidden" id="editId" name="editId" th:value="${post.id}" />
              <button class="btn">Submit</button>
