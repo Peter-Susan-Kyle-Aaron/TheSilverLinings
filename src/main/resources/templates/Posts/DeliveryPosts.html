@@ -72,15 +72,14 @@
         $("#recurringDelivery").on("click", function(){
             $("#isRecurring").toggleClass("hiddenForm");
             $("#end").toggleClass("hiddenForm");
+            $('.datepicker').datepicker();
+
+            $('.timepicker').timepicker();
         })
     });
 
     $(document).ready(function(){
-        $('.datepicker').datepicker();
-    });
 
-    $(document).ready(function(){
-        $('.timepicker').timepicker();
     });
 </script>
 </body>

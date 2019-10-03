@@ -85,10 +85,15 @@
                 <div class="divider"></div>
                     <div class="section">
                         <th:block th:if="${Accepted == true and userSesh.id == user.id}">
-                            <p><span th:each="worker : ${post.workers}" th:text="${worker.username}"></span> has accepted your task.</p>
-                            <form th:each="worker : ${post.workers}" th:action="@{'/profile/'+${worker.id}}" method="get">
-                                <button class="waves-effect waves-light btn-large">View Their Profile</button>
-                            </form>
+                            <p><span th:each="worker : ${post.workers}" th:text="${worker       .username}"></span> has accepted your task.</p>
+                            <div style="display:flex"  th:each="worker : ${post.workers}" >
+                                <form id="view" th:action="@{'/profile/'+${worker.id}}" method="get">
+                                    <button class="btn-large accept active">View Their Profile</button>
+                                </form>
+                                <form id="removeUser" th:action="@{'/remove/'+${post.user.id}+'/'+${worker.id}}" method="post">
+                                    <button type="button" class="btn-large redButton remove"><i class="material-icons prefix">cancel</i></button>
+                                </form>
+                            </div>
                         </th:block>
 <!--                        <th:block th:if="${Accepted == false and }">-->
 <!--                            <form th:action="@{'/accept/'+${post.id}}" method="post">-->
@@ -107,26 +112,38 @@
 
 
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js'></script>
+<th:block th:replace="fragments/scripts"/>
+<script>
+    $(".accept").on("click",function(){
+        if(!$(this).hasClass('active')){
+            $("#view").animate({width: "80%"}, 500 );
+            $("#removeUser").animate({width: "20%"}, 500 );
+            $(this).addClass('active').html('View Profile').prop('type','submit');
+            $('.remove').css('background','red').removeClass('active').html('<i class="material-icons prefix">cancel</i>').prop('type','button');
+        }
+    });
+    $(".remove").on("click",function(){
+        if(!$(this).hasClass('active')){
+            $("#removeUser").animate({width: "80%"}, 500 );
+            $("#view").animate({width: "20%"}, 500 );
+            $(this).css('background','red').addClass('active').html('Remove User').prop('type','submit');
+            $('.accept').removeClass('active').html('<i class="material-icons prefix">person</i>').prop('type','button');
+        }
+    });
 
-
+</script>
 <script th:inline="javascript">
 
     mapboxgl.accessToken = 'pk.eyJ1IjoiZmFpeXRlZCIsImEiOiJjanhhdmhwbnkxMWM5M25ucnFka21xOXRzIn0.c_ImXwEydAQDNZH9nhk20A';
-
 
     const handleLocationError  = () => {
         alert("Error getting location")
     };
 
-
-
     const markers = {
         origin: [[${user.address}]],
         destination : [[${post.location}]]
     };
-
-
-
 
     var map = new mapboxgl.Map({
         container: 'map',
@@ -161,24 +178,10 @@
                 .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
                     .setHTML(el.popupHTML))
                 .addTo(map);
-
-
-            // AJAX REQUEST TO UPDATE LOCATION
-
-            // map.setCenter(pos);
         }, function() {
             handleLocationError();
         });
     }
-
-
-    // setInterval(() => {
-    //     // DO AJAX REQUEST TO RETURN THE LOCATION OF THE DRIVER
-    //     // UPDATE THE DRIVER MAKER.
-    //     driverMaker.setLngLat([-98.491142,29.424349])
-    // }, 10000)
-
-
 </script>
 
 </body>

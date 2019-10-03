@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+@SuppressWarnings("Duplicates")
 @Controller
 public class PostController {
 
@@ -103,6 +104,8 @@ public class PostController {
     }
     @PostMapping("/create/assistance")
     public String submitPost(@ModelAttribute Post post,
+                             @RequestParam(name = "recurrence") String recur,
+                             @RequestParam(name = "endDate") String endDate,
                              @RequestParam(name = "dates") String dates,
                              @RequestParam(name = "time") String times,
                              @RequestParam(name = "extra") String extra,
@@ -112,17 +115,67 @@ public class PostController {
         post.setUser(user);
         post.setCategory("Assistance");
         post.setComplete(false);
+        post.setBody(timeForTask+","+numberOfWorkers+ ","+extra);
+        if(post.getLocation().equals("")){
+            post.setLocation(user.getAddress());
+        }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy hh:mm a");
         LocalDateTime startDate = LocalDateTime.parse(dates+" "+times, formatter);
 
-        post.setDate(startDate.toString().replace("T"," "));
+        int i = 0;
+        if(!recur.equals("")) {
+            LocalDateTime endate = LocalDateTime.parse(endDate + " " + times, formatter);
+            do {
+                Post newPost = new Post();
+                newPost.setLocation(post.getLocation());
+                newPost.setTitle(post.getTitle());
+                newPost.setBody(post.getBody());
+                newPost.setCategory(post.getCategory());
+                newPost.setUser(post.getUser());
+                newPost.setComplete(false);
 
-        if(post.getLocation().equals("")){
-            post.setLocation(user.getAddress());
+                newPost.setDate(startDate.toString().replace("T", " "));
+                postDao.save(newPost);
+
+                TemporalAdjuster temporalAdjuster;
+                switch (recur) {
+                    case "Daily":
+                        if (i < 21) {
+                            temporalAdjuster = t -> t.plus(Period.ofDays(1));
+                            startDate = startDate.with(temporalAdjuster);
+                        } else {
+                            temporalAdjuster = t -> t.minus(Period.ofDays(1));
+                            endate = startDate.with(temporalAdjuster);
+                        }
+                        break;
+
+                    case "Weekly":
+                        if (i < 4) {
+                            temporalAdjuster = t -> t.plus(Period.ofWeeks(1));
+                            startDate = startDate.with(temporalAdjuster);
+                        } else {
+                            temporalAdjuster = t -> t.minus(Period.ofWeeks(1));
+                            endate = startDate.with(temporalAdjuster);
+                        }
+                        break;
+                    case "Monthly":
+                        if (i < 12) {
+                            temporalAdjuster = t -> t.plus(Period.ofMonths(1));
+                            startDate = startDate.with(temporalAdjuster);
+                        } else {
+                            temporalAdjuster = t -> t.minus(Period.ofMonths(1));
+                            endate = startDate.with(temporalAdjuster);
+                        }
+                        break;
+                }
+                i++;
+            } while (startDate.compareTo(endate) <= 0);
+
+        }else{
+            post.setDate(startDate.toString().replace("T"," "));
+            postDao.save(post);
         }
-        post.setBody(timeForTask+","+numberOfWorkers+ ","+extra);
-        postDao.save(post);
         return "redirect:/tasks";
     }
 
@@ -315,7 +368,6 @@ public class PostController {
         User user = userDao.findOne(ID);
         post.getWorkers().remove(user);
         postDao.save(post);
-        return "redirect:/tasks/"+id;
+        return "redirect:/tasks/"+post.getId();
     }
-
 }
