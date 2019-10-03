@@ -15,6 +15,13 @@
             <div class="center-align">
                 <h3><span th:text="${user.username}"></span></h3>
                 <h6><span style="color:darkgrey" th:text="${user.email}"></span></h6>
+                <br/>
+                <th:block th:if="${userSesh.id == user.id}">
+                    <form th:action="@{'/profile/' + ${user.id} + '/edit'}" th:method="GET" th:object="${user}">
+                        <input type="submit" value="Edit" class="btn btn-medium"/>
+                    </form>
+                </th:block>
+                <br/>
             </div>
         </div>
         <div class="card-tabs">
@@ -28,7 +35,7 @@
 <!--            <div id="info">-->
 <!--                Username: <div th:text="${user.username}"></div>-->
 <!--                Email: <div th:text="${user.email}"></div>-->
-<!--                Address: <div th:text="${user.address}"></div>-->
+<!--              ser  Address: <div th:text="${user.address}"></div>-->
 <!--                <br/>-->
 <!--                <th:block th:if="${userSesh.id == user.id}">-->
 <!--                    <form th:action="@{'/profile/' + ${user.id} + '/edit'}" th:method="GET" th:object="${user}">-->
