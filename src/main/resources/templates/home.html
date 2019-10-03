@@ -5,12 +5,9 @@
     <th:block th:replace="fragments/header :: header('home')"/>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-
 </head>
 <body>
-
     <th:block th:replace="fragments/navbar :: navbar"/>
-
     <div class="slider">
         <ul class="slides">
             <li>
@@ -48,11 +45,10 @@
             </li>
         </ul>
     </div>
-
-
     <div class="content-main">
         <div class="clearfix float-my-children grey lighten-5">
             <div data-aos="fade-left">
+
                 <img src="img/walkingcouple.jpeg" class="eachpic"/>
             </div>
             <div class="text1">
@@ -74,6 +70,7 @@
             <div class="text2">
                 <div class=" white-text">
                     <h3>Become Our Helper!</h3>
+
                 </div>
                 <div>
                     <h5>Give back to the community</h5>
@@ -98,27 +95,18 @@
                 <div>
                     <h5>Earn credit hours</h5>
                 </div>
-                    <form th:action="@{/signup/helper}" method="get">
 
-                        <input type="submit" value="I want to help" class="btn signup enterbtn"/>
-
-                    </form>
-
+                <form th:action="@{/signup/helper}" method="get">
+                    <input type="submit" value="I want to help" class="btn signup enterbtn"/>
+                </form>
             </div>
         </div>
-
-
     </div>
-
-
-
-
-
-
 <footer th:replace="fragments/footer"></footer>
 <th:block th:replace="fragments/scripts"/>
 <script type="text/javascript" src="js/home.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script>
         AOS.init({
             duration: 400,
