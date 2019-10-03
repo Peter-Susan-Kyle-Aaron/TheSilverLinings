@@ -150,9 +150,9 @@
 
 
 /*styling for tasks*/
-.tasks{
-    height: 200px;
-}
+/*.tasks{*/
+/*    height: 300px;*/
+/*}*/
 
 /*styling for map*/
 .mapboxgl-ctrl-geocoder > input{
