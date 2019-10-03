@@ -13,9 +13,9 @@
              Where
              <input name="editLocation" type="text" th:value="${post.location}"/><br/>
              What time do you need this help?
-             <input type="time" id="time" name="editTime" th:value="${time}"/> <br/>
+             <input type="text" id="time" class="timepicker" name="editTime" th:value="${time}"/> <br/>
              What day do you need this help?
-             <input type="date" id="dates" name="editDate" th:value="${date}"/> <br/>
+             <input type="text" id="dates" name="editDate" class="datepicker" th:value="${date}"/> <br/>
              Are there any outside resources needed to accomplish this task? (tools, ladder, etc)
              <input type="text" id="extra" name="editBody" th:value="${post.body}"/><br/>
              <input type="hidden" id="editCat" name="editCat" th:value="${post.category}" />
@@ -24,5 +24,14 @@
          </form>
      </div>
  </main>
+ <th:block th:replace="fragments/scripts"/>
+ <script>
+     $(document).ready(function(){
+
+     $('.datepicker').datepicker();
+
+     $('.timepicker').timepicker();
+     });
+ </script>
 </body>
 </html>

@@ -13,24 +13,28 @@
             <h1>Edit</h1>
             <form th:action="@{'/profile/edit'}" th:method="post" th:object="${user}">
                 <div class="input-field">
+                    <i class="material-icons prefix">person</i>
                     <label for="username">Username</label>
                     <input id="username" th:field="*{username}" type="text" />
                 </div>
                 <div class="input-field">
+                    <i class="material-icons prefix">email</i>
                     <label for="email">Email</label>
                     <input id="email" th:field="*{email}" type="text" />
                 </div>
                 <div class="input-field">
+                    <i class="material-icons prefix">lock</i>
                     <label for="verify">Verify Password</label>
-
                     <input id="verify" name="verify" type="password" />
 
                 </div>
                 <div class="input-field">
+                    <i class="material-icons prefix">lock</i>
                     <label for="password">New Password</label>
                     <input id="password" th:field="*{password}" type="password" />
                 </div>
                 <div class="input-field">
+                    <i class="material-icons prefix">pin_drop</i>
                     <label for="address">Address</label>
                     <input id="address" th:field="*{address}" type="text" />
                 </div>

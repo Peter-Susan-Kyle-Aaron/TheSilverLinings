@@ -23,7 +23,7 @@
             -webkit-font-feature-settings: 'liga';
             -webkit-font-smoothing: antialiased;
 
-            background-color: darkgrey;
+            background-color: pink;
             border: 2em;
             background-size: cover;
             width: 30px;
@@ -49,19 +49,30 @@
             <div class="col s12">
                 <div class="divider"></div>
                 <div class="section">
-                    <h5 th:text="${post.title}"></h5>
-                    <p th:text="${post.body}"></p>
+                    <div class="header">
+                        <i class="medium material-icons teal-text text-darken-3">assignment</i>
+                        <h5 th:text="${post.title}"></h5>
+                    </div>
+
+                    <h6 th:text="${post.body}"></h6>
                 </div>
                 <th:block th:if="${post.category} == 'Delivery'">
                     <div class="divider"></div>
                     <div class="section">
-                        <h5>Pick Up Location</h5>
-                        <p th:text="${post.location}"></p>
+                        <div class="header">
+                            <i class="medium material-icons teal-text text-darken-3">gps_fixed</i>
+                            <h5>Pick Up Location</h5>
+                        </div>
+                        <h6 th:text="${post.location}"></h6>
                     </div>
                     <div class="divider"></div>
                     <div class="section">
-                        <h5>Deliver Address</h5>
-                        <p th:text="${user.address}"></p>
+                        <div class="header">
+                            <i class="medium material-icons teal-text text-darken-3">local_shipping</i>
+                            <h5>Delivery Address</h5>
+                        </div>
+
+                        <h6 th:text="${user.address}"></h6>
                     </div>
                 </th:block>
                 <th:block th:if="${post.category} == 'Assistance'">
@@ -73,15 +84,17 @@
                 </th:block>
                 <div class="divider"></div>
                     <div class="section">
-                        <th:block th:if="${Accepted == true}">
-                            <p><span th:text="${post.getUser().getUsername()}"></span> has accepted your task.</p>
-                            <a class="waves-effect waves-light btn-large disabled">View Their Profile</a>
-                        </th:block>
-                        <th:block th:if="${Accepted == false}">
-                            <form th:action="@{'/accept/'+${post.id}}" method="post">
-                                <button class="waves-effect waves-light btn-large">Accept Task</button>
+                        <th:block th:if="${Accepted == true and userSesh.id == user.id}">
+                            <p><span th:each="worker : ${post.workers}" th:text="${worker.username}"></span> has accepted your task.</p>
+                            <form th:each="worker : ${post.workers}" th:action="@{'/profile/'+${worker.id}}" method="get">
+                                <button class="waves-effect waves-light btn-large">View Their Profile</button>
                             </form>
                         </th:block>
+<!--                        <th:block th:if="${Accepted == false and }">-->
+<!--                            <form th:action="@{'/accept/'+${post.id}}" method="post">-->
+<!--                                <button class="waves-effect waves-light btn-large">Accept Task</button>-->
+<!--                            </form>-->
+<!--                        </th:block>-->
                     </div>
 
             </div>
@@ -90,6 +103,7 @@
     </div>
 
 </div>
+
 
 
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js'></script>
@@ -118,7 +132,7 @@
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [-98.491142,29.424349],
-        zoom: 17
+        zoom: 15
     });
 
     let directions = new MapboxDirections({

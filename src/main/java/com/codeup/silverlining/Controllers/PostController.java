@@ -45,7 +45,7 @@ public class PostController {
         post.setComplete(false);
 
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy hh:mm a");
         LocalDateTime startDate = LocalDateTime.parse(dates+" "+times, formatter);
         int i = 0;
         if(!recur.equals("")) {
@@ -113,7 +113,7 @@ public class PostController {
         post.setCategory("Assistance");
         post.setComplete(false);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy hh:mm a");
         LocalDateTime startDate = LocalDateTime.parse(dates+" "+times, formatter);
 
         post.setDate(startDate.toString().replace("T"," "));
@@ -195,6 +195,11 @@ public class PostController {
                     hmap.put(post.getId(), gregDate);
                     listPosts.add(post);
                 }
+                boolean accept = false;
+                if(post.getWorkers().size() > 0){
+                    accept = true;
+                }
+                taskmap.put(post.getId(), accept);
             }
             Iterable<Post> userPosts = listPosts;
             vModel.addAttribute("posts", userPosts);
@@ -243,8 +248,9 @@ public class PostController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
         LocalDateTime startDate = LocalDateTime.parse(post.getDate(), formatter);
-        LocalDate newdate = LocalDate.parse(startDate.toLocalDate().toString(),dateformatter);
         LocalTime newtime = startDate.toLocalTime();
+//        LocalDate newdate = LocalDate.parse(startDate.toLocalDate().toString(),dateformatter);
+        String newdate = startDate.toLocalDate().format(dateformatter);
 
 
 
@@ -266,7 +272,7 @@ public class PostController {
                            @RequestParam(name="editTime")String time) {
         Post updatePost = postDao.findOne(id);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy hh:mm a");
         LocalDateTime startDate = LocalDateTime.parse(date+" "+time, formatter);
 
         updatePost.setBody(body);
@@ -301,6 +307,15 @@ public class PostController {
         userDao.save(user);
         emailService.prepareAndSend(post,"Your task has been accepted", "Your task has been accepted by one or more helpers!");
         return "redirect:/tasks";
+    }
+
+    @PostMapping("/remove/{id}/ID")
+    public String removeFromTask(@PathVariable long id, @PathVariable long ID){
+        Post post = postDao.findOne(id);
+        User user = userDao.findOne(ID);
+        post.getWorkers().remove(user);
+        postDao.save(post);
+        return "redirect:/tasks/"+id;
     }
 
 }

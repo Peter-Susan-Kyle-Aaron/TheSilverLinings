@@ -2,7 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:replace="fragments/header :: header('Assistance Task')" />
-    <link rel="stylesheet" href="../../static/css/main.css"/>
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: navbar" />
@@ -13,35 +12,71 @@
     <div class="taskForm">
 
         <form th:action="@{/create/assistance}" th:method="post" th:object="${post}">
-            What task do you need accomplished?x
-            <input th:field="*{title}"/><br/>
-            How long will this task take to accomplish?
-            <input type="text" id="timeForTask" name="timeForTask"/><br/>
-            How many people are needed to complete this task?
-            <input type="text" id="numberOfWorkers" name="numberOfWorkers"/><br/>
-<!--            Is this task at your place of residence? If no, check-->
-<!--            <input name="locationCheck" id="locationCheck" type="checkbox"/><br/>-->
+            <p>
+                <label>
+                    <span class="grey-text text-darken-2 deliveryForm">What task do you need accomplished?</span>
+                    <input th:field="*{title}"/>
+
+                </label>
+            </p>
+            <p>
+                <label>
+                    <span class="grey-text text-darken-2 deliveryForm">How long will this task take to accomplish?</span>
+                    <input type="text" id="timeForTask" name="timeForTask"/>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <span class="grey-text text-darken-2 deliveryForm"> How many people are needed to complete this task?</span>
+                    <input type="text" id="numberOfWorkers" name="numberOfWorkers"/>
+                </label>
+            </p>
+
             <div id="notAtLocation" class="hiddenForm">
-                If not, where do you need help?
-                <input th:field="*{location}"/> <br/>
+                <label >
+                    <span class="grey-text text-darken-2 deliveryForm">If not, where do you need help?</span>
+                    <input th:field="*{location}"/> <br/>
+                </label>
+
             </div>
-            What time do you need this help?
-            <input type="time" id="time" name="time"/> <br/>
-            What day do you need this help?
-            <input type="date" id="dates" name="dates"/> <br/>
-            Are there any outside resources needed to accomplish this task? (tools, ladder, etc)                <input type="text" id="extra" name="extra"/><br/>
+
+            <p>
+                <label for="helpTime">
+                    <span class="grey-text text-darken-2 deliveryForm">What time do you need this help?</span>
+                    <input type="text" class="timepicker" name="time" id="helpTime"/>
+                </label>
+            </p>
+            <p>
+                <label for="helpdates">
+                    <span class="grey-text text-darken-2 deliveryForm">What day do you need this help?</span>
+                    <input type="text" class="datepicker" name="dates" id="helpdates"/>
+                </label>
+            </p>
+
+            <p>
+                <label>
+                    <span class="grey-text text-darken-2 deliveryForm">Are there any outside resources needed to accomplish this task? (tools, ladder, etc) </span>
+                    <input type="text" id="extra" name="extra"/>
+                </label>
+            </p>
+
             <button class="btn">Submit</button>
         </form>
     </div>
 </main>
 </div>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<footer th:replace="fragments/footer"></footer>
+<th:block th:replace="fragments/scripts"/>
 <script>
 
     $(document).ready(function(){
         $("#locationCheck").on("click", function(){
             $("#notAtLocation").toggleClass("hiddenForm");
         });
+
+        $('.datepicker').datepicker();
+
+        $('.timepicker').timepicker();
     });
 </script>
 </body>

@@ -55,6 +55,11 @@
 
 }
 
+.line{
+    background-color: cadetblue;
+    height: 20px;
+}
+
 /*styling home*/
 .clearfix {
     *zoom:1; /* for IE */
@@ -77,12 +82,16 @@
     float: left;
 }
 .text1{
-    margin-right: 75px;
-    margin-top:250px;
+    margin-right: 190px;
+    margin-top:135px;
 }
 .text2{
-    margin-left: 75px;
-    margin-top:250px;
+    margin-left: 190px;
+    margin-top:135px;
+}
+
+.enterbtn{
+    margin-top: 20px;
 }
 
 
@@ -94,12 +103,13 @@
 }
 
 .eachpic{
-    width: 750px;
-    min-height:auto;
+    width: 720px;
+    height:485px;
 }
 
 .clearfix {
    /*// transform: translateY(-5px);*/
+    height:485px;
     line-height: 0;
 }
 
@@ -141,5 +151,35 @@
 
 /*styling for map*/
 .mapboxgl-ctrl-geocoder > input{
-    padding: 0px 40px 0px 10px;
+    padding: 0 40px 0 10px;
+}
+
+
+.deliveryForm{
+    font-size: 20px;
+}
+
+/*styling navbar*/
+.brand-logo{
+    margin-left: 20px;
+}
+
+i.medium {
+    font-size: 40px;
+}
+
+
+main.container {
+    min-height: calc(100vh - 299px)
+}
+
+
+.section .header {
+    display: flex;
+    flex-direction: row;
+}
+
+.section .header i {
+    align-self: center;
+    margin-right: 10px;
 }
