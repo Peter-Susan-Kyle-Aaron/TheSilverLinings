@@ -18,21 +18,21 @@
         </div>
     </th:block>
     <div class="row">
-        <div th:each="post : ${posts}" >
+        <th:block th:each="post : ${posts}" >
         <th:block th:each="accept : ${taskmap}" th:if="${accept.key == post.id and accept.value == false or userSesh.role == 2 and accept.key == post.id}">
-                <div class="col s12 m4">
-                <div class="card ">
-                    <div class="card-content black-text tasks">
-                        <span class="card-title"><img class="taskPhoto" th:src="${post.user.getPhoto()}" alt=""/></span>
-                        <a style="font-size:20px; color: #115E8A;" th:href="'tasks/'+${post.id}" th:text="${post.title}"></a>
-                        <br/>
-                        <h6>Time: <span th:each="map : ${dates}" th:if="${map.key} == ${post.id}" th:text="${map.value}"></span></h6>
-                    </div>
+                <div class="col s12 m4 card">
+                    <a th:href="'tasks/'+${post.id}">
+                        <div class="card-content black-text tasks">
+                                <img class="taskPhoto" th:src="${post.user.getPhoto()}" alt=""/>
+                            <h6 th:text="${post.title}"></h6>
+                            <p>Time: <span th:each="map : ${dates}" th:if="${map.key} == ${post.id}" th:text="${map.value}"></span></p>
+                        </div>
+                    </a>
                     <div class="card-action">
                         <th:block th:if="${userSesh.role == 1}">
                             <th:block th:each="accept : ${taskmap}" th:if="${accept.key == post.id} and ${accept.value == false}">
                                 <form th:action="@{'/accept/'+${post.id}}" method="post">
-                                    <button class="waves-effect waves-light btn-large">Accept Task</button>
+                                    <button style="margin:auto;display:block" class="waves-effect waves-light btn-large">Accept Task</button>
                                 </form>
                             </th:block>
                         </th:block>
@@ -52,9 +52,8 @@
                         </th:block>
                     </div>
                 </div>
-            </div>
             </th:block>
-        </div>
+        </th:block>
     </div>
 </div>
 

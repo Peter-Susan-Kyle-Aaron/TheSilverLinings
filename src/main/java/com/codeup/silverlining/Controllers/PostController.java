@@ -362,12 +362,12 @@ public class PostController {
         return "redirect:/tasks";
     }
 
-    @PostMapping("/remove/{id}/ID")
+    @PostMapping("/remove/{id}/{ID}")
     public String removeFromTask(@PathVariable long id, @PathVariable long ID){
         Post post = postDao.findOne(id);
         User user = userDao.findOne(ID);
-        post.getWorkers().remove(user);
-        postDao.save(post);
+        user.getTasks().remove(post);
+        userDao.save(user);
         return "redirect:/tasks/"+post.getId();
     }
 }
