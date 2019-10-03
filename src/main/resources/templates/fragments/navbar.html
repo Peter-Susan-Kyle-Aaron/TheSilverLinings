@@ -5,19 +5,19 @@
 <body>
 <nav class="navbar" th:fragment="navbar">
     <div class="nav-wrapper white">
-        <a th:href="@{/}" class="brand-logo left teal-text text-darken-1">SILVER LINING</a>
+        <a th:href="@{/}" class="brand-logo left teal-text text-darken-1">Silver Lining</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a sec:authorize="isAuthenticated()" th:href="@{/tasks}" class="teal-text text-darken-1">TASKS</a></li>
-            <li><a sec:authorize="isAuthenticated()" th:href="@{/profile}" class="teal-text text-darken-1">MY PROFILE</a></li>
+            <li><a sec:authorize="isAuthenticated()" th:href="@{/tasks}" class="teal-text text-darken-1">Tasks</a></li>
+            <li><a sec:authorize="isAuthenticated()" th:href="@{/profile}" class="teal-text text-darken-1">Profile</a></li>
             <th:block sec:authorize="isAuthenticated()" th:if="${userSesh.role != 1}">
-                <li><a  th:href="@{/create}" class="teal-text text-darken-1">CREATE</a></li>
+                <li><a  th:href="@{/create}" class="teal-text text-darken-1">Create</a></li>
             </th:block>
-            <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="teal-text text-darken-1" >LOGIN</a></li>
-            <li><a sec:authorize="!isAuthenticated()" th:href="@{/signup}" class="waves-effect waves-light btn teal darken-1 signup">SIGN Up</a></li>
+            <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="teal-text text-darken-1" >Sign In</a></li>
+            <li><a sec:authorize="!isAuthenticated()" th:href="@{/signup}" class="waves-effect waves-light btn teal darken-1 signup">Register</a></li>
 
             <li>
                 <form  sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
-                    <button class="waves-effect waves-light btn teal darken-1 signout" >LOGOUT</button>
+                    <button class="waves-effect waves-light btn teal darken-1 signout" >Sign Out</button>
                 </form>
             </li>
             <li></li>
