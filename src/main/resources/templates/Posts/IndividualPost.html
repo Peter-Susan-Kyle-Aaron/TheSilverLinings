@@ -49,25 +49,30 @@
             <div class="col s12">
                 <div class="divider"></div>
                 <div class="section">
-                    <div class="line">
-                        <i class="material-icons">assignment</i>
+                    <div class="header">
+                        <i class="medium material-icons teal-text text-darken-3">assignment</i>
+                        <h5 th:text="${post.title}"></h5>
                     </div>
-                    <h5 th:text="${post.title}"></h5>
-                    <p th:text="${post.body}"></p>
+
+                    <h6 th:text="${post.body}"></h6>
                 </div>
                 <th:block th:if="${post.category} == 'Delivery'">
                     <div class="divider"></div>
                     <div class="section">
-                        <div class="line">
-
+                        <div class="header">
+                            <i class="medium material-icons teal-text text-darken-3">gps_fixed</i>
+                            <h5>Pick Up Location</h5>
                         </div>
-                        <h5>Pick Up Location</h5>
-                        <p th:text="${post.location}"></p>
+                        <h6 th:text="${post.location}"></h6>
                     </div>
                     <div class="divider"></div>
                     <div class="section">
-                        <h5>Deliver Address</h5>
-                        <p th:text="${user.address}"></p>
+                        <div class="header">
+                            <i class="medium material-icons teal-text text-darken-3">local_shipping</i>
+                            <h5>Delivery Address</h5>
+                        </div>
+
+                        <h6 th:text="${user.address}"></h6>
                     </div>
                 </th:block>
                 <th:block th:if="${post.category} == 'Assistance'">
@@ -98,6 +103,7 @@
     </div>
 
 </div>
+
 
 
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js'></script>
