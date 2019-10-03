@@ -116,16 +116,16 @@
 <script>
     $(".accept").on("click",function(){
         if(!$(this).hasClass('active')){
-            $("#view").animate({width: "80%"}, 500 );
-            $("#removeUser").animate({width: "20%"}, 500 );
+            $("#view").animate({width: "80%"}, 333 );
+            $("#removeUser").animate({width: "20%"}, 333 );
             $(this).addClass('active').html('View Profile').prop('type','submit');
             $('.remove').css('background','red').removeClass('active').html('<i class="material-icons prefix">cancel</i>').prop('type','button');
         }
     });
     $(".remove").on("click",function(){
         if(!$(this).hasClass('active')){
-            $("#removeUser").animate({width: "80%"}, 500 );
-            $("#view").animate({width: "20%"}, 500 );
+            $("#removeUser").animate({width: "80%"}, 333 );
+            $("#view").animate({width: "20%"}, 333 );
             $(this).css('background','red').addClass('active').html('Remove User').prop('type','submit');
             $('.accept').removeClass('active').html('<i class="material-icons prefix">person</i>').prop('type','button');
         }
