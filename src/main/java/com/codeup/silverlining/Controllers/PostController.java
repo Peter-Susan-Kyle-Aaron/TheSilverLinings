@@ -245,11 +245,12 @@ public class PostController {
         if (post.getUser() != userSesh)  {
             return "redirect:/tasks";
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         DateTimeFormatter dateformatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
         LocalDateTime startDate = LocalDateTime.parse(post.getDate(), formatter);
-        LocalDate newdate = LocalDate.parse(startDate.toLocalDate().toString(),dateformatter);
         LocalTime newtime = startDate.toLocalTime();
+//        LocalDate newdate = LocalDate.parse(startDate.toLocalDate().toString(),dateformatter);
+        String newdate = startDate.toLocalDate().format(dateformatter);
 
 
 
