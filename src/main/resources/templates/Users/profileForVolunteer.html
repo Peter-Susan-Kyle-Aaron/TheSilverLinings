@@ -18,7 +18,7 @@
                 <br/>
                 <th:block th:if="${userSesh.id == user.id}">
                     <form th:action="@{'/profile/' + ${user.id} + '/edit'}" th:method="GET" th:object="${user}">
-                        <input type="submit" value="Edit" class="btn btn-medium"/>
+                        <input style="float: right" type="submit" value="Edit" class="btn btn-medium"/>
                     </form>
                 </th:block>
                 <br/>
