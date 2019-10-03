@@ -189,3 +189,9 @@
     width: 20%;
  
 }
+
+.taskPhoto {
+    margin-left: 25%;
+    width: 50%;
+    border-radius: 50%;
+}

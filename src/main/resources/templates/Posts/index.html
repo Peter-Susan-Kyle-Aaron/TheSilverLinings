@@ -23,7 +23,7 @@
                 <div class="col s12 m4">
                 <div class="card ">
                     <div class="card-content black-text tasks">
-                        <span class="card-title"><i class="small material-icons">room</i></span>
+                        <span class="card-title"><img class="taskPhoto" th:src="${post.user.getPhoto()}" alt=""/></span>
                         <a style="font-size:20px; color: #115E8A;" th:href="'tasks/'+${post.id}" th:text="${post.title}"></a>
                         <br/>
                         <h6>Time: <span th:each="map : ${dates}" th:if="${map.key} == ${post.id}" th:text="${map.value}"></span></h6>
