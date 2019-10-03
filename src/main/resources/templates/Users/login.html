@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <th:block th:replace="fragments/header :: header ('Login')"/>
+    <th:block th:replace="fragments/header :: header ('Sign in')"/>
 </head>
 <body id="login">
 <th:block th:replace="fragments/navbar :: navbar"/>
@@ -11,7 +11,7 @@
         <div class="row ">
             <div class="card medium">
                 <div class="card-content">
-                    <h2 class="center-align">Login</h2>
+                    <h2 class="center-align">Sign in</h2>
                     <form th:action="@{/login}" method="post">
                         <div th:if="${param.logout}" class="red-text text-darken-4">
                             You have been logged out.
@@ -39,12 +39,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-<!--<footer th:replace="fragments/footer"></footer>-->
 <th:block th:replace="fragments/scripts"/>
-
 </body>
 </html>
