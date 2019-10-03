@@ -9,12 +9,12 @@
 
 <div class="container">
     <th:block th:if="${userSesh.role} == '1'">
-    <h1>List of all Available Tasks</h1>
+    <h1>Available Tasks: </h1>
 
     </th:block>
     <th:block th:if="${userSesh.role} == '2'">
         <div class="center-align">
-            <h3>Your Requests</h3>
+            <h3>Your Requests: </h3>
         </div>
     </th:block>
     <div class="row">
@@ -24,11 +24,9 @@
                 <div class="card ">
                     <div class="card-content black-text tasks">
                         <span class="card-title"><i class="small material-icons">room</i></span>
-                        <a style="font-size:16px" th:href="'tasks/'+${post.id}" th:text="${post.title}"></a>
+                        <a style="font-size:20px; color: #115E8A;" th:href="'tasks/'+${post.id}" th:text="${post.title}"></a>
                         <br/>
-<!--                        Username: <p th:text="${post.user.username}"></p>-->
-<!--                        Description: <p th:text="${post.body}"></p>-->
-                        Time: <span th:each="map : ${dates}" th:if="${map.key} == ${post.id}" th:text="${map.value}"></span>
+                        <h6>Time: <span th:each="map : ${dates}" th:if="${map.key} == ${post.id}" th:text="${map.value}"></span></h6>
                     </div>
                     <div class="card-action">
                         <th:block th:if="${userSesh.role == 1}">
@@ -53,7 +51,6 @@
                             </div>
                         </th:block>
                     </div>
-<!--                    <p th:text="${post.location}"></p>-->
                 </div>
             </div>
             </th:block>

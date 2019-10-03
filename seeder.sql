@@ -26,15 +26,19 @@ values ('Kyle','$2a$10$Np9uN3PKPI10iYO1Yv.de.vHgWaJ/VunlS.uAV9eD0d7A044Uj8V2','k
 insert into Posts (body, user_id, Category, Location,is_complete,title, date)
 values
        ('Make sure not to forget my cat food, the last person didn''t bring any',3,'Delivery','600 Navaro Street',false,'Delivery from HEB','2019-12-24 14:00'),
-       ('Make sure not to forget my cat food, the last person didn''t bring any',3,'Delivery','600 Navaro Street',false,'Delivery from HEB','2019-12-24 14:00'),
-       ('Make sure not to forget my cat food, the last person didn''t bring any',3,'Delivery','600 Navaro Street',false,'Delivery from HEB','2019-12-24 14:00'),
-       ('Make sure not to forget my cat food, the last person didn''t bring any',3,'Delivery','600 Navaro Street',false,'Delivery from HEB','2019-12-24 14:00'),
-       ('Make sure not to forget my cat food, the last person didn''t bring any',3,'Delivery','600 Navaro Street',false,'Delivery from HEB','2019-12-24 14:00');
+       ('I need my groceries delivered',3,'Delivery','100 Military Plaza',false,'Grab my groceries','2019-10-24 14:00'),
+       ('I need the lightbulb changed and I can\'t reach it', 6,'Assistance','1607 E Houston Street',false,'Help me change a lightbulb','2019-11-21 14:00'),
+       ('Need someone to deliver a card to my grandson',5,'Delivery','3000 Pennsylvania Avenue',false,'Delivery to my grandson','2019-10-18 14:00'),
+       ('I need help weeding my flowers',7,'Delivery','',false,'Help around the yard','2019-10-15 14:00'),
+       ('I need my dogs walked',5,'Assistance','',false,'Dogs need to be walked','2019-10-16 17:00'),
+       ('I need my dogs walked',5,'Assistance','',false,'Dogs need to be walked','2019-10-23 17:00'),
+       ('Need my trash taken out',3,'Assistance','',false,'Trash taken to street','2019-11-15 19:30'),
+       ('Need my food deliverd from Outback Steakhouse, under name of GLori',5,'Delivery','',false,'Food Delivered','2019-10-10 12:30');
 
 #Reviews
 insert into Reviews (description, rating, reviewer_id, user_id)
 values ('Really nice young man',5,7,1),
        ('Arrived 30 minutes late both times I needed my dogs walked',2,3,1),
-       ('Really nice young man,',5,7,1),
-       ('Really nice young man,',5,7,1),
-       ('Really nice young man,',5,7,1);
+       ('Very Helpful',5,7,1),
+       ('Delivered my groceries despite the rain',5,7,1),
+       ('Unloaded and helped me put away my groceries',5,7,1);
