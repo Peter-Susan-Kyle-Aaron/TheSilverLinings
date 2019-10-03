@@ -135,6 +135,10 @@
     color: white;
 }
 
+.slider .slides li .caption {
+    top: 5%;
+}
+
 /*styling footer*/
 
 .footer-copyright{
