@@ -31,10 +31,10 @@
             </ul>
         </div>
             <div class="active" id="recent">
-                <div class="card row" th:each="review : ${reviews}">
+                <div class="card row" style="padding:15px" th:each="review : ${reviews}">
                     <div class="col s2 m2">
-                        <img style="display:block;margin:auto" th:src="${review.reviewer.getPhoto()}" alt="" />
-                        <p style="margin:auto;text-align: center    " th:text="${review.reviewer.username}"></p>
+                        <img style="width: 50%;display:block;margin:auto;border-radius: 50%;" th:src="${review.reviewer.getPhoto()}" alt="" />
+                        <p style="margin:auto;text-align:center" th:text="${review.reviewer.username}"></p>
                     </div>
                     <div style="border-left:1px solid grey" class="col s10 m10">
                         <th:block th:if="${review.rating == 1}">
