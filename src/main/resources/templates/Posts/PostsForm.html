@@ -9,13 +9,22 @@
 
 <main class="container">
     <h2 class="center-align">What do you need help with?</h2>
+
     <div class="row">
-    <form class="col m6 s12 center-align" th:action="@{/create/delivery}" method="get">
-        <input type="submit" value="I need something delivered" class="btn btn-large"/>
-    </form>
-    <form class="col m6 s12 center-align" th:action="@{/create/assistance}" method="get">
-        <input type="submit" value="I need help around my house" class="btn btn-large"/>
-    </form>
+        <div  class="col m6 s12 center-align">
+            <img src="img/truck.png" class="signupIcon"/>
+            <form th:action="@{/create/delivery}" method="get">
+                <input type="submit" value="I need something delivered" class="btn btn-large signupbtn"/>
+            </form>
+        </div>
+
+        <div class="col m6 s12 center-align">
+            <img src="img/home.png" class="signupIcon"/>
+            <form  th:action="@{/create/assistance}" method="get">
+                <input type="submit" value="I need help around my house" class="btn btn-large signupbtn"/>
+            </form>
+        </div>
+
     </div>
 </main>
 
