@@ -67,19 +67,19 @@
 <th:block th:replace="fragments/scripts"/>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
+        $("#locationCheck").on("click", function () {
+            $("#notAtLocation").toggleClass("hiddenForm");
+        });
+        $('.datepicker').datepicker();
+
+        $('.timepicker').timepicker();
         $('select').formSelect();
-        $("#recurringDelivery").on("click", function(){
+        $("#recurringDelivery").on("click", function () {
             $("#isRecurring").toggleClass("hiddenForm");
             $("#end").toggleClass("hiddenForm");
-            $('.datepicker').datepicker();
 
-            $('.timepicker').timepicker();
         })
-    });
-
-    $(document).ready(function(){
-
     });
 </script>
 </body>

@@ -150,9 +150,9 @@
 
 
 /*styling for tasks*/
-.tasks{
-    height: 200px;
-}
+/*.tasks{*/
+/*    height: 300px;*/
+/*}*/
 
 /*styling for map*/
 .mapboxgl-ctrl-geocoder > input{
@@ -220,10 +220,21 @@ main.container {
     margin-left: 25%;
     width: 50%;
     border-radius: 50%;
+    height:132px;
 }
 .modalDelete{
     margin-right: 0;!important
     float:right;
+}
+
+.aboutText {
+    font-weight:bold;
+    text-align:center;
+
+}
+
+.aboutImg {
+    border-radius: 50%
 }
 
 div.content-main + footer  {
@@ -236,6 +247,7 @@ div.content-main + footer .footer {
 .btn {
     text-transform: none;
 }
+
 .signupIcon{
     width: 60%;
     margin-bottom: 30px;
@@ -244,3 +256,4 @@ div.content-main + footer .footer {
     background-color:#125E8A;
     color: white;
 }
+

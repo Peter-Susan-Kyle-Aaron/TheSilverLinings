@@ -61,7 +61,8 @@
             </p>
             <p>
                 <label for="recurringDelivery">
-                    <span class="grey-text text-darken-2 deliveryForm">Is this a recurring delivery?</span>
+
+                    <span class="grey-text text-darken-2 deliveryForm">Is this a recurring task?</span>
                     <input id="recurringDelivery" type="checkbox" />
                     <span class="grey-text text-darken-2 deliveryForm">Yes</span>
                 </label>
@@ -93,20 +94,19 @@
 <th:block th:replace="fragments/scripts"/>
 <script>
 
-    $(document).ready(function(){
-        $("#locationCheck").on("click", function(){
+    $(document).ready(function() {
+        $("#locationCheck").on("click", function () {
             $("#notAtLocation").toggleClass("hiddenForm");
+        });
+        $('.datepicker').datepicker();
 
-
+        $('.timepicker').timepicker();
         $('select').formSelect();
-        $("#recurringDelivery").on("click", function(){
+        $("#recurringDelivery").on("click", function () {
             $("#isRecurring").toggleClass("hiddenForm");
             $("#end").toggleClass("hiddenForm");
-            $('.datepicker').datepicker();
 
-            $('.timepicker').timepicker();
         })
-
     });
 </script>
 </body>
