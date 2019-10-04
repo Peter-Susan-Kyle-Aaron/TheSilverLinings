@@ -25,7 +25,7 @@
                         <div class="card-content black-text tasks">
                                 <img class="taskPhoto" th:src="${post.user.getPhoto()}" alt=""/>
                             <h6 th:text="${post.title}"></h6>
-                            <p>Time: <span th:each="map : ${dates}" th:if="${map.key} == ${post.id}" th:text="${map.value}"></span></p>
+                            <p><span th:each="map : ${dates}" th:if="${map.key} == ${post.id}" th:text="${map.value}"></span></p>
                         </div>
                     </a>
                     <div class="card-action">
