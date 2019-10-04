@@ -247,3 +247,13 @@ div.content-main + footer .footer {
 .btn {
     text-transform: none;
 }
+
+.signupIcon{
+    width: 60%;
+    margin-bottom: 30px;
+}
+.signupbtn{
+    background-color:#125E8A;
+    color: white;
+}
+
