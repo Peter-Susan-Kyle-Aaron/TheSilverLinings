@@ -220,6 +220,7 @@ main.container {
     margin-left: 25%;
     width: 50%;
     border-radius: 50%;
+    height:132px;
 }
 .modalDelete{
     margin-right: 0;!important
