@@ -78,7 +78,10 @@
                 <th:block th:if="${post.category} == 'Assistance'">
                     <div class="divider"></div>
                     <div class="section">
+                        <div class="header">
+                        <i class="medium material-icons teal-text text-darken-3">local_shipping</i>
                         <h5>Location of Resident</h5>
+                        </div>
                         <p th:text="${user.address}"></p>
                     </div>
                 </th:block>
@@ -149,7 +152,7 @@
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [-98.491142,29.424349],
-        zoom: 15
+        zoom: 13
     });
 
     let directions = new MapboxDirections({
@@ -158,8 +161,17 @@
 
     map.addControl(directions, 'top-left');
 
-    directions.setOrigin(markers.origin);
+
+    // if(markers.origin === markers.destination){
+    //     "";
+    // }else{
+    //     directions.setOrigin(markers.origin);
+    // }
+    // directions.setDestination(markers.destination);
+
+
     directions.setDestination(markers.destination);
+    directions.setOrigin(markers.origin);
 
     let driverMaker;
 
