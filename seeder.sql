@@ -10,8 +10,8 @@ Drop TABLE if exists users;
 # Select * from Users;
 
 insert into Users (username, password, email, address, photo, role)
-values ('Brad Bernard','$2a$10$Np9uN3PKPI10iYO1Yv.de.vHgWaJ/VunlS.uAV9eD0d7A044Uj8V2','BradlyBernard@aol.com','611 Enchanted Way','https://cdn.filestackcontent.com/rOyA2SLvR4uARIjYhCue',1),
-('Linda Turner', '$2a$10$jr5fSUJ.tSwTADEWIxAgWeGFuV1J8pr52JkUin1hOFRaOLf5WTGi6', 'susan.lin0705@gmail.com', '12222 Bianca Mill Way', 'https://cdn.filestackcontent.com/ILcai4UBRVGJV4AcPHb1', 2),
+values ('Brad','$2a$10$Np9uN3PKPI10iYO1Yv.de.vHgWaJ/VunlS.uAV9eD0d7A044Uj8V2','BradlyBernard@aol.com','611 Enchanted Way','https://cdn.filestackcontent.com/rOyA2SLvR4uARIjYhCue',1),
+('Linda', '$2a$10$jr5fSUJ.tSwTADEWIxAgWeGFuV1J8pr52JkUin1hOFRaOLf5WTGi6', 'susan.lin0705@gmail.com', '12222 Bianca Mill Way', 'https://cdn.filestackcontent.com/ILcai4UBRVGJV4AcPHb1', 2),
 ('Harold Bucke', 'J8B0JYH4zaB8', 'mbucke3@ning.com', '3 Portage Pass', 'https://cdn.filestackcontent.com/9GnznZ8yQW2p48andyNX', 2),
 ('Maryellen de Guerre', 'TwQOBcsf', 'mde4@ucsd.edu', '8 Stoughton Court', 'https://cdn.filestackcontent.com/0Hu0yoJEQ06mWrYiS90X', 2),
 ('Glori Hastwell', 'I7eeHKH7OIN', 'ghastwell5@utexas.edu', '62855 Anthes Hill', 'https://cdn.filestackcontent.com/Aa9mAkuqRuaMtiWDca91', 2),
