@@ -41,7 +41,7 @@ public class UserController {
     @GetMapping("/profile/{id}")
     public String getUserProfile(@PathVariable long id, Model model){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM uuuu hh:mm a");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd, uuuu hh:mm a");
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userSesh = userDao.findById(loggedInUser.getId());
         model.addAttribute("userSesh",userSesh);
