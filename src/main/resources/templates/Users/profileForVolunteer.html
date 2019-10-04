@@ -31,17 +31,44 @@
             </ul>
         </div>
             <div class="active" id="recent">
-                <div th:each="review : ${reviews}">
-                    <p th:text="${review.rating}"></p>
-                    <p th:text="${review.description}"></p>
-                    <p th:text="${review.reviewer.username}"></p>
+                <div class="card row" style="padding:15px" th:each="review : ${reviews}">
+                    <div class="col s2 m2">
+                        <img style="width: 50%;display:block;margin:auto;border-radius: 50%;" th:src="${review.reviewer.getPhoto()}" alt="" />
+                        <p style="margin:auto;text-align:center" th:text="${review.reviewer.username}"></p>
+                    </div>
+                    <div style="border-left:1px solid grey" class="col s10 m10">
+                        <th:block th:if="${review.rating == 1}">
+                            <p>&#11088;</p>
+                        </th:block>
+                        <th:block th:if="${review.rating == 2}">
+                            <p>&#11088;&#11088;</p>
+                        </th:block>
+                        <th:block th:if="${review.rating == 3}">
+                            <p>&#11088;&#11088;&#11088;</p>
+                        </th:block>
+                        <th:block th:if="${review.rating == 4}">
+                            <p>&#11088;&#11088;&#11088;&#11088;</p>
+                        </th:block>
+                        <th:block th:if="${review.rating == 5}">
+                            <p>&#11088;&#11088;&#11088;&#11088;&#11088;</p>
+                        </th:block>
+                        <p th:text="${review.description}"></p>
+                    </div>
                 </div>
             </div>
             <div class="active" id="tasks">
-                <div th:each="task : ${tasks}">
-                    <p th:text="${task.title}"></p>
-                    <p th:each="map : ${hmap}" th:if="${map.key} == ${task.id}" th:text="${map.value}"></p>
-                    <p th:text="${task.location}"></p>
+                <div class="row">
+                    <th:block th:each="post : ${tasks}" >
+                        <div class="col s12 m4 card">
+                            <a th:href="'tasks/'+${post.id}">
+                                <div class="card-content black-text tasks">
+                                    <img class="taskPhoto" th:src="${post.user.getPhoto()}" alt=""/>
+                                    <h6 th:text="${post.title}"></h6>
+                                    <p><span th:each="map : ${hmap}" th:if="${map.key} == ${post.id}" th:text="${map.value}"></span></p>
+                                </div>
+                            </a>
+                        </div>
+                    </th:block>
                 </div>
             </div>
         </div>
