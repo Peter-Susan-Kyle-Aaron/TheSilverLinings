@@ -205,3 +205,13 @@
     margin-right: 0;!important
     float:right;
 }
+
+.aboutText {
+    font-weight:bold;
+    text-align:center;
+
+}
+
+.aboutImg {
+    border-radius: 50%
+}
