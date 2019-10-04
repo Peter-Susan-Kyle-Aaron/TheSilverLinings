@@ -25,7 +25,7 @@ values ('Brad Bernard','$2a$10$Np9uN3PKPI10iYO1Yv.de.vHgWaJ/VunlS.uAV9eD0d7A044U
 
 insert into Posts (body, user_id, Category, Location,is_complete,title, date)
 values
-       ('Make sure not to forget my cat food, the last person didn''t bring any',2,'Delivery','600 Navaro Street',false,'Delivery from HEB','2019-12-24 14:00'),
+
        ('I need my groceries delivered',3,'Delivery','100 Military Plaza',false,'Grab my groceries','2019-10-24 14:00'),
        ('I need the lightbulb changed and I can\'t reach it', 6,'Assistance','1607 E Houston Street',false,'Help me change a lightbulb','2019-11-21 14:00'),
        ('Need someone to deliver a card to my grandson',2,'Delivery','3000 Pennsylvania Avenue',false,'Delivery to my grandson','2019-10-18 14:00'),
