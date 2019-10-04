@@ -115,7 +115,7 @@ public class PostController {
         post.setUser(user);
         post.setCategory("Assistance");
         post.setComplete(false);
-        post.setBody("It will take "+timeForTask+",  you will need "+numberOfWorkers+" helpers,  and "+extra);
+        post.setBody("It will take "+timeForTask+",  you will need "+numberOfWorkers+" helper,  and "+extra);
         if(post.getLocation().equals("")){
             post.setLocation(user.getAddress());
         }
