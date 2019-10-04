@@ -227,6 +227,16 @@ main.container {
     float:right;
 }
 
+.aboutText {
+    font-weight:bold;
+    text-align:center;
+
+}
+
+.aboutImg {
+    border-radius: 50%
+}
+
 div.content-main + footer  {
     transform: translateY(-40px);
 }
@@ -237,3 +247,13 @@ div.content-main + footer .footer {
 .btn {
     text-transform: none;
 }
+
+.signupIcon{
+    width: 60%;
+    margin-bottom: 30px;
+}
+.signupbtn{
+    background-color:#125E8A;
+    color: white;
+}
+
