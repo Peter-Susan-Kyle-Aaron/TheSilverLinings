@@ -24,4 +24,9 @@ public class HomeController {
         }
         return "home";
     }
+
+    @GetMapping("/about")
+    public String viewAbout() {
+        return "about";
+    }
 }

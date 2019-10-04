@@ -227,6 +227,16 @@ main.container {
     float:right;
 }
 
+.aboutText {
+    font-weight:bold;
+    text-align:center;
+
+}
+
+.aboutImg {
+    border-radius: 50%
+}
+
 div.content-main + footer  {
     transform: translateY(-40px);
 }
