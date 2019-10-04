@@ -103,7 +103,7 @@
 }
 
 .eachpic{
-    width: 720px;
+    width: 50vw;
     height:485px;
 }
 
@@ -137,7 +137,7 @@
 
 .slider .slides li .caption {
     top: 5%;
-}
+}ƒ
 
 /*styling footer*/
 
@@ -150,9 +150,9 @@
 
 
 /*styling for tasks*/
-.tasks{
-    height: 200px;
-}
+/*.tasks{*/
+/*    height: 300px;*/
+/*}*/
 
 /*styling for map*/
 .mapboxgl-ctrl-geocoder > input{
@@ -162,6 +162,26 @@
 
 .deliveryForm{
     font-size: 20px;
+}
+
+i.medium {
+    font-size: 40px;
+}
+
+
+main.container {
+    min-height: calc(100vh - 299px)
+}
+
+
+.section .header {
+    display: flex;
+    flex-direction: row;
+}
+
+.section .header i {
+    align-self: center;
+    margin-right: 10px;
 }
 
 /*styling navbar*/
@@ -200,6 +220,7 @@
     margin-left: 25%;
     width: 50%;
     border-radius: 50%;
+    height:132px;
 }
 .modalDelete{
     margin-right: 0;!important
@@ -214,4 +235,15 @@
 
 .aboutImg {
     border-radius: 50%
+}
+
+div.content-main + footer  {
+    transform: translateY(-40px);
+}
+div.content-main + footer .footer {
+    margin-top: 10px;
+}
+
+.btn {
+    text-transform: none;
 }

@@ -90,7 +90,7 @@
                                 <form id="view" th:action="@{'/profile/'+${worker.id}}" method="get">
                                     <button class="btn-large accept active">View Their Profile</button>
                                 </form>
-                                <form id="removeUser" th:action="@{'/remove/'+${post.user.id}+'/'+${worker.id}}" method="post">
+                                <form id="removeUser" th:action="@{'/remove/'+${post.id}+'/'+${worker.id}}" method="post">
                                     <button type="button" class="btn-large redButton remove"><i class="material-icons prefix">cancel</i></button>
                                 </form>
                             </div>
