@@ -1,39 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <th:block th:replace="fragments/header :: header('Tasks')"/>
+    <th:block th:replace="fragments/header :: header('Silver Lining | Tasks')"/>
 </head>
 <body id="post">
 <th:block th:replace="fragments/navbar :: navbar "/>
 
 
 <div class="container">
-    <th:block th:if="${userSesh.role} == '1'">
-    <h1>Available Tasks: </h1>
 
-    </th:block>
-    <th:block th:if="${userSesh.role} == '2'">
-        <div class="center-align">
-            <h3>Your Requests: </h3>
-        </div>
-    </th:block>
+    <div class="center-align">
+        <th:block th:if="${userSesh.role} == '1'">
+                <h3>Available Task</h3>
+        </th:block>
+        <th:block th:if="${userSesh.role} == '2'">
+                <h3>Your Requests</h3>
+        </th:block>
+    </div>
+
     <div class="row">
         <th:block th:each="post : ${posts}" >
         <th:block th:each="accept : ${taskmap}" th:if="${accept.key == post.id and accept.value == false or userSesh.role == 2 and accept.key == post.id}">
-                <div class="col s12 m4 card">
+                <div class="col card">
                     <a th:href="'tasks/'+${post.id}">
                         <div class="card-content black-text tasks">
                                 <img class="taskPhoto" th:src="${post.user.getPhoto()}" alt=""/>
-                            <h6 th:text="${post.title}"></h6>
+                            <h6 class="card-title" th:text="${post.title}"></h6>
                             <p><span th:each="map : ${dates}" th:if="${map.key} == ${post.id}" th:text="${map.value}"></span></p>
                         </div>
                     </a>
                     <div class="card-action">
                         <th:block th:if="${userSesh.role == 1}">
                             <th:block th:each="accept : ${taskmap}" th:if="${accept.key == post.id} and ${accept.value == false}">
-                                <form th:action="@{'/accept/'+${post.id}}" method="post">
-                                    <button style="margin:auto;display:block" class="waves-effect waves-light btn-large">Accept Task</button>
-                                </form>
+<!--                                <form th:action="@{'/accept/'+${post.id}}" method="post">-->
+<!--                                    <button style="margin:auto;display:block" class="waves-effect waves-light btn-large">Accept Task</button>-->
+<!--                                </form>-->
+
+                                <a th:href="'tasks/'+${post.id}" class="waves-effect waves-light btn-large">View Task</a>
+
                             </th:block>
                         </th:block>
                         <th:block th:if="${userSesh.role == 2}">

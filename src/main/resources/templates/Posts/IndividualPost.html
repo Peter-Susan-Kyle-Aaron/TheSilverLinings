@@ -2,9 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
-    <th:block th:include="fragments/header :: header (${post.title})"/>
+
+    <th:block th:include="fragments/header :: header ('Silver Lining | ' + ${post.title})"/>
     <style>
         body { margin:0; padding:0; }
         .marker {
@@ -29,11 +28,13 @@
             width: 30px;
             height: 30px;
             border-radius: 50%;
+            padding-top: 2px;
+            text-indent: 4px;
             cursor: pointer;
         }
 
     </style>
-<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css' type='text/css' />
+
 </head>
 <body>
 
@@ -78,7 +79,10 @@
                 <th:block th:if="${post.category} == 'Assistance'">
                     <div class="divider"></div>
                     <div class="section">
+                        <div class="header">
+                        <i class="medium material-icons teal-text text-darken-3">local_shipping</i>
                         <h5>Location of Resident</h5>
+                        </div>
                         <p th:text="${user.address}"></p>
                     </div>
                 </th:block>
@@ -100,6 +104,13 @@
 <!--                                <button class="waves-effect waves-light btn-large">Accept Task</button>-->
 <!--                            </form>-->
 <!--                        </th:block>-->
+
+                        <th:block th:if="${userSesh.role == 1 and Accepted == false}">
+                                                                <form th:action="@{'/accept/'+${post.id}}" method="post">
+                                                                    <button style="margin:auto;display:block" class="waves-effect waves-light btn-large">Accept Task</button>
+                                                                </form>
+                        </th:block>
+
                     </div>
 
             </div>
@@ -149,7 +160,7 @@
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [-98.491142,29.424349],
-        zoom: 15
+        zoom: 13
     });
 
     let directions = new MapboxDirections({
@@ -158,8 +169,17 @@
 
     map.addControl(directions, 'top-left');
 
-    directions.setOrigin(markers.origin);
+
+    // if(markers.origin === markers.destination){
+    //     "";
+    // }else{
+    //     directions.setOrigin(markers.origin);
+    // }
+    // directions.setDestination(markers.destination);
+
+
     directions.setDestination(markers.destination);
+    directions.setOrigin(markers.origin);
 
     let driverMaker;
 
@@ -183,6 +203,6 @@
         });
     }
 </script>
-
+<th:block th:replace="fragments/scripts"/>
 </body>
 </html>

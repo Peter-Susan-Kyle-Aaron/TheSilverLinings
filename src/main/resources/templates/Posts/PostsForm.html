@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="fragments/header :: header('Task Form')" />
+    <th:block th:replace="fragments/header :: header('Silver Lining | Task Form')" />
     <link rel="stylesheet" href="../../static/css/main.css"/>
 </head>
 <body>
@@ -14,20 +14,20 @@
         <div  class="col m6 s12 center-align">
             <img src="img/truck.png" class="signupIcon"/>
             <form th:action="@{/create/delivery}" method="get">
-                <input type="submit" value="I need something delivered" class="btn btn-large signupbtn"/>
+                <input type="submit" value="I NEED SOMETHING DELIVERED" class="btn btn-large signupbtn"/>
             </form>
         </div>
 
         <div class="col m6 s12 center-align">
             <img src="img/home.png" class="signupIcon"/>
             <form  th:action="@{/create/assistance}" method="get">
-                <input type="submit" value="I need help around my house" class="btn btn-large signupbtn"/>
+                <input type="submit" value="I NEED HELP AROUND MY HOUSE" class="btn btn-large signupbtn"/>
             </form>
         </div>
 
     </div>
 </main>
 
-<!--<footer th:replace="fragments/footer"></footer>-->
+<th:block th:replace="fragments/scripts"/>
 </body>
 </html>

@@ -2,30 +2,84 @@
 <!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
 
 
-<footer class="page-footer grey lighten-4" th:fragment="footer">
-        <div class="container">
-            <div class="row footer">
-                <div class="col l6 s12">
-                    <h5 class="grey-text text-darken-3">Links</h5>
-                    <ul>
-                        <li><a class="grey-text text-darken-3" th:href="@{'/'}">Home</a></li>
-                        <li><a class="grey-text text-darken-3" th:href="@{'/about'}">About Us</a></li>
-                        <li><a class="grey-text text-darken-3" th:href="@{'/about'}">Contact</a></li>
+
+<footer class="page-footer" th:fragment="footer">
+
+
+
+   <div class="footer-container">
+    <div class="footer">
+        <div class="col">
+            <h5 class="">Navigate</h5>
+            <ul class="footer-links">
+                <li><a class="" href="#!">Home</a></li>
+                <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="" >Sign In</a></li>
+                <li><a sec:authorize="!isAuthenticated()" th:href="@{/signup}" class="">Register</a></li>
+                <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="" >Sign Out</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+                <div class="col">
+                    <h5 class="">More</h5>
+                    <ul class="footer-links">
+
+                        <li><a class="" th:href="@{'/about'}">About Us</a></li>
+                        <li><a class="" th:href="@{'/about'}">Contact</a></li>
                     </ul>
-
                 </div>
-                <div class="col l4 offset-l2 s12">
 
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright cyan darken-4">
-            <div class="container">
-                © 2019 Copyright
-            </div>
-        </div>
+    </div>
+
+       <div class="footer">
+
+           <h5>Developers</h5>
+
+           <div class="dev-container">
+
+               <div class="dev">
+                   <img th:src="@{/img/susan.jpg}"/>
+                   <a href="https://www.linkedin.com/in/susanlin0705/">Susan Lin</a>
+               </div>
+
+               <div class="dev">
+                   <img th:src="@{/img/kyle.jpg}"/>
+                   <a href="https://www.linkedin.com/in/kylemaulsby/">Kyle Maulsyby</a>
+               </div>
+
+               <div class="dev">
+                   <img th:src="@{/img/peter.jpg}"/>
+                   <a href="https://www.linkedin.com/in/peter-hollman/">Peter Hollman</a>
+               </div>
+
+               <div class="dev">
+                   <img th:src="@{/img/aaron.jpg}"/>
+                   <a href="https://www.linkedin.com/in/aaronmsifuentes/">Aaron Sifuentes</a>
+               </div>
+
+
+           </div>
+
+
+
+       </div>
+
+    </div>
+
+
+
+
+    <div class="footer-copyright cyan darken-4">
+                © 2019 Silver Lining
+    </div>
+
+
+
+
+
 </footer>
-
 
 
 <!--</body>-->
