@@ -26,7 +26,14 @@ public class HomeController {
     }
 
     @GetMapping("/about")
-    public String viewAbout() {
+    public String viewAbout(Model model) {
+        try {
+            User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User userSesh = userDao.findById(loggedInUser.getId());
+            model.addAttribute("userSesh", userSesh);
+        }catch(Exception e){
+            System.out.println("no user logged in");
+        }
         return "about";
     }
 }
