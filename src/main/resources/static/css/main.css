@@ -1,3 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Raleway:400,600,700&display=swap');
+
+h1,h2,h3,h4,h5 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+p, a, li, ul, div {
+    font-family: 'Raleway', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5 !important;
+}
+
+.container {
+    min-height: calc(100vh - 456px);
+    margin-bottom: 80px;
+    margin-top: 50px;
+}
+
+nav .sidenav-trigger {
+    margin-left: auto;
+    float: right;
+    color: teal;
+}
+
+.caption h2 + p {
+    font-size: 42px;
+}
+
+
+.content-main h3, .caption h2 {
+    font-weight: 600;
+}
+
 .hiddenForm{
     display: none;
 }
@@ -5,14 +40,6 @@
     display: block;
 }
 
-#person{
-    height: 200px;
-    width: 200px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 100px;
-}
 .signup{
     border-top-right-radius: 25px;
     border-top-left-radius: 25px;
@@ -84,9 +111,10 @@
 .text1{
     margin-right: 190px;
     margin-top:135px;
+    background-color: #f0f0f0;
 }
 .text2{
-    margin-left: 190px;
+    margin-left: 150px;
     margin-top:135px;
 }
 
@@ -118,11 +146,11 @@
 }
 
 .content-main {
-    -webkit-transform: translateY(-40px);
-    -moz-transform: translateY(-40px);
-    -ms-transform: translateY(-40px);
-    -o-transform: translateY(-40px);
-    transform: translateY(-40px);
+    /*-webkit-transform: translateY(-40px);*/
+    /*-moz-transform: translateY(-40px);*/
+    /*-ms-transform: translateY(-40px);*/
+    /*-o-transform: translateY(-40px);*/
+    /*transform: translateY(-40px);*/
 }
 
 
@@ -137,7 +165,12 @@
 
 .slider .slides li .caption {
     top: 5%;
-}ƒ
+    left: 65px;
+}
+
+.slider .slides li img, .eachpic {
+    filter: sepia(10%) saturate(121%) brightness(55%);
+}
 
 /*styling footer*/
 
@@ -145,9 +178,74 @@
     height: 30px;
 }
 .footer{
-    margin-top: -30px;
+    padding-top: 30px;
 }
 
+.footer-copyright, .footer{
+    padding-left: 65px;
+}
+
+.page-footer{
+    padding-top: 0;
+    background-color: #1e1e1e;
+    padding-bottom: 20px;
+}
+
+.page-footer .footer-copyright {
+    padding-left: 65px;
+}
+
+
+.page-footer .footer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-bottom: 20px;
+}
+
+.page-footer .footer-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+
+.page-footer h5, .page-footer ul li {
+    font-weight: 600;
+    color: #f0f0f0;
+
+}
+
+.footer {
+    min-width: calc(25vw - 32px);
+}
+
+.footer .dev img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+
+.dev-container {
+    padding-top: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 90px;
+}
+
+.dev-container>* {
+    flex: 1 1 30px;
+    padding-right: 10px;
+}
+
+.dev-container a {
+    padding-left: 3px;
+    font-weight: 500;
+    transform: translateY(-5px);
+    display: inline-block;
+}
 
 /*styling for tasks*/
 /*.tasks{*/
@@ -218,9 +316,9 @@ main.container {
 }
 .taskPhoto {
     margin-left: 25%;
-    width: 50%;
+    width: 100px;
     border-radius: 50%;
-    height:132px;
+    height:100px;
 }
 .modalDelete{
     margin-right: 0;!important
@@ -238,10 +336,11 @@ main.container {
 }
 
 div.content-main + footer  {
-    transform: translateY(-40px);
+
 }
 div.content-main + footer .footer {
-    margin-top: 10px;
+    margin-top: 0px;
+    padding-top: 20px;
 }
 
 .btn {
@@ -257,3 +356,139 @@ div.content-main + footer .footer {
     color: white;
 }
 
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+    background-color: gray;
+}
+
+
+
+.fifty-fifty {
+    display: flex;
+    flex-direction: row;
+}
+.fifty-fifty div.content {
+    max-width: 50vw;
+    min-width: 50vw;
+    padding: 50px 65px;
+}
+
+
+.fifty-fifty div.content p {
+    max-width: 310px;
+    font-size: 24px;
+}
+
+.fifty-fifty img {
+    height: 100%;
+    min-height: 500px;
+}
+
+
+@media screen and (max-width: 700px) {
+
+    .fifty-fifty {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .fifty-fifty div, .fifty-fifty div.content{
+        max-width: 100vw;
+        min-width: 100vw;
+    }
+
+    .fifty-fifty img {
+        height: 100%;
+        width: 100vw;
+        min-height: 100px;
+    }
+
+
+
+}
+
+.fifty-fifty:nth-of-type(odd) {
+    background-color: #e2e2e2;
+}
+
+.fifty-fifty:nth-of-type(even) {
+    background-color: teal;
+}
+
+.fifty-fifty:nth-of-type(even) div.content p {
+    color: #fff;
+}
+
+
+/*  Task Cards */
+
+.row .col.card {
+    max-width: calc(33% - 40px);
+    min-width: calc(33% - 40px);
+    margin: 20px;
+}
+
+
+.row .col.card .card-title {
+    min-height: 33px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+
+@media screen and (max-width: 700px) {
+    .row .col.card {
+        max-width: calc(100% - 40px);
+        min-width: calc(100% - 40px);
+    }
+}
+
+
+
+@media screen and (min-width: 701px) and (max-width: 1050px) {
+    .row .col.card {
+        max-width: calc(50% - 40px);
+        min-width: calc(50% - 40px);
+    }
+}
+
+
+/* Profile */
+
+
+
+.card .profile-header {
+    display: flex;
+    flex-direction: row;
+    background-color: #c2d2d5;
+}
+
+.card .profile-header h6 {
+    color: #181818;
+    padding-bottom: 20px;
+}
+
+#person{
+    height: 200px;
+    width: 200px;
+    display: block;
+    margin-right: 25px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+
+/* Map CSS */
+
+.mapboxgl-ctrl-top-left .mapboxgl-ctrl {
+    margin: 10px 30px 34px 27px;
+    float: left;
+}
+
+
+.mapboxgl-ctrl-geocoder input[type='text'] {
+    width: 81%;
+    height: 20px;
+}
