@@ -2,7 +2,9 @@
 <!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
 
 
+
 <footer class="page-footer" th:fragment="footer">
+
 
 
    <div class="footer-container">
@@ -24,8 +26,8 @@
                     <h5 class="">More</h5>
                     <ul class="footer-links">
 
-                        <li><a class="" href="#!">About Us</a></li>
-                        <li><a class="" href="#!">Contact</a></li>
+                        <li><a class="" th:href="@{'/about'}">About Us</a></li>
+                        <li><a class="" th:href="@{'/about'}">Contact</a></li>
                     </ul>
                 </div>
 
