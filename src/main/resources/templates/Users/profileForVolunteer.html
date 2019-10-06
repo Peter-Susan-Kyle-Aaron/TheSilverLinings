@@ -10,18 +10,15 @@
 <th:block th:replace="fragments/navbar :: navbar"/>
 <div class="container">
     <div class="card">
-        <div class="card-content">
+        <div class="card-content profile-header">
             <img id="person" th:src="${user.photo}"/>
-            <div class="center-align">
-                <h3><span th:text="${user.username}"></span></h3>
-                <h6><span style="color:darkgrey" th:text="${user.email}"></span></h6>
-                <br/>
+            <div >
+                <h3 th:text="${user.username}"></h3>
+                <h6 th:text="${user.email}"></h6>
+
                 <th:block th:if="${userSesh.id == user.id}">
-                    <form th:action="@{'/profile/' + ${user.id} + '/edit'}" th:method="GET" th:object="${user}">
-                        <input style="float: right" type="submit" value="Edit" class="btn btn-medium"/>
-                    </form>
+                    <a th:href="@{'/profile/' + ${user.id} + '/edit'}" class="btn btn-medium">Edit Profile</a>
                 </th:block>
-                <br/>
             </div>
         </div>
         <div class="card-tabs">
