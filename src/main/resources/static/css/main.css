@@ -328,7 +328,15 @@ main.container {
 .aboutText {
     font-weight:bold;
     text-align:center;
+    font-size: 1.3em;
 
+}
+
+.github {
+    color:black;
+}
+.linkedin {
+    color:#1178B3;
 }
 
 .aboutImg {
