@@ -228,6 +228,7 @@ main.container {
 }
 
 .aboutText {
+    font-size: 1.3em;
     font-weight:bold;
     text-align:center;
 
@@ -257,3 +258,11 @@ div.content-main + footer .footer {
     color: white;
 }
 
+
+.linkedin{
+    color: #0077B5;
+}
+
+.github{
+    color: black;
+}
