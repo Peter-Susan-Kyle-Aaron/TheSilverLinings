@@ -68,7 +68,6 @@
                         </div>
                     </div>
                     <div class="active" id="history">
-
                         <div th:each="post : ${posts}" th:if="${post.isComplete()} == true">
                             <p th:text="${post.title}"></p>
                             <p th:text="${post.date}"></p>
