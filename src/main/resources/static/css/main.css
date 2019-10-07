@@ -283,9 +283,6 @@ main.container {
 }
 
 /*styling navbar*/
-.brand-logo{
-    margin-left: 20px;
-}
 
 
 .redButton{
@@ -499,4 +496,22 @@ div.content-main + footer .footer {
 .mapboxgl-ctrl-geocoder input[type='text'] {
     width: 81%;
     height: 20px;
+}
+.btn-large{
+    font-size: 24px;
+}
+.btn{
+    font-size: 18px;
+}
+
+nav .teal-text{
+    font-size: 18px;
+}
+.brand-logo{
+    margin-left: 20px;
+    font-size: 36px!important;
+}
+
+footer a{
+    font-size: 18px;
 }
