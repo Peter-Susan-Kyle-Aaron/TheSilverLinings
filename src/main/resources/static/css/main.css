@@ -512,14 +512,15 @@ nav .teal-text{
     font-size: 36px!important;
 }
 
-footer a{
+footer a {
     font-size: 18px;
+}
 
 .requestPage p{
-    font-size:20px;
-    line-height: 0.1;
+    font-size:20px !important;
+    line-height: 0.1 !important;
 }
 .requestPage h5{
-    color:teal;
+    color:teal !important;
 
 }
