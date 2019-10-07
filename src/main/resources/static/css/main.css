@@ -283,9 +283,6 @@ main.container {
 }
 
 /*styling navbar*/
-.brand-logo{
-    margin-left: 20px;
-}
 
 
 .redButton{
@@ -499,10 +496,30 @@ div.content-main + footer .footer {
     width: 81%;
     height: 20px;
 }
+
+.btn-large{
+    font-size: 24px;
+}
+.btn{
+    font-size: 18px;
+}
+
+nav .teal-text{
+    font-size: 18px;
+}
+.brand-logo{
+    margin-left: 20px;
+    font-size: 36px!important;
+}
+
+footer a{
+    font-size: 18px;
+
 .requestPage p{
     font-size:20px;
     line-height: 0.1;
 }
 .requestPage h5{
     color:teal;
+
 }
