@@ -36,7 +36,7 @@
 <!--                                    <button style="margin:auto;display:block" class="waves-effect waves-light btn-large">Accept Task</button>-->
 <!--                                </form>-->
 
-                                <a th:href="'tasks/'+${post.id}" class="waves-effect waves-light btn-large">View Task</a>
+                                <a style="margin:auto;display:block;" th:href="'tasks/'+${post.id}" class="waves-effect waves-light btn-large">View Task</a>
 
                             </th:block>
                         </th:block>
@@ -47,7 +47,8 @@
                                 <div class="modal-content">
                                     <h4>Are you sure you want to delete this request?</h4>
                                 </div>
-                                <div class="modal-footer">
+                                <div class="modal-footer row">
+                                    <a class="btn modal-close" style="float:left;margin-left:20px">Cancel</a>
                                     <form th:action="@{'/tasks/'+${post.id}+'/delete'}" method="post">
                                         <button class="btn redButton">Delete</button>
                                     </form>
