@@ -23,8 +23,8 @@
         </div>
         <div class="card-tabs">
             <ul class="tabs tabs-fixed-width">
-                <li style="font-size: 20px" class="tab teal darken-1"><a href="#tasks">Accepted Tasks</a></li>
-                <li style="font-size: 20px" class="tab teal darken-1"><a href="#recent">Recent Review</a></li>
+                <li style="font-size: 20px" class="tab teal darken-1"><a style="font-size: 20px" href="#tasks">Accepted Tasks</a></li>
+                <li style="font-size: 20px" class="tab teal darken-1"><a style="font-size: 20px" href="#recent">Recent Review</a></li>
             </ul>
         </div>
             <div class="active" id="recent">
@@ -60,7 +60,7 @@
                             <a th:href="'../tasks/'+${post.id}">
                                 <div class="card-content black-text tasks">
                                     <img class="taskPhoto" th:src="${post.user.getPhoto()}" alt=""/>
-                                    <h5 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis" th:text="${post.title}"></h5>
+                                    <h5 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis; color: teal;" th:text="${post.title}"></h5>
                                     <p style="font-size:20px;"><span th:each="map : ${hmap}" th:if="${map.key} == ${post.id}" th:text="${map.value}"></span></p>
                                 </div>
                             </a>
