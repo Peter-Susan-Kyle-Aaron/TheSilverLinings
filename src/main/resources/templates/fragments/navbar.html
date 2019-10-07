@@ -3,10 +3,16 @@
         <a th:href="@{/}" class="brand-logo left teal-text text-darken-1">SILVER LINING</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a sec:authorize="isAuthenticated()" th:href="@{/tasks}" class="teal-text text-darken-1">Tasks</a></li>
+            <th:block sec:authorize="isAuthenticated()" th:if="${userSesh.role != 1}">
+                <li><a  th:href="@{/}" class="teal-text text-darken-1">Home</a></li>
+            </th:block>
             <li><a sec:authorize="isAuthenticated()" th:href="@{/profile}" class="teal-text text-darken-1">Profile</a></li>
+            <th:block sec:authorize="isAuthenticated()" th:if="${userSesh.role != 2}">
+                <li><a  th:href="@{/tasks}" class="teal-text text-darken-1">Tasks</a></li>
+            </th:block>
             <th:block sec:authorize="isAuthenticated()" th:if="${userSesh.role != 1}">
                 <li><a  th:href="@{/create}" class="teal-text text-darken-1">Create</a></li>
+                <li><a  th:href="@{/tasks}" class="teal-text text-darken-1">My Requests</a></li>
             </th:block>
             <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="teal-text text-darken-1" >Sign In</a></li>
             <li><a sec:authorize="!isAuthenticated()" th:href="@{/signup}" class="waves-effect waves-light btn teal darken-1 signup">Register</a></li>
